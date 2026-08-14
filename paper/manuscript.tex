@@ -1,0 +1,980 @@
+%==============================================================
+%  IEEE J-BHI submission — full draft
+%  Compile on Overleaf with pdfLaTeX (IEEEtran is preinstalled).
+%==============================================================
+\documentclass[journal]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{url}
+\hyphenation{fed-er-at-ed}
+
+\begin{document}
+
+\title{Absent Classes, Not Client Drift:\\
+Diagnosing and Correcting Federated Collapse\\
+in Brain Tumor MRI Classification}
+
+\author{Zahraa Ibrahim Khaleel and Mohammed Sahib Mehdi%
+\thanks{Manuscript received \today.}
+\thanks{The authors are with the Department of Computer Science, College of Science, Al-Nahrain University, Baghdad, Iraq (e-mail: [YOUR EMAIL]).}}
+
+\markboth{IEEE Journal of Biomedical and Health Informatics,~Vol.~XX, No.~X, 2026}%
+{Khaleel \MakeLowercase{\textit{and}} Mehdi: Class-Presence-Guided Restricted Softmax}
+
+\maketitle
+
+\begin{abstract}
+Federated learning allows several hospitals to train a shared diagnostic model
+without exchanging patient images, but its accuracy degrades when the label
+distribution differs across sites. In brain tumor classification this
+degradation is severe, because a participating centre may never encounter one
+of the tumor types at all. We show that under a Dirichlet partition with
+concentration $0.3$, thirteen of seventeen simulated sites hold fewer than
+three tumor types, and that a federated model trained with the standard
+cross-entropy loss under these conditions loses six to seven points of balanced
+accuracy and becomes acutely sensitive to how the partition happens to fall, its
+worst partitions returning $0.447$ against a chance level of $0.333$. We trace the failure to a specific
+term: for a class a client does not hold, the cross-entropy gradient on that
+class logit is strictly positive at every step, so local training displaces the
+corresponding output parameters in a direction fixed by the partition draw.
+Removing that term entirely, by masking absent-class logits during local
+updates, raises balanced accuracy from $0.584$ to $0.649$ over twenty seeds
+(Holm-corrected $p=0.002$, Cohen's $d=0.91$), reduces the across-seed standard
+deviation from $0.074$ to $0.028$, and closes $54\%$ of the gap to centralised
+training on the pooled data. The advantage replicates on the BRISC~2025
+benchmark, which uses independently annotated masks and a different class
+balance. Comparison against logit calibration shows the two corrections to be
+statistically indistinguishable ($p=0.12$), which supports the diagnosis rather
+than any single remedy: what matters is that the absent-class term is removed,
+not how. A controlled sweep confirms this, with the benefit scaling from $17.5$
+points at high local absence to no measurable effect when every client holds
+every class.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Federated learning, label distribution skew, restricted softmax, brain tumor,
+magnetic resonance imaging, non-IID data, SCAFFOLD.
+\end{IEEEkeywords}
+
+%==============================================================
+\section{Introduction}
+\IEEEPARstart{M}{agnetic} resonance imaging is the primary modality for
+characterising intracranial tumors, and automated classification of tumor type
+from MRI has been studied extensively as a decision-support aid
+\cite{cheng2015,gumaei2019,deepak2019}. Progress in this area depends on access
+to large annotated cohorts, yet the images involved are among the most tightly
+regulated categories of clinical data. Institutional review requirements and
+national privacy legislation frequently prevent hospitals from pooling scans
+into a central repository, which leaves individual centres training on datasets
+too small to support a reliable model.
+
+Federated learning offers a way around this constraint. Rather than moving
+images, participating sites exchange model updates with a coordinating server,
+so that patient data never leaves the institution where it was acquired
+\cite{mcmahan2017,kairouz2021}. The approach has been evaluated for
+multi-institutional brain tumor segmentation \cite{sheller2020} and has been
+proposed as a general framework for collaborative clinical machine learning
+\cite{rieke2020}.
+
+The difficulty is that the classical convergence analysis of federated
+averaging assumes that client datasets are drawn from a common distribution,
+and clinical data violate this assumption in a specific and consequential way.
+Referral patterns, departmental specialisation and scanner availability
+determine which conditions a centre sees. A neurosurgical unit that treats
+pituitary adenomas may accumulate hundreds of such cases and none of another
+tumor type. The resulting label skew is not a mild statistical nuisance: when a
+client holds no examples of class $c$, the gradient of the cross-entropy loss
+with respect to the logit of $c$ is strictly positive at every optimisation
+step, so local training drives that logit downward without any counteracting
+signal. Averaging models that have each suppressed a different subset of
+classes yields a global classifier whose final layer has been corrupted in a
+manner that depends on how the partition happened to fall.
+
+Several corrections operate directly on the softmax. FedRS rescales the logits
+of absent classes by a factor $\alpha \in [0,1]$ during local training
+\cite{fedrs2021}; FedLC generalises this to a per-class margin derived from
+label frequency \cite{fedlc2022}; FedVLS adds a distillation term aimed
+specifically at vacant classes \cite{fedvls2025}. These methods were developed
+and tuned on natural-image benchmarks with large label spaces, where each client
+is missing most of the classes. The regime encountered in tumor-type
+classification is different: the label space contains three classes, and a
+client typically misses one. Whether the tuned intermediate values of $\alpha$
+reported for CIFAR-scale problems remain appropriate when the label space is
+small has not been examined, and the behaviour of the limiting case
+$\alpha = 0$ has not been characterised.
+
+This paper makes the following contributions.
+
+\begin{itemize}
+\item We identify the mechanism behind federated collapse in this setting. The
+cross-entropy gradient on a class the client does not hold is strictly positive
+at every step, so local training displaces the corresponding output parameters
+along a direction determined by the partition draw. We show that this term, and
+not client drift in the shared representation, is what destabilises training,
+and we quantify the condition that produces it: a Dirichlet partition with
+concentration $0.3$ leaves $13$ of $17$ clients without at least one tumor type.
+
+\item We show that removing the term is what matters, not the particular way it
+is removed. Full masking of absent-class logits and frequency-based logit
+calibration both recover $6$ to $7$ points of balanced accuracy over federated
+averaging and are statistically indistinguishable from each other
+($p=0.12$ over twenty seeds), while partial scaling at the setting published for
+FedRS recovers less than one point. This locates the effect in the presence or
+absence of the term rather than in any specific operator, and the comparison
+against calibration is not reported in either originating paper.
+
+\item We place the result on an absolute scale by measuring centralised
+training on the pooled data. The correction closes $54\%$ of the gap between
+federated averaging and the centralised upper bound, which no prior study of
+this dataset reports.
+
+\item We isolate the mechanism through a controlled sweep over partition
+severity. The benefit scales monotonically with the mean fraction of classes
+absent per client, from $17.5$ points at high absence to no measurable effect
+when every client holds every class, which is the behaviour the gradient
+argument predicts and a general regularisation account does not.
+
+\item We report three negative findings that follow from the same analysis:
+learning-rate warmup with cosine decay and extended training, both standard
+remedies for unstable federated optimisation, increase the collapse rate under
+this form of skew; the FedProx proximal term adds nothing to the corrected
+objective; and the benefit halves when the backbone is enlarged from a three-block
+convolutional network to a residual network, which bounds the regime in which
+the correction is worth applying.
+\end{itemize}
+
+%==============================================================
+\section{Related Work}
+
+\subsection{Federated Optimisation under Heterogeneous Data}
+Federated averaging aggregates locally trained weights in proportion to dataset
+size \cite{mcmahan2017}. Its accuracy deteriorates when client distributions
+diverge, an effect analysed empirically by Zhao \emph{et al.} \cite{zhao2018}
+and confirmed across a range of partitions by Li \emph{et al.} \cite{li2022exp}.
+Two families of correction dominate. FedProx constrains the local solution to
+remain near the current global model through a proximal penalty
+\cite{fedprox2020}. SCAFFOLD instead estimates the difference between local and
+global gradient directions and subtracts it during local steps, which removes
+client drift without restricting the size of the local update
+\cite{scaffold2020}. Both target drift in the shared representation. Neither
+addresses the case in which a client's local objective is defined over a
+strict subset of the label space, which is the situation examined here.
+
+Normalisation interacts with heterogeneity. Batch normalisation estimates
+statistics from local batches, so under non-identical client distributions the
+running estimates diverge and averaging becomes unreliable. Hsieh \emph{et al.}
+showed that replacing batch normalisation with group normalisation
+\cite{groupnorm2018} recovers most of the accuracy lost to this effect
+\cite{hsieh2020}, a result reproduced in later normalisation benchmarks
+\cite{casella2023}. FedBN takes the alternative route of keeping normalisation
+layers local \cite{fedbn2021}. We adopt group normalisation for the reasons
+given in \cite{hsieh2020}.
+
+\subsection{Softmax and Logit Adjustment for Label Skew}
+FedRS is the closest antecedent to the present work \cite{fedrs2021}. It
+multiplies the logits of classes absent from a client by a scalar
+$\alpha \in [0,1]$, which reduces but does not eliminate the gradient reaching
+those logits; $\alpha = 1$ recovers federated averaging. The reported
+experiments use CIFAR-10 and CIFAR-100 with $\alpha = 0.5$, and gains over
+federated averaging range from $4.6$ to $14.9$ points depending on the partition
+and the backbone. FedLC replaces the single scalar with a per-class margin
+computed from local label frequencies, treating missing classes as the extreme
+of the minority-class case, and reports larger gains on Dirichlet partitions of
+CIFAR-10 \cite{fedlc2022}. FedVLS observes that calibration methods can fall
+below federated averaging when the number of vacant classes is large, and adds a
+distillation objective to compensate \cite{fedvls2025}.
+
+\subsection{Relation to the Boundary Case Already Reported in FedRS}
+\label{sec:fedrs_relation}
+Because our correction is the boundary case of FedRS, we set out explicitly what
+that paper already covers, so that the difference is a matter of record rather
+than of emphasis.
+
+Li and Zhan evaluate $\alpha \in \{0.0, 0.1, 0.5, 0.9, 1.0\}$, so the value we
+use is among those they tried. They also treat it analytically, observing that
+at $\alpha = 0$ the method ``degenerates into fixed proxies'' whose weights are
+not updated and therefore do not contribute to the aggregation, which is the same
+mechanism we describe in Section~\ref{sec:absentgrad}. Their empirical summary is
+that $\alpha = 0$ obtains results comparable to $\alpha = 0.5$ in most cases and
+can be worse with more local epochs. Consistent with that reading, $\alpha = 0$
+appears in their convergence figures but not in their headline tables, and the
+setting they carry forward is $\alpha = 0.5$. They further report a combined
+variant, Scaffold/RS, which is the best configuration in their comparison,
+so pairing the restricted objective with SCAFFOLD is likewise established rather
+than new. Finally, in an appendix they observe weaker improvements with a VGG11
+backbone than with a smaller network and conjecture that the restriction helps
+more when the feature extractor is small; the backbone measurement in
+Section~\ref{sec:backbone} is the controlled version of that conjecture.
+
+Three things are therefore not claimed here: the operator, the pairing with
+SCAFFOLD, and the qualitative idea that backbone size matters.
+
+What differs is the regime and, with it, the answer. Their evaluation uses ten
+to one hundred classes with two to twenty per client, where a client is missing
+most of the label space and removing all of that negative evidence costs as much
+as the protection gains; ``comparable to $\alpha = 0.5$'' is the expected outcome
+there. Our setting has three classes with a mean local absence of $0.31$, so a
+client typically lacks one class, the discarded evidence is small, and the
+protection dominates. In that regime $\alpha = 0$ is not comparable to
+$\alpha = 0.5$ but ahead of it by $5.8$ points
+(Table~\ref{tab:main}). Their own caveat is consistent with this: the case they
+found unfavourable is many local epochs, and we use one.
+
+The contribution is accordingly not the boundary value but an account of what
+governs it. Section~\ref{sec:sweep} measures the benefit as a function of local
+class absence and finds it monotone, ranging from $17.5$ points to nothing, which
+turns a reported equivalence and a measured advantage into two points on one
+curve rather than a contradiction. To that we add a comparison against logit
+calibration, which neither paper reports and which shows the two removals to be
+indistinguishable; an absolute reference from centralised training; and
+patient-level evaluation on medical images, where the missing-class condition
+arises from referral patterns rather than from a synthetic partition.
+
+\subsection{Brain Tumor Classification and Evaluation Practice}
+The Figshare dataset introduced by Cheng \emph{et al.} \cite{cheng2015} is the
+standard benchmark for three-class tumor-type classification and remains the
+reference point for reported accuracy. Subsequent work has applied engineered
+feature descriptors \cite{gumaei2019}, transfer learning from natural-image
+networks \cite{deepak2019,swati2019} and capsule architectures
+\cite{afshar2019}.
+
+Comparison across these studies is complicated by evaluation protocol. Each
+patient contributes multiple adjacent slices with near-identical appearance, so
+a random slice-level split places highly correlated images in both training and
+test sets. Yagis \emph{et al.} measured the consequence directly on brain MRI cohorts for
+Alzheimer's and Parkinson's disease, and found that slice-level splitting
+inflated reported accuracy by $29$ to $55$ points relative to subject-level
+splitting on the same data, and that randomly labelled scans reached
+approximately $96\%$ under a slice-level split against $50\%$ under a
+subject-level split \cite{yagis2021}. The pathology differs from ours, but the
+mechanism is a property of the data structure rather than of the disease: any
+cohort in which one subject contributes many adjacent slices is exposed to it.
+We therefore group by patient identifier throughout and treat published
+slice-level figures as measuring a different quantity.
+
+%==============================================================
+\section{Methods}
+
+\subsection{Problem Setting}
+Let $K$ clients hold private datasets $\mathcal{D}_1,\dots,\mathcal{D}_K$ over a
+common label space $\mathcal{Y}$ with $|\mathcal{Y}| = C$. Write
+$\mathcal{P}_k \subseteq \mathcal{Y}$ for the set of classes that appear in
+$\mathcal{D}_k$ and $\mathcal{A}_k = \mathcal{Y} \setminus \mathcal{P}_k$ for the
+absent classes. Federated training minimises
+\begin{equation}
+\min_{\theta}\ \sum_{k=1}^{K} \frac{n_k}{n}\, F_k(\theta),
+\qquad
+F_k(\theta) = \frac{1}{n_k}\sum_{(x,y)\in\mathcal{D}_k} \ell(f_\theta(x), y),
+\label{eq:objective}
+\end{equation}
+with $n_k = |\mathcal{D}_k|$ and $n = \sum_k n_k$. We define the \emph{local
+absence} of client $k$ as $a_k = |\mathcal{A}_k| / C$ and report the mean
+$\bar{a} = K^{-1}\sum_k a_k$ as the summary statistic of partition severity.
+
+\subsection{The Absent-Class Gradient}
+\label{sec:absentgrad}
+Let $z = f_\theta(x) \in \mathbb{R}^C$ denote the logits and $p =
+\mathrm{softmax}(z)$. For the cross-entropy loss $\ell(z,y) = -\log p_y$, the
+derivative with respect to the logit of an arbitrary class $c$ is
+\begin{equation}
+\frac{\partial \ell}{\partial z_c} = p_c - \mathbb{1}[c = y].
+\label{eq:grad}
+\end{equation}
+If $c \in \mathcal{A}_k$ then $\mathbb{1}[c=y] = 0$ for every sample in
+$\mathcal{D}_k$, so the derivative reduces to $p_c > 0$ at every step. The
+parameters of the output unit for class $c$ are therefore driven in one
+direction throughout local training, and the magnitude of this displacement
+depends on how many and which classes are absent, which is determined by the
+partition and thus by the random seed. When the server averages models whose
+output layers have been displaced along different class directions, the
+resulting classifier is biased in a way that varies from run to run. This
+accounts for both the loss of mean accuracy and the large across-seed variance
+reported in Section~\ref{sec:results}.
+
+\subsection{Class-Presence-Guided Restricted Softmax}
+The correction rescales the contribution of absent classes to the local
+partition function. For client $k$,
+\begin{equation}
+\ell_k(z,y) = -\log
+\frac{\exp(z_y)}{\displaystyle\sum_{c \in \mathcal{Y}} s_c^{(k)} \exp(z_c)},
+\qquad
+s_c^{(k)} =
+\begin{cases}
+1, & c \in \mathcal{P}_k,\\[2pt]
+\alpha, & c \in \mathcal{A}_k,
+\end{cases}
+\label{eq:rs}
+\end{equation}
+which recovers standard cross-entropy at $\alpha = 1$ and reproduces FedRS
+\cite{fedrs2021} for intermediate $\alpha$. Differentiating \eqref{eq:rs} with
+respect to an absent-class logit gives
+\begin{equation}
+\frac{\partial \ell_k}{\partial z_c}
+= \frac{\alpha \exp(z_c)}{\sum_{c'} s_{c'}^{(k)}\exp(z_{c'})}
+= \alpha\, \tilde{p}_c , \qquad c \in \mathcal{A}_k ,
+\label{eq:grad_alpha}
+\end{equation}
+so the scaling factor acts directly on the rate at which the absent-class
+parameters are displaced. Setting $\alpha = 0$ removes the term entirely: the
+absent-class output parameters receive no gradient and are returned to the
+server unchanged from the values at which they were broadcast. In our
+implementation this is realised by adding $-\infty$ (numerically $-10^{9}$) to
+the absent logits before the softmax, which is equivalent to \eqref{eq:rs} in the
+limit and numerically stable.
+
+Intermediate values of $\alpha$ slow the displacement without stopping it. In a
+federated setting the effect accumulates, because each round re-broadcasts the
+aggregated parameters and repeats the local pass. Over $T$ rounds the residual
+displacement scales with $\alpha T$, so a factor that appears small in a single
+epoch is not small after forty rounds. This is the reason we expect, and
+observe, that $\alpha = 0$ dominates intermediate settings when local absence is
+high.
+
+The argument also predicts when the correction should make no difference. If
+$\mathcal{A}_k = \emptyset$ for all $k$, the modified loss \eqref{eq:rs} is
+identical to cross-entropy for any $\alpha$, and no effect of the correction
+should be measurable. Section~\ref{sec:sweep} tests this prediction directly.
+
+\subsection{Training Procedure}
+Local optimisation uses SCAFFOLD \cite{scaffold2020}, whose control variates
+correct drift in the shared feature extractor, combined with the restricted
+objective \eqref{eq:rs}, which corrects the output layer. The two act on
+different parts of the model and are complementary. All normalisation layers are
+group normalisation \cite{groupnorm2018} following \cite{hsieh2020}. Local
+sampling is class-balanced within each client, and gradients are clipped to unit
+norm. Algorithm~\ref{alg:main} summarises the procedure.
+
+\begin{algorithm}[t]
+\caption{Class-Presence-Guided Federated Training}
+\label{alg:main}
+\begin{algorithmic}[1]
+\STATE \textbf{Input:} clients $1..K$, rounds $T$, learning rate $\eta$, scaling $\alpha$
+\STATE Server initialises $\theta^{0}$ and control variate $c^{0}$
+\FOR{$t = 0$ \TO $T-1$}
+  \STATE Server broadcasts $\theta^{t}$, $c^{t}$
+  \FOR{each client $k$ \textbf{in parallel}}
+    \STATE $\mathcal{P}_k \leftarrow$ set of classes present in $\mathcal{D}_k$
+    \STATE $\theta_k \leftarrow \theta^{t}$
+    \FOR{each local batch $(x,y)$}
+      \STATE $g \leftarrow \nabla_{\theta_k}\, \ell_k(f_{\theta_k}(x), y)$ using \eqref{eq:rs}
+      \STATE $g \leftarrow \mathrm{clip}\big(g + c^{t} - c_k,\ 1\big)$
+      \STATE $\theta_k \leftarrow \theta_k - \eta g$
+    \ENDFOR
+    \STATE Update $c_k$; return $\Delta_k = \theta_k - \theta^{t}$
+  \ENDFOR
+  \STATE $\theta^{t+1} \leftarrow \theta^{t} + \sum_k (n_k/n)\,\Delta_k$
+  \STATE $c^{t+1} \leftarrow c^{t} + K^{-1}\sum_k (c_k - c^{t})$
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Evaluation Protocol}
+\label{sec:protocol}
+Test patients are held out before partitioning, and all slices belonging to a
+patient are assigned to the same side of the split, so no patient contributes
+to both training and evaluation \cite{yagis2021}.
+
+The primary metric is balanced accuracy, the unweighted mean of per-class
+recall. The class distribution of the Figshare dataset is uneven
+($708$ meningioma, $1426$ glioma, $930$ pituitary), so a classifier that
+predicts the majority class for every input attains $46.5\%$ plain accuracy
+while contributing nothing diagnostically; the same classifier scores $0.333$
+under balanced accuracy. Since the failure mode under study is precisely
+collapse onto a single class, plain accuracy would obscure the phenomenon the
+experiments are designed to measure. We define collapse as a run with balanced
+accuracy at or below $0.40$.
+
+Every configuration is run over $20$ seeds, with the seed controlling both the
+Dirichlet draw and model initialisation, so that comparisons are paired.
+Differences are assessed with the Wilcoxon signed-rank test, which does not
+assume normality of the per-seed differences, and reported with Cohen's $d$ for
+paired samples and a $10{,}000$-resample bootstrap confidence interval. Because
+each method is compared against three baselines, $p$-values are adjusted with
+the Holm step-down procedure \cite{holm1979}.
+
+%==============================================================
+\section{Experimental Setup}
+
+\subsection{Datasets}
+The primary dataset is the Figshare collection of Cheng \emph{et al.}
+\cite{cheng2015}, comprising $3064$ contrast-enhanced T1-weighted slices from
+$233$ patients, distributed as $708$ meningioma, $1426$ glioma and $930$
+pituitary, with expert tumor masks and patient identifiers.
+
+External validation uses BRISC \cite{brisc2025}, released with expert
+segmentation masks for the same three tumor types. We use $3000$ slices,
+$1000$ per class, drawn from the segmentation subset. BRISC does not distribute
+patient identifiers, so clients are formed by drawing slices rather than
+patients; this limitation is stated again in Section~\ref{sec:limits}. We also
+note that BRISC is assembled in part from sources that include the Cheng
+collection, so the two benchmarks are not fully independent. The masks are newly
+annotated and the class balance differs, which makes the replication informative
+as a robustness check rather than as evidence of external generalisation in the
+strict sense.
+
+\subsection{Partitioning and Model}
+Training patients are distributed over $K = 18$ clients by drawing, for each
+class, a vector of proportions from a Dirichlet distribution with concentration
+$\alpha_{\mathrm{dir}}$. Clients receiving fewer than four samples are removed,
+which leaves $17$ active clients at $\alpha_{\mathrm{dir}} = 0.3$. At this
+setting $13$ of $17$ clients hold fewer than three tumor types, and $\bar{a} =
+0.31$. Fig.~\ref{fig:problem} shows the resulting distribution of absent classes
+and the composition of each client.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{fig_problem.png}
+\caption{The missing-class condition at $\alpha_{\mathrm{dir}}=0.3$. (a) Only
+four of seventeen clients hold all three tumor types; nine are missing one and
+four are missing two. (b) Class composition of each client, where empty cells
+indicate a tumor type the client never observes during training.}
+\label{fig:problem}
+\end{figure*}
+
+The classifier is a three-block convolutional network with $16$, $32$ and $64$
+channels, group normalisation after each convolution, global average pooling and
+a linear output layer. Images are resized to $128 \times 128$ and scaled to
+$[0,1]$. Local optimisation uses stochastic gradient descent with learning rate
+$0.01$, one local epoch per round and a batch size of $32$; training runs for
+$40$ rounds. The deliberately small backbone keeps the comparison focused on the
+loss function rather than on representational capacity. Section~\ref{sec:backbone}
+measures what changes when the backbone is enlarged.
+
+Two notation conventions are used throughout: $\alpha_{\mathrm{dir}}$ denotes
+the Dirichlet concentration governing partition severity, and $\alpha$ without
+subscript denotes the restricted-softmax scaling factor of \eqref{eq:rs}.
+
+\subsection{Reproducibility}
+Every configuration is executed from a fixed seed that determines the Dirichlet
+draw, the train and test assignment of patients, the model initialisation and
+the order of local batches. Methods compared within a table therefore see
+identical partitions, which is what makes the paired tests in
+Section~\ref{sec:protocol} valid. Results are written incrementally to disk so
+that interrupted runs resume without repeating completed cells, and the
+aggregate tables are regenerated from those records rather than transcribed.
+Statistical tests are computed from the per-seed values, not from the summary
+statistics.
+
+We note one methodological check that shaped the design of the evaluation. An
+earlier version of this study assessed per-patient adaptation using a support
+and query split of each held-out patient's slices. Because a patient carries a
+single tumor type across all slices, the support set determines the label of the
+query set, and a predictor that ignores the images entirely and copies the
+majority support label attains a balanced accuracy of $1.000$. Per-patient
+adaptation is therefore not measurable on this task, and we report no such
+figures.
+
+%==============================================================
+\section{Results}
+\label{sec:results}
+
+\subsection{Which Interventions Stabilise Training}
+We first isolate the effective component by enabling one intervention at a time
+on top of an uncorrected federated baseline (Table~\ref{tab:ablation} and
+Fig.~\ref{fig:ablation}). This ablation was run at an earlier and shorter
+schedule than the comparisons that follow, twenty rounds with two local epochs
+rather than forty rounds with one, so its baseline sits at $0.551$ rather than
+the $0.584$ reported in Table~\ref{tab:main}. The two numbers are not in
+conflict; they describe the same objective under different budgets, and only
+within-table comparisons are made. Gradient
+clipping alone does not help. Learning-rate warmup with cosine decay and
+extended training, both standard responses to unstable federated optimisation,
+increase the collapse rate from zero to $15$ and $14$ runs out of $20$
+respectively. Class-balanced local sampling leaves the mean essentially
+unchanged. The restricted softmax raises balanced accuracy from $0.551$ to
+$0.611$ and eliminates collapse. Adding the FedProx proximal term on top of the
+corrected objective changes neither the mean nor the variance.
+
+\begin{table}[t]
+\centering
+\caption{Component ablation on Figshare over $20$ seeds. Collapse denotes a run
+with balanced accuracy $\leq 0.40$.}
+\label{tab:ablation}
+\begin{tabular}{lcc}
+\toprule
+Configuration & Balanced acc. & Collapses \\
+\midrule
+Federated baseline            & $0.551 \pm 0.031$ & $0/20$ \\
+\quad + gradient clipping     & $0.529 \pm 0.052$ & $1/20$ \\
+\quad + warmup, cosine decay  & $0.371 \pm 0.065$ & $15/20$ \\
+\quad + extended training     & $0.379 \pm 0.068$ & $14/20$ \\
+\quad + balanced sampling     & $0.544 \pm 0.081$ & $1/20$ \\
+\quad + restricted softmax    & $\mathbf{0.611 \pm 0.055}$ & $0/20$ \\
+\quad + FedProx term          & $0.611 \pm 0.055$ & $0/20$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\columnwidth]{fig_ablation.png}
+\caption{Component ablation. Only the restricted softmax (bottom) improves on
+the uncorrected baseline. Learning-rate warmup with cosine decay and extended
+training push the mean toward the chance level of $0.333$ (dotted line).}
+\label{fig:ablation}
+\end{figure}
+
+The two configurations that fail share a property: both increase the number of
+local optimisation steps taken against the uncorrected objective, either by
+lengthening the schedule or by raising the effective step size in the later
+rounds. Under \eqref{eq:grad}, more steps against that objective means more
+displacement of the absent-class parameters, so the direction of these results
+follows from the mechanism rather than contradicting it.
+
+\subsection{Comparison against Softmax Corrections}
+Table~\ref{tab:main} compares four local objectives on identical partitions.
+Federated averaging and FedRS at its published setting $\alpha=0.5$ behave
+almost alike, separated by less than one point. The two objectives that remove
+the absent-class term outright, full masking and frequency-based logit
+calibration, both gain six to seven points over federated averaging, and the
+difference between them is not significant ($\Delta=0.004$, Holm $p=0.108$,
+masking ahead on $8$ of the $20$ partitions and calibration on the other $12$).
+
+We read this pattern as evidence for the diagnosis rather than for a particular
+operator. Partial scaling attenuates the absent-class gradient by a factor
+$\alpha$ but leaves it in the objective, and over forty rounds the residual
+displacement accumulates; the result is close to no correction at all. Once the
+term is removed, whether by masking or by a margin large enough to be equivalent
+to masking, the method used to remove it makes no measurable difference. The
+practical distinction between the two is that masking requires no
+hyperparameter, whereas calibration introduces a temperature that must be
+tuned; in a federated clinical deployment, where no held-out validation set
+spans all sites, this is a meaningful simplification.
+
+The reduction in across-seed standard deviation is as informative as the change
+in the mean. Federated averaging and FedRS vary with standard deviation $0.074$
+and $0.072$, while the two corrected objectives sit at $0.028$ and $0.026$. The
+worst partition under the hard mask returns $0.598$, above the \emph{mean} of
+either uncorrected baseline.
+
+Trained on the pooled data, the same backbone reaches $0.705$. The correction
+therefore closes $54\%$ of the distance between federated averaging and
+centralised training, which locates the remaining gap in the federation itself
+rather than in the loss function.
+
+\begin{table}[t]
+\centering
+\caption{Figshare, patient-level balanced accuracy over $20$ seeds. Differences
+are computed against the hard mask; $p$-values are Holm-adjusted across the
+three comparisons. The centralised bound is trained on the pooled data with the
+same backbone and step budget ($5$ seeds).}
+\label{tab:main}
+\begin{tabular}{lcccc}
+\toprule
+Method & Balanced acc. & $\Delta$ & $p$ & $d$ \\
+\midrule
+FedAvg                  & $0.584 \pm 0.074$ & $-0.065$ & $0.002$ & $0.91$ \\
+FedRS, $\alpha=0.5$     & $0.592 \pm 0.072$ & $-0.058$ & $0.002$ & $0.86$ \\
+FedLC                   & $0.653 \pm 0.026$ & $+0.004$ & $0.123$ & $0.34$ \\
+Hard mask, $\alpha=0$   & $\mathbf{0.649 \pm 0.028}$ & --- & --- & --- \\
+\midrule
+\textit{Centralised bound} & \textit{$0.705 \pm 0.011$} & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Distribution of Outcomes across Partitions}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{fig_perseed.png}
+\caption{Paired per-seed comparison against FedRS at $\alpha=0.5$. Each line
+connects the two objectives on one partition; the heavy line joins the means.
+The partitions on which the uncorrected baseline falls below $0.55$ are those
+with the highest local absence, and these are the partitions on which removing
+the absent-class term has the largest effect.}
+\label{fig:perseed}
+\end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.88\columnwidth]{fig_variance.png}
+\caption{Standard deviation of balanced accuracy across seeds. Objectives that
+remove the absent-class term give the narrowest spread on both benchmarks.}
+\label{fig:variance}
+\end{figure}
+
+The aggregate figures in Table~\ref{tab:main} conceal a difference in the shape
+of the distributions. Federated averaging and FedRS produce a bimodal pattern:
+on most partitions they reach the mid-$0.6$ range, but on a minority they fall
+to the high $0.4$s. Seeds $5$, $13$ and $14$ illustrate this, returning $0.449$,
+$0.488$ and $0.447$ under federated averaging and $0.494$, $0.487$ and $0.447$
+under FedRS. On the same three partitions the hard mask returns $0.689$, $0.636$
+and $0.670$, and calibration returns $0.682$, $0.632$ and $0.661$. The two
+corrected objectives track each other closely on precisely the partitions where
+the uncorrected ones fail, which is the pattern the diagnosis predicts. The
+lowest result over all twenty seeds under the hard mask is $0.598$, above the
+mean of either uncorrected baseline. Fig.~\ref{fig:perseed} shows the paired
+outcomes seed by seed, and Fig.~\ref{fig:variance} summarises the resulting
+spread on both benchmarks.
+
+This pattern is what the mechanism predicts. The seeds on which the baselines
+fail are those whose Dirichlet draw concentrates entire classes on a small
+number of clients, so that the remaining clients carry a large absent-class
+gradient. Since the hard mask removes that gradient regardless of how the draw
+falls, its outcome depends much less on the partition. Reporting only the mean
+would understate the difference between the methods, because the methods differ
+most in the tail.
+
+The hard mask wins on $15$ of $20$ paired comparisons against FedRS on Figshare.
+The five partitions on which it does not win are all cases where every method
+performs well, and the differences there are within $0.02$. No partition was
+found on which the hard mask fails while a baseline succeeds.
+
+\subsection{Replication on BRISC}
+Table~\ref{tab:brisc} repeats the comparison on BRISC. The ordering of the four
+methods is preserved and the margin over FedRS at $\alpha = 0.5$ is $5.2$
+points, close to the $5.8$ observed on Figshare. No method collapses on this
+benchmark, which is consistent with its balanced class distribution, and the
+hard mask nevertheless retains its advantage. The correction therefore does more
+than prevent degenerate solutions.
+
+\begin{table}[t]
+\centering
+\caption{BRISC, balanced accuracy over $20$ seeds. Differences are computed
+against the hard mask, Holm-adjusted.}
+\label{tab:brisc}
+\begin{tabular}{lcccc}
+\toprule
+Method & Balanced acc. & $\Delta$ & $p$ & $d$ \\
+\midrule
+FedAvg                  & $0.621 \pm 0.061$ & $-0.055$ & $0.0015$ & $0.87$ \\
+FedRS, $\alpha=0.5$     & $0.624 \pm 0.062$ & $-0.052$ & $0.0015$ & $0.82$ \\
+FedRS, $\alpha=0.25$    & $0.635 \pm 0.061$ & $-0.041$ & $0.0018$ & $0.77$ \\
+Hard mask, $\alpha=0$   & $\mathbf{0.676 \pm 0.046}$ & --- & --- & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{fig_compare.png}
+\caption{Balanced accuracy over $20$ seeds on both benchmarks. Error bars show
+one standard deviation across seeds. The ordering of methods is preserved
+between datasets, and the hard mask combines the highest mean with the smallest
+spread in each case.}
+\label{fig:compare}
+\end{figure*}
+
+\subsection{The Margin Scales with Local Absence}
+\label{sec:sweep}
+Section~III argued that the benefit of $\alpha = 0$ should depend on how many
+classes are absent from each client and should disappear when none are. We test
+this by varying $\alpha_{\mathrm{dir}}$ over $\{0.1, 0.5, 3.0\}$, which produces
+mean local absence $\bar{a} \in \{0.50, 0.31, 0.07\}$, and evaluating
+$\alpha \in \{0, 0.5, 1\}$ at each level over eight seeds
+(Table~\ref{tab:sweep}).
+
+\begin{table}[t]
+\centering
+\caption{Balanced accuracy as a function of partition severity and scaling
+factor, eight seeds per cell. The final column reports the margin of
+$\alpha = 0$ over $\alpha = 0.5$ with its paired Wilcoxon $p$-value.}
+\label{tab:sweep}
+\begin{tabular}{ccccccc}
+\toprule
+$\alpha_{\mathrm{dir}}$ & $\bar{a}$ & $\alpha{=}0$ & $\alpha{=}0.5$ & $\alpha{=}1$ & Margin & $p$ \\
+\midrule
+$0.1$ & $0.50$ & $0.629$ & $0.454$ & $0.471$ & $+0.175$ & $0.008$ \\
+$0.5$ & $0.31$ & $0.670$ & $0.607$ & $0.602$ & $+0.063$ & $0.023$ \\
+$3.0$ & $0.07$ & $0.659$ & $0.657$ & $0.656$ & $+0.002$ & $0.836$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\columnwidth]{fig_absence.png}
+\caption{Margin of $\alpha=0$ over $\alpha=0.5$ as a function of mean local
+class absence. Error bars show the standard error of the paired difference
+across eight seeds. The effect disappears when clients hold nearly the complete
+label space.}
+\label{fig:absence}
+\end{figure}
+
+The margin decreases monotonically with local absence and is no longer
+distinguishable from zero when clients hold nearly the full label space. We
+emphasise that $\alpha = 0$ remains the best of the three settings at every
+level tested; what changes is the size of the advantage, not its sign. The
+correction is therefore inactive rather than harmful in the balanced regime,
+which is the behaviour \eqref{eq:rs} predicts when $\mathcal{A}_k = \emptyset$.
+
+\subsection{Sensitivity to Backbone Capacity}
+\label{sec:backbone}
+The corrections studied here act on the output layer, so their effect should
+depend on how much of the classification is carried by that layer. We repeated
+the comparison with a residual network of roughly ten times the parameter count,
+keeping the partitions, budget and normalisation unchanged
+(Table~\ref{tab:backbone}).
+
+\begin{table}[t]
+\centering
+\caption{Effect of backbone capacity, $10$ seeds. Gains are measured against
+federated averaging on the same backbone.}
+\label{tab:backbone}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{Three-block CNN} & \multicolumn{2}{c}{Residual network}\\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}
+Method & Bal. acc. & Gain & Bal. acc. & Gain\\
+\midrule
+FedAvg      & $0.584$ & --- & $0.559$ & ---\\
+FedRS $0.5$ & $0.592$ & $+0.8$ & $0.563$ & $+0.3$\\
+FedLC       & $0.653$ & $+6.9$ & $0.593$ & $+3.4$\\
+Hard mask   & $0.649$ & $+6.5$ & $0.588$ & $+2.9$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two observations follow. The benefit of removing the absent-class term halves
+when the backbone is enlarged, from $6.5$ to $2.9$ points for the hard mask and
+from $6.9$ to $3.4$ for calibration. This is the behaviour expected of a
+correction that acts on the output layer: as more of the classification is
+carried by the feature extractor, the share attributable to the final layer
+falls, and with it the effect of altering that layer's objective. The
+measurement bounds the regime in which our result should be expected to hold.
+
+The residual network is also worse in absolute terms on every objective. With
+roughly $2400$ training slices divided among seventeen clients, the larger model
+has too little data per client to justify its capacity, and the ordering of the
+methods is preserved but compressed. We therefore report the three-block network
+as the primary configuration, a choice the comparison supports rather than
+assumes.
+
+%==============================================================
+\section{Discussion}
+
+The experiments support a claim about a mechanism rather than about a method.
+Federated training fails here because clients optimise an objective defined over
+classes they do not hold, and the size of the failure tracks how much of the
+label space is missing locally. Three results converge on this reading.
+
+Partial and full removal of the absent-class term behave very differently.
+Scaling the term by $\alpha=0.5$ recovers less than one point, while removing it
+recovers six to seven. If the benefit came from regularisation in a general
+sense, a factor of two in the coefficient would not produce a factor of seven in
+the outcome. What separates the two is that attenuation leaves a residual
+gradient which accumulates over rounds, whereas removal does not.
+
+Two unrelated operators that both remove the term perform the same. Masking sets
+the absent-class contribution to zero directly; calibration subtracts a margin
+large enough to have the same effect. They differ in form, in the parameters
+they require, and in the literature they come from, yet their outcomes cannot be
+distinguished at twenty seeds. This is what one expects if the operative
+variable is the presence of the term rather than the identity of the correction,
+and it is why we frame the contribution as a diagnosis. A practitioner may
+reasonably choose either; masking is simply the one that needs no tuning.
+
+The benefit disappears exactly when the mechanism says it should. At
+$\bar{a}=0.07$, where almost every client holds every class, the corrected and
+uncorrected objectives are within $0.2$ points and the difference is not
+significant. A method that helped through some general smoothing effect would
+not switch off so cleanly.
+
+The variance reduction deserves separate comment. The displacement of the
+absent-class parameters depends on which classes each client happens to lack,
+which is a property of the partition draw. Removing the term removes a
+seed-dependent error source, and the standard deviation falls from $0.074$ to
+$0.028$ while the mean rises by six points. For deployment this is arguably the
+more relevant quantity: a federation is assembled once and its participants are
+not resampled, so what matters is the accuracy obtained on the particular
+partition at hand, and the correction narrows the range of outcomes that
+partition can produce.
+
+The negative results are consistent with the same account. Warmup with cosine
+decay and extended training both increase the number of local steps taken
+against an objective that still contains the absent-class term, which
+\eqref{eq:grad} identifies as the harmful quantity. That these are standard
+remedies for federated instability indicates that the failure mode here is
+distinct from the client drift they were designed for. FedProx points the same
+way: a proximal penalty limits how far the local solution travels but not the
+direction in which it travels, so it cannot prevent a displacement that is
+systematic rather than excessive.
+
+\section{Limitations}
+\label{sec:limits}
+
+Several constraints bound these conclusions.
+
+The correction we recommend is not novel as an operator, and neither is its
+pairing with SCAFFOLD. Both appear in the paper that introduced the scaling
+rule, which evaluates the boundary value among its settings and reports a
+combined Scaffold/RS variant; logit calibration was proposed separately as a
+generalisation of the same idea. Our claim concerns which property of these
+objectives does the work, and the regime in which the boundary case is the right
+choice rather than merely an equivalent one. Readers seeking a new operator will
+not find one here. Section~\ref{sec:fedrs_relation} states the overlap in full.
+
+Both datasets consist of contrast-enhanced T1-weighted slices, so the results do
+not speak to multi-sequence or volumetric protocols. The two benchmarks are also
+not fully independent: BRISC is assembled from sources that include the Cheng
+collection. Its masks are independently annotated and its class balance differs,
+which makes the replication a robustness check rather than validation on an
+unseen population.
+
+BRISC does not distribute patient identifiers, so clients on that benchmark are
+formed by drawing slices. Slices from one patient may be split across clients and
+across the train and test partitions, which is the leakage condition avoided on
+Figshare. The BRISC figures are therefore comparable across methods, since every
+method faces the same partition, but not comparable in absolute terms to the
+patient-level Figshare figures.
+
+The benefit halves with a larger backbone, as Table~\ref{tab:backbone} shows. Our
+results are established for models of the size appropriate to the data available
+per client in this setting; they should not be extrapolated to federations with
+enough data per site to support a large feature extractor.
+
+Balanced accuracy weights the three tumor types equally, which is appropriate for
+measuring discriminative capacity but does not reflect the asymmetric cost of
+diagnostic errors in clinical use. A cost-sensitive evaluation would require a
+clinically validated cost matrix, which we did not have access to.
+
+Finally, we tested one alternative account and rejected it. An auxiliary
+contrastive term with targets derived from continuous fractal descriptors,
+intended to organise the latent space so that absent classes retain structure,
+gave a marginal and unstable gain when added to the mask and performed ten points
+worse when used in its place, with collapse on two partitions. The failure of a
+representation-space remedy is further evidence that the pathology resides in the
+output layer.
+
+\section{Conclusion}
+
+Federated brain tumor classification collapses under severe label skew because
+clients optimise a loss defined over classes they do not hold, which displaces
+the corresponding output parameters in a direction fixed by the partition draw.
+Removing that term raises balanced accuracy by six to seven points over
+federated averaging, cuts across-seed variance by more than half, and closes
+$54\%$ of the gap to centralised training. Two different operators that remove
+it perform equivalently, while attenuating it recovers almost nothing, which
+places the effect in the term itself rather than in any particular remedy. The
+benefit scales with the fraction of the label space absent at each client and
+vanishes when no classes are missing. For federations of the size encountered in
+tumor-type classification, masking absent-class logits achieves this without
+introducing a hyperparameter.
+
+\begin{thebibliography}{00}
+
+\bibitem{cheng2015}
+J. Cheng, W. Huang, S. Cao, R. Yang, W. Yang, Z. Yun, Z. Wang, and Q. Feng,
+``Enhanced performance of brain tumor classification via tumor region
+augmentation and partition,'' \emph{PLoS ONE}, vol.~10, no.~10, art.~e0140381,
+2015, doi: 10.1371/journal.pone.0140381.
+
+\bibitem{gumaei2019}
+A. Gumaei, M. M. Hassan, M. R. Hassan, A. Alelaiwi, and G. Fortino, ``A hybrid
+feature extraction method with regularized extreme learning machine for brain
+tumor classification,'' \emph{IEEE Access}, vol.~7, pp.~36266--36273, 2019.
+
+\bibitem{deepak2019}
+S. Deepak and P. M. Ameer, ``Brain tumor classification using deep CNN features
+via transfer learning,'' \emph{Comput. Biol. Med.}, vol.~111, p.~103345, 2019.
+
+\bibitem{mcmahan2017}
+B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas,
+``Communication-efficient learning of deep networks from decentralized data,''
+in \emph{Proc. Int. Conf. Artif. Intell. Statist. (AISTATS)}, 2017,
+pp.~1273--1282.
+
+\bibitem{kairouz2021}
+P. Kairouz \emph{et al.}, ``Advances and open problems in federated learning,''
+\emph{Found. Trends Mach. Learn.}, vol.~14, no.~1--2, pp.~1--210, 2021.
+
+\bibitem{sheller2020}
+M. J. Sheller, B. Edwards, G. A. Reina, J. Martin, S. Pati, A. Kotrotsou,
+M. Milchenko, W. Xu, D. Marcus, R. R. Colen, and S. Bakas, ``Federated learning
+in medicine: facilitating multi-institutional collaborations without sharing
+patient data,'' \emph{Sci. Rep.}, vol.~10, art.~12598, 2020.
+
+\bibitem{rieke2020}
+N. Rieke \emph{et al.}, ``The future of digital health with federated
+learning,'' \emph{npj Digit. Med.}, vol.~3, art.~119, 2020.
+
+\bibitem{fedrs2021}
+X.-C. Li and D.-C. Zhan, ``FedRS: Federated learning with restricted softmax for
+label distribution non-IID data,'' in \emph{Proc. 27th ACM SIGKDD Conf. Knowl.
+Discov. Data Min. (KDD '21)}, Virtual Event, Singapore, Aug.~2021,
+pp.~995--1005, doi: 10.1145/3447548.3467254.
+
+\bibitem{fedlc2022}
+J. Zhang, Z. Li, B. Li, J. Xu, S. Wu, S. Ding, and C. Wu, ``Federated learning
+with label distribution skew via logits calibration,'' in \emph{Proc. Int. Conf.
+Mach. Learn. (ICML)}, 2022, pp.~26311--26329.
+
+\bibitem{fedvls2025}
+K. Guo, Y. Ding, J. Liang, Z. Wang, R. He, and T. Tan, ``Exploring vacant
+classes in label-skewed federated learning,'' in \emph{Proc. AAAI Conf. Artif.
+Intell.}, vol.~39, 2025, pp.~16960--16968.
+
+\bibitem{zhao2018}
+Y. Zhao, M. Li, L. Lai, N. Suda, D. Civin, and V. Chandra, ``Federated learning
+with non-IID data,'' arXiv preprint arXiv:1806.00582, 2018.
+
+\bibitem{li2022exp}
+Q. Li, Y. Diao, Q. Chen, and B. He, ``Federated learning on non-IID data silos:
+an experimental study,'' in \emph{Proc. IEEE Int. Conf. Data Eng. (ICDE)}, 2022,
+pp.~965--978.
+
+\bibitem{fedprox2020}
+T. Li, A. K. Sahu, M. Zaheer, M. Sanjabi, A. Talwalkar, and V. Smith,
+``Federated optimization in heterogeneous networks,'' in \emph{Proc. Mach.
+Learn. Syst. (MLSys)}, 2020, pp.~429--450.
+
+\bibitem{scaffold2020}
+S. P. Karimireddy, S. Kale, M. Mohri, S. J. Reddi, S. U. Stich, and A. T. Suresh,
+``SCAFFOLD: Stochastic controlled averaging for federated learning,'' in
+\emph{Proc. Int. Conf. Mach. Learn. (ICML)}, 2020, pp.~5132--5143.
+
+\bibitem{groupnorm2018}
+Y. Wu and K. He, ``Group normalization,'' in \emph{Computer Vision -- ECCV
+2018}, LNCS vol.~11217, 2018, pp.~3--19.
+
+\bibitem{hsieh2020}
+K. Hsieh, A. Phanishayee, O. Mutlu, and P. B. Gibbons, ``The non-IID data
+quagmire of decentralized machine learning,'' in \emph{Proc. Int. Conf. Mach.
+Learn. (ICML)}, 2020, pp.~4387--4398.
+
+\bibitem{casella2023}
+B. Casella, R. Esposito, A. Sciarappa, C. Cavazzoni, and M. Aldinucci,
+``Experimenting with normalization layers in federated learning on non-IID
+scenarios,'' \emph{IEEE Access}, vol.~12, pp.~47961--47971, 2024.
+
+\bibitem{fedbn2021}
+X. Li, M. Jiang, X. Zhang, M. Kamp, and Q. Dou, ``FedBN: Federated learning on
+non-IID features via local batch normalization,'' in \emph{Proc. Int. Conf.
+Learn. Represent. (ICLR)}, 2021.
+
+\bibitem{swati2019}
+Z. N. K. Swati \emph{et al.}, ``Brain tumor classification for MR images using
+transfer learning and fine-tuning,'' \emph{Comput. Med. Imaging Graph.},
+vol.~75, pp.~34--46, 2019.
+
+\bibitem{afshar2019}
+P. Afshar, K. N. Plataniotis, and A. Mohammadi, ``Capsule networks for brain
+tumor classification based on MRI images and coarse tumor boundaries,'' in
+\emph{Proc. IEEE Int. Conf. Acoust. Speech Signal Process. (ICASSP)}, 2019,
+pp.~1368--1372.
+
+\bibitem{yagis2021}
+E. Yagis \emph{et al.}, ``Effect of data leakage in brain MRI classification
+using 2D convolutional neural networks,'' \emph{Sci. Rep.}, vol.~11, art.~22544,
+2021.
+
+\bibitem{brisc2025}
+A. Fateh, Y. Rezvani, S. Moayedi, S. Rezvani, F. Fateh, M. Fateh, and
+V. Abolghasemi, ``BRISC: Annotated dataset for brain tumor segmentation and
+classification,'' \emph{Sci. Data}, vol.~13, art.~361, Feb.~2026,
+doi: 10.1038/s41597-026-06753-y.
+
+\bibitem{holm1979}
+S. Holm, ``A simple sequentially rejective multiple test procedure,''
+\emph{Scand. J. Statist.}, vol.~6, no.~2, pp.~65--70, 1979.
+
+\end{thebibliography}
+
+\end{document}
