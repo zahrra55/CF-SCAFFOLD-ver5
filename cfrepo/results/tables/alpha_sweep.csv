@@ -1,4 +1,0 @@
-alpha_dir,mean_local_absence,alpha_mask_0,alpha_mask_0.5,alpha_mask_1.0,margin_pp,wilcoxon_p
-0.1,0.5,0.629,0.454,0.471,17.5,0.008
-0.5,0.31,0.67,0.607,0.602,6.3,0.023
-3.0,0.07,0.659,0.657,0.656,0.2,0.836

@@ -1,8 +1,0 @@
-configuration,balanced_acc_mean,balanced_acc_std,collapses_of_20
-baseline,0.551,0.031,0
-+grad_clip,0.529,0.052,1
-+warmup_cosine,0.371,0.065,15
-+more_rounds,0.379,0.068,14
-+balanced_sampling,0.544,0.081,1
-+restricted_softmax,0.611,0.055,0
-+fedprox,0.611,0.055,0
