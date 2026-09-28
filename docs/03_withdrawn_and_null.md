@@ -135,6 +135,17 @@ largely redundant. Reported as a theory-consistent null.
 
 ---
 
+## Later nulls and bounded results
+
+Recorded in [`08_later_experiments.md`](08_later_experiments.md): the frozen
+pretrained backbone shrinks rather than amplifies the gain (Stage 9/9B); the
+ratio C adds nothing over Ft and Fb (Stage 10B); automatic active-contour
+segmentation fails (Stage 11); real SCAFFOLD control variates change nothing
+measurable (Stage 13). A proposed random-mask control was rejected before
+running because, with three classes, it cannot avoid masking present labels.
+
+---
+
 ## What these four have in common
 
 In each case an initial result looked strong and did not survive scrutiny. The

@@ -148,14 +148,79 @@ was restored, phrased as the conjecture it is.
 
 ---
 
-## 6. Open items — to be resolved before submission
+## 6. Bibliography rebuilt and re-verified (September 2026)
+
+The 32-item list was replaced by 150 references organised by pipeline stage.
+Every entry was checked against the registries themselves, not against
+summaries or earlier drafts.
+
+| Identifier | Count | Check |
+|---|---|---|
+| DOI | 108 | Crossref or DataCite record; title and year matched; resolved through doi.org |
+| arXiv | 21 | arXiv API; 13 have peer-reviewed versions confirmed on OpenReview or in the NeurIPS/MLSys proceedings and are cited in that form; 8 remain preprints |
+| Proceedings or journal page, no DOI | 16 | Official PMLR, NeurIPS, MLSys, JMLR page fetched; authors and pages read from its citation meta-tags |
+| Book | 6 | Open Library (ISBN) or Crossref (book DOI) |
+| JSTOR only | 1 | Holm (1979): no DOI exists; JSTOR 4615733 and MR538597 |
+
+Result: 150/150 verified. `paper/references.bib` compiles with IEEEtran with
+zero BibTeX warnings and zero LaTeX errors. Of the 120 non-DOI and free
+full-text links, 103 returned HTTP 200 to a script; the remaining 17 are
+publishers that block automated clients (OUP, ACM, MDPI, Elsevier, Wiley, Cell),
+a figshare page returning 202, and one Harvard repository rate limit.
+
+**Corrections found.**
+
+- Kornblith et al., CVPR 2019: pages 2656–2666 (IEEE Xplore, the DOI version), not 2661–2671 (CVF pagination).
+- Islam et al., *Neural Processing Letters*: vol. 55, no. 4, pp. 3779–3809, issue year 2023.
+- MOON, CVPR 2021: pp. 10708–10717. Class-balanced loss, CVPR 2019: pp. 9260–9269.
+- Gonzato et al.: the sampling-bias paper is 1998 (with Marzocchi); the 2000 paper has Ciccotti as third author. Both now listed.
+- Liu, *J. Biomed. Inform.* 2009: DOI 10.1016/j.jbi.2009.07.003 (the .008 DOI is a different paper).
+- *Pattern Recognition* 2024 FL survey: first author H. Guan, not "Rahman".
+- arXiv:2502.11323 is a statistical theory of overfitting for imbalanced classification (Lyu, Zhou, Zhong); its described use was corrected.
+- Mandelbrot (1982): San Francisco, W. H. Freeman.
+- Three free-copy links suggested by OpenAlex were unusable (Litjens: an image file; ResNet: a dead unofficial mirror; Breiman: an anonymous short link) and were replaced by the arXiv copy, the CVF open-access page, and the author's Berkeley PDF, each checked.
+- No peer-reviewed "brain-tumour-specific leakage paper" exists; Kapoor and Narayanan (2023) is the companion to Yagis et al. (2021).
+
+Tools and raw results: `tools/bibliography/`, `docs/references_verification.csv`.
+
+---
+
+## 7. SCAFFOLD naming vs implementation — resolved
+
+A technical review found that the canonical ablation code, although the project
+is named CF-SCAFFOLD, aggregated by weighted FedAvg without control variates,
+and that `02_pillar2_federated.md` and `04_decision_log.md` described SCAFFOLD as
+the optimiser of every run. An audit of all federated scripts established the
+exact scope: the Stage 1 ablation and the main comparison used FedAvg; Stage 3
+(FedRS comparison) and the exploratory clustering and C-weighting experiments
+used real control variates.
+
+Real SCAFFOLD (Option II) was implemented, checked against four silent-failure
+modes, validated over 20 seeds against a preregistered criterion, and integrated
+as an additive eighth ablation row whose default-off path is bit-identical to the
+original code. It is statistically indistinguishable from FedAvg aggregation.
+Both documents were corrected. Record: `08_later_experiments.md`, Stage 13.
+
+---
+
+## 8. Open items — to be resolved before submission
 
 1. **Precision substitution.** Replace the transcribed CSVs with the originals
    from Kaggle, then confirm the manuscript statistics against them. See
    [`../results/tables/PRECISION_NOTE.md`](../results/tables/PRECISION_NOTE.md).
 
-2. **Preprints.** Zhao et al. (2018) and Wu et al. (Motley, 2022) remain arXiv
-   preprints with no peer-reviewed venue. Cite them as preprints.
+2. **Preprints.** Eight references have no peer-reviewed version and are cited
+   as preprints: Hsu et al. (2019), Zhao et al. (2018), Wu et al. (Motley, 2022),
+   Goyal et al. (2017), Colas et al. (2018), Park et al. (2025), Haseeb et al.
+   (2025), Lyu et al. (2025). Re-check the three 2025 items before submission;
+   they may have been accepted somewhere by then.
+
+3. **Stage 12 symmetry seed on real data.** Only a synthetic check is recorded.
+   Run it on the Figshare data before making any claim about it.
+
+4. **Stage 13 per-seed log of the integrated eighth row.** The summary is in
+   `results/tables/ablation_with_scaffold_summary.csv`; export the Kaggle
+   `stability_log.csv` to replace it with per-seed values.
 
 ### Resolved since the first audit
 

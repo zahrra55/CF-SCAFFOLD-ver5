@@ -1,0 +1,7 @@
+feature_set,n_features,patient_balanced_acc_mean,std_over_10_splits
+"Ft, Fb separate",2,0.6813,0.011
+C alone,1,0.5892,0.0139
+"14 others, no fractal",14,0.9045,0.0108
+"14 others + Ft, Fb",16,0.9222,0.0068
+14 others + C,15,0.9103,0.0072
+"14 others + Ft, Fb, C",17,0.9213,0.0092

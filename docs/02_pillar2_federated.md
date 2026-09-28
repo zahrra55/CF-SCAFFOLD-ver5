@@ -283,10 +283,20 @@ diverge and averaging them is unreliable. Hsieh et al. (2020) showed that group
 normalisation recovers most of the accuracy lost to this effect, and later
 normalisation benchmarks reproduced the finding. Used in every federated run.
 
-**SCAFFOLD as the optimiser.** Its control variates correct drift in the shared
-feature extractor. That is a different problem from the one the restricted loss
-addresses, which lives in the output layer, so the two are complementary rather
-than alternatives.
+**Aggregation: FedAvg in the main tables, SCAFFOLD checked separately.** The
+Stage 1 ablation and the main comparison aggregate by weighted FedAvg; the
+restricted loss is the only change to the local objective. Stage 3 (the FedRS
+comparison) and the exploratory clustering and C-weighting experiments in
+`03_withdrawn_and_null.md` did run with SCAFFOLD control variates. An earlier
+version of this document described SCAFFOLD as the optimiser of every run; that
+was inaccurate for the ablation and the main comparison and has been corrected.
+Real SCAFFOLD (Option II) was later implemented, validated over 20 seeds twice,
+and added as an eighth ablation row: it is statistically indistinguishable from
+FedAvg aggregation (Δ = +0.25 pp, d = 0.21, p = 0.546 standalone; Δ = +0.43 pp,
+d = 0.12, p = 0.230 integrated). Control variates correct drift in the shared
+feature extractor, while the restricted loss acts on the output layer, so the
+null is consistent with the damage sitting in the output layer. Full record in
+[`08_later_experiments.md`](08_later_experiments.md), Stage 13.
 
 **Gradient clipping retained despite hurting alone.** Table in Stage 1 shows
 clipping alone is worse than the baseline. It is kept in the final configuration

@@ -207,6 +207,21 @@ overstating the accuracy would invite a reviewer to make the comparison for us.
 
 ---
 
+## Stages 10–12 — later tests that narrowed the claims
+
+Three later experiments changed what Part I can claim. Over ten repeated
+patient-grouped splits, the ratio C adds nothing on top of Ft and Fb
+(−0.08 pp, p = 0.93) and is worse when used instead of them (−1.19 pp,
+p = 0.004), while the fractal family as a whole adds +1.69 pp (p = 0.002). C is
+therefore presented as an interpretable member of the fractal family, not as a
+superior descriptor. Automatic delineation by active contour failed (median
+Dice 0.000) because the seed does not find the tumour, which makes the expert
+mask an established requirement. Leakage from slice-level splitting was
+measured at +3.38 points on this feature set. Details and tables in
+[`08_later_experiments.md`](08_later_experiments.md).
+
+---
+
 ## Summary of Part I
 
 | Item | Value |

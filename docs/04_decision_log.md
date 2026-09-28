@@ -96,10 +96,18 @@ observed value and the count is not sensitive to its exact position.
 
 ## Part II
 
-**Why SCAFFOLD rather than FedAvg as the base optimiser?**
-Its control variates correct drift in the shared feature extractor. That drift
-is a real effect and is separate from the output-layer problem this work
-addresses, so correcting it removes a confound.
+**Why are the main tables computed with FedAvg aggregation, and what does SCAFFOLD add?**
+The contribution is a change to the local objective, so the cleanest test keeps
+aggregation as plain as possible. SCAFFOLD's control variates target a different
+problem, drift in the shared feature extractor. Whether correcting that drift
+changes the result was tested directly: real SCAFFOLD (Option II) against FedAvg,
+both with the restricted loss, 20 seeds, twice. The difference was +0.25 pp
+(p = 0.546) and +0.43 pp (p = 0.230), with no collapse in either arm. SCAFFOLD is
+therefore included in the canonical pipeline as an additive eighth
+configuration, and the documented FedAvg-based numbers are unchanged. (An
+earlier version of this entry stated that SCAFFOLD was the base optimiser for
+all runs; that was inaccurate and is corrected here.) See
+[`08_later_experiments.md`](08_later_experiments.md), Stage 13.
 
 **Why GroupNorm rather than BatchNorm?**
 BatchNorm estimates statistics from local batches; under non-identical client

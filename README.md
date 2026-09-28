@@ -59,9 +59,15 @@ Documented in [`docs/02_pillar2_federated.md`](docs/02_pillar2_federated.md).
 ```
 docs/       stage-by-stage record, one document per part plus supporting material
 code/       the scripts that produced every reported number
+tools/      scripts that built and verified the reference list
 results/    tables of the actual measured values, and the figures built from them
-paper/      the manuscript prepared from these results
+paper/      the manuscripts prepared from these results
+webapp/     an interactive presentation of the results for a non-programming reader
 ```
+
+The application in `webapp/` reads the stored results and presents them; it does
+not retrain. See [`webapp/README.md`](webapp/README.md) for how to run and
+deploy it.
 
 ---
 
@@ -75,8 +81,10 @@ paper/      the manuscript prepared from these results
 | [`docs/03_withdrawn_and_null.md`](docs/03_withdrawn_and_null.md) | Results retracted or reported as null, with reasons |
 | [`docs/04_decision_log.md`](docs/04_decision_log.md) | Why each method, metric, dataset and value was chosen |
 | [`docs/05_reproducibility.md`](docs/05_reproducibility.md) | Environment, seeds, how to re-run each experiment |
-| [`docs/06_references.md`](docs/06_references.md) | Annotated reference list with verification status |
+| [`docs/06_references.md`](docs/06_references.md) | 150 references by pipeline stage: link, access route, where and how each is used, how it was verified |
+| [`docs/thesis_reference_list.md`](docs/thesis_reference_list.md) | IEEE reference list ready for the thesis end-matter (BibTeX: [`paper/references.bib`](paper/references.bib)) |
 | [`docs/07_verification_log.md`](docs/07_verification_log.md) | Audit of every result and reference: what was checked, what was corrected, what is open |
+| [`docs/08_later_experiments.md`](docs/08_later_experiments.md) | Stages 9–13: frozen backbone, descriptor ablation, leakage measurement, active contour, SCAFFOLD |
 
 ---
 
@@ -89,6 +97,11 @@ Part I, Figshare dataset, patient-grouped five-fold cross-validation:
 | 16 interpretable features + random forest | ~0.92 |
 | Reference: Cheng et al. 2015 | 0.913 |
 
+Over ten repeated splits the fractal family adds +1.69 points (p = 0.002); the
+ratio C adds nothing on top of Ft and Fb, so it is presented as an interpretable
+member of that family rather than a stronger descriptor
+([`docs/08`](docs/08_later_experiments.md)).
+
 Part II, Figshare dataset, 18 simulated clients, Dirichlet(0.3), 20 seeds:
 
 | Local objective | Balanced accuracy |
@@ -99,8 +112,13 @@ Part II, Figshare dataset, 18 simulated clients, Dirichlet(0.3), 20 seeds:
 | Absent-class masking | 0.649 ± 0.028 |
 | Centralised on pooled data | 0.705 ± 0.011 |
 
+These numbers use weighted FedAvg aggregation. Real SCAFFOLD control variates,
+added later with the same local objective, are statistically indistinguishable
+(+0.25 pp, p = 0.546, 20 seeds).
+
 Full tables, including the external-validation dataset, the partition-severity
-sweep and the backbone comparison, are in [`results/tables/`](results/tables/).
+sweep, the backbone comparison and the SCAFFOLD check, are in
+[`results/tables/`](results/tables/).
 
 ---
 

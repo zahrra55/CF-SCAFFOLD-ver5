@@ -1,0 +1,151 @@
+number,key,stage,identifier_type,identifier,registry,resolver_http,verified,open_access,free_fulltext_url,direct_link
+1,kairouz2021,0,doi,10.1561/2200000083,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/1912.04977,https://doi.org/10.1561/2200000083
+2,li2020challenges,0,doi,10.1109/MSP.2020.2975749,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/1908.07873,https://doi.org/10.1109/MSP.2020.2975749
+3,zhu2021noniid,0,doi,10.1016/j.neucom.2021.07.098,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/j.neucom.2021.07.098
+4,ye2023hfl,0,doi,10.1145/3625558,Crossref,302,yes,Open access (bronze),https://dl.acm.org/doi/pdf/10.1145/3625558,https://doi.org/10.1145/3625558
+5,guan2024fedmed,0,doi,10.1016/j.patcog.2024.110424,Crossref,302,yes,Open access (green),https://pmc.ncbi.nlm.nih.gov/articles/PMC10976951/pdf/nihms-1977935.pdf,https://doi.org/10.1016/j.patcog.2024.110424
+6,rieke2020future,0,doi,10.1038/s41746-020-00323-1,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41746-020-00323-1.pdf,https://doi.org/10.1038/s41746-020-00323-1
+7,kaissis2020secure,0,doi,10.1038/s42256-020-0186-1,Crossref,302,yes,Open access (hybrid),https://www.nature.com/articles/s42256-020-0186-1.pdf,https://doi.org/10.1038/s42256-020-0186-1
+8,sheller2020fl,0,doi,10.1038/s41598-020-69250-1,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41598-020-69250-1.pdf,https://doi.org/10.1038/s41598-020-69250-1
+9,pati2022rare,0,doi,10.1038/s41467-022-33407-5,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41467-022-33407-5.pdf,https://doi.org/10.1038/s41467-022-33407-5
+10,litjens2017survey,0,doi,10.1016/j.media.2017.07.005,Crossref,302,yes,Open access (bronze),https://arxiv.org/abs/1702.05747,https://doi.org/10.1016/j.media.2017.07.005
+11,lopes2009fractal,0,doi,10.1016/j.media.2009.05.003,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/j.media.2009.05.003
+12,dieva2014fractalsI,0,doi,10.1177/1073858413513927,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1177/1073858413513927
+13,dieva2015fractalsII,0,doi,10.1177/1073858413513928,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1177/1073858413513928
+14,louis2021who,0,doi,10.1093/neuonc/noab106,Crossref,302,yes,Open access (bronze),https://academic.oup.com/neuro-oncology/article-pdf/23/8/1231/39535372/noab106.pdf,https://doi.org/10.1093/neuonc/noab106
+15,villanueva2017imaging,0,doi,10.1093/neuros/nyx103,Crossref,302,yes,Open access (green),https://www.ncbi.nlm.nih.gov/pmc/articles/5581219,https://doi.org/10.1093/neuros/nyx103
+16,gillies2016radiomics,0,doi,10.1148/radiol.2015151169,Crossref,302,yes,Open access (green),https://www.ncbi.nlm.nih.gov/pmc/articles/4734157,https://doi.org/10.1148/radiol.2015151169
+17,lambin2012radiomics,0,doi,10.1016/j.ejca.2011.11.036,Crossref,302,yes,Open access (bronze),http://www.ejcancer.com/article/S0959804911009993/pdf,https://doi.org/10.1016/j.ejca.2011.11.036
+18,cheng2015enhanced,A,doi,10.1371/journal.pone.0140381,Crossref,302,yes,Open access (gold),https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0140381&type=printable,https://doi.org/10.1371/journal.pone.0140381
+19,cheng2016retrieval,A,doi,10.1371/journal.pone.0157112,Crossref,302,yes,Open access (gold),https://doi.org/10.1371/journal.pone.0157112,https://doi.org/10.1371/journal.pone.0157112
+20,cheng2017figshare,A,doi,10.6084/m9.figshare.1512427.v5,DataCite,302,yes,Open data (CC BY 4.0),https://doi.org/10.6084/m9.figshare.1512427.v5,https://doi.org/10.6084/m9.figshare.1512427.v5
+21,fateh2026brisc,A,doi,10.1038/s41597-026-06753-y,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41597-026-06753-y_reference.pdf,https://doi.org/10.1038/s41597-026-06753-y
+22,nickparvar2021kaggle,A,doi,10.34740/KAGGLE/DSV/2645886,DataCite,302,yes,Open data (Kaggle account),https://doi.org/10.34740/KAGGLE/DSV/2645886,https://doi.org/10.34740/KAGGLE/DSV/2645886
+23,menze2015brats,A,doi,10.1109/TMI.2014.2377694,Crossref,302,yes,Open access (hybrid),https://ieeexplore.ieee.org/ielx7/42/7283692/06975210.pdf,https://doi.org/10.1109/TMI.2014.2377694
+24,bakas2017tcga,A,doi,10.1038/sdata.2017.117,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/sdata2017117.pdf,https://doi.org/10.1038/sdata.2017.117
+25,yagis2021leakage,A,doi,10.1038/s41598-021-01681-w,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41598-021-01681-w.pdf,https://doi.org/10.1038/s41598-021-01681-w
+26,kapoor2023leakage,A,doi,10.1016/j.patter.2023.100804,Crossref,302,yes,Open access (gold),http://www.cell.com/article/S2666389923001599/pdf,https://doi.org/10.1016/j.patter.2023.100804
+27,varoquaux2022failures,A,doi,10.1038/s41746-022-00592-y,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41746-022-00592-y.pdf,https://doi.org/10.1038/s41746-022-00592-y
+28,roberts2021pitfalls,A,doi,10.1038/s42256-021-00307-0,Crossref,302,yes,Open access (hybrid),https://www.nature.com/articles/s42256-021-00307-0.pdf,https://doi.org/10.1038/s42256-021-00307-0
+29,hsu2019dirichlet,A,arxiv,1909.06335,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1909.06335,https://arxiv.org/abs/1909.06335
+30,zhao2018noniid,A,arxiv,1806.00582,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1806.00582,https://arxiv.org/abs/1806.00582
+31,li2022silos,A,doi,10.1109/ICDE53745.2022.00077,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/ICDE53745.2022.00077
+32,otsu1979,B,doi,10.1109/TSMC.1979.4310076,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/TSMC.1979.4310076
+33,serra1982,B,isbn,9780126372403,Open Library,200,yes,Book (library copy; no free full text),,https://openlibrary.org/isbn/9780126372403
+34,soille2003,B,doi,10.1007/978-3-662-05088-0,Crossref,302,yes,Book (library / publisher),,https://doi.org/10.1007/978-3-662-05088-0
+35,gonzalez2018dip,B,isbn,9780133356724,Open Library,200,yes,Book (library copy; no free full text),,https://openlibrary.org/isbn/9780133356724
+36,harris2020numpy,B,doi,10.1038/s41586-020-2649-2,Crossref,302,yes,Open access (hybrid),https://www.nature.com/articles/s41586-020-2649-2.pdf,https://doi.org/10.1038/s41586-020-2649-2
+37,virtanen2020scipy,B,doi,10.1038/s41592-019-0686-2,Crossref,302,yes,Open access (hybrid),https://doi.org/10.1038/s41592-019-0686-2,https://doi.org/10.1038/s41592-019-0686-2
+38,vanderwalt2014skimage,B,doi,10.7717/peerj.453,Crossref,302,yes,Open access (gold),https://doi.org/10.7717/peerj.453,https://doi.org/10.7717/peerj.453
+39,pedregosa2011sklearn,B,url,https://jmlr.org/papers/v12/pedregosa11a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://jmlr.org/papers/v12/pedregosa11a.html,https://jmlr.org/papers/v12/pedregosa11a.html
+40,paszke2019pytorch,B,url,https://proceedings.neurips.cc/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.neurips.cc/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html,https://proceedings.neurips.cc/paper/2019/hash/bdbca288fee7f92f2bfa9f7012727740-Abstract.html
+41,hunter2007matplotlib,B,doi,10.1109/MCSE.2007.55,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/MCSE.2007.55
+42,mandelbrot1982,C,isbn,9780716711865,Open Library,200,yes,Book (library copy; no free full text),,https://openlibrary.org/isbn/9780716711865
+43,pentland1984fractal,C,doi,10.1109/TPAMI.1984.4767591,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/TPAMI.1984.4767591
+44,keller1989texture,C,doi,10.1016/0734-189X(89)90130-8,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/0734-189X(89)90130-8
+45,sarkar1994dbc,C,doi,10.1109/21.259692,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/21.259692
+46,chaudhuri1995texture,C,doi,10.1109/34.368149,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/34.368149
+47,iftekharuddin2003fractal,C,doi,10.1007/s00138-002-0087-9,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1007/s00138-002-0087-9
+48,iftekharuddin2009multimodal,C,doi,10.1016/j.amc.2007.10.063,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/j.amc.2007.10.063
+49,battalapalli2023fd,C,doi,10.3389/fphys.2023.1201617,Crossref,302,yes,Open access (gold),https://www.frontiersin.org/articles/10.3389/fphys.2023.1201617/pdf,https://doi.org/10.3389/fphys.2023.1201617
+50,sanchez2022fractal,C,doi,10.3389/fphys.2022.878391,Crossref,302,yes,Open access (gold),https://www.frontiersin.org/articles/10.3389/fphys.2022.878391/pdf,https://doi.org/10.3389/fphys.2022.878391
+51,smith1996fractal,C,doi,10.1016/S0165-0270(96)00080-5,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/S0165-0270(96)00080-5
+52,gonzato1998bias,C,doi,10.1046/j.1365-246x.1998.00461.x,Crossref,302,yes,Open access (bronze),https://academic.oup.com/gji/article-pdf/132/2/275/1954393/132-2-275.pdf,https://doi.org/10.1046/j.1365-246x.1998.00461.x
+53,gonzato2000ideal,C,doi,10.1046/j.1365-246x.2000.00133.x,Crossref,302,yes,Open access (bronze),https://academic.oup.com/gji/article-pdf/142/1/108/1602887/142-1-108.pdf,https://doi.org/10.1046/j.1365-246x.2000.00133.x
+54,allain1991lacunarity,C,doi,10.1103/PhysRevA.44.3552,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1103/PhysRevA.44.3552
+55,plotnick1996lacunarity,C,doi,10.1103/PhysRevE.53.5461,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1103/PhysRevE.53.5461
+56,haralick1973glcm,C,doi,10.1109/TSMC.1973.4309314,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/TSMC.1973.4309314
+57,shannon1948,C,doi,10.1002/j.1538-7305.1948.tb01338.x,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1002/j.1538-7305.1948.tb01338.x
+58,zwanenburg2020ibsi,C,doi,10.1148/radiol.2020191145,Crossref,302,yes,Open access (green),https://cris.maastrichtuniversity.nl/en/publications/a842e562-d051-4db2-9b40-ef1d54c71af4,https://doi.org/10.1148/radiol.2020191145
+59,vangriethuysen2017pyradiomics,C,doi,10.1158/0008-5472.CAN-17-0339,Crossref,302,yes,Open access (bronze),https://cancerres.aacrjournals.org/content/canres/77/21/e104.full.pdf,https://doi.org/10.1158/0008-5472.CAN-17-0339
+60,kass1988snakes,D,doi,10.1007/BF00133570,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1007/BF00133570
+61,osher1988levelset,D,doi,10.1016/0021-9991(88)90002-2,Crossref,302,yes,Open access (green),https://ntrs.nasa.gov/api/citations/19880001113/downloads/19880001113.pdf,https://doi.org/10.1016/0021-9991(88)90002-2
+62,mumford1989,D,doi,10.1002/cpa.3160420503,Crossref,302,yes,Open access (green),http://nrs.harvard.edu/urn-3:HUL.InstRepos:3637121,https://doi.org/10.1002/cpa.3160420503
+63,chan2001acwe,D,doi,10.1109/83.902291,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/83.902291
+64,caselles1997gac,D,doi,10.1023/A:1007979827043,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1023/A:1007979827043
+65,marquezneila2014morph,D,doi,10.1109/TPAMI.2013.106,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/TPAMI.2013.106
+66,li2010drlse,D,doi,10.1109/TIP.2010.2069690,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/TIP.2010.2069690
+67,liu2001midsagittal,D,doi,10.1109/42.918469,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/42.918469
+68,liu2009symmetry,D,doi,10.1016/j.jbi.2009.07.003,Crossref,302,yes,Open access (bronze),https://www.sciencedirect.com/science/article/pii/S1532046409000975/pdf,https://doi.org/10.1016/j.jbi.2009.07.003
+69,khotanlou2009symmetry,D,doi,10.1016/j.fss.2008.11.016,Crossref,302,yes,Open access (green),https://inria.hal.science/hal-01251278,https://doi.org/10.1016/j.fss.2008.11.016
+70,gordillo2013survey,D,doi,10.1016/j.mri.2013.05.002,Crossref,302,yes,Open access (green),http://hdl.handle.net/2117/19748,https://doi.org/10.1016/j.mri.2013.05.002
+71,ronneberger2015unet,D,doi,10.1007/978-3-319-24574-4_28,Crossref,302,yes,Open access (bronze),https://link.springer.com/content/pdf/10.1007/978-3-319-24574-4_28.pdf,https://doi.org/10.1007/978-3-319-24574-4_28
+72,isensee2021nnunet,D,doi,10.1038/s41592-020-01008-z,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/1904.08128,https://doi.org/10.1038/s41592-020-01008-z
+73,dice1945,D,doi,10.2307/1932409,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.2307/1932409
+74,jaccard1912,D,doi,10.1111/j.1469-8137.1912.tb05611.x,Crossref,302,yes,Open access (bronze),https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1469-8137.1912.tb05611.x,https://doi.org/10.1111/j.1469-8137.1912.tb05611.x
+75,breiman2001rf,E,doi,10.1023/A:1010933404324,Crossref,302,yes,Open access (green),https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf,https://doi.org/10.1023/A:1010933404324
+76,brodersen2010balanced,E,doi,10.1109/ICPR.2010.764,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/ICPR.2010.764
+77,fawcett2006roc,E,doi,10.1016/j.patrec.2005.10.010,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/j.patrec.2005.10.010
+78,hanley1982auc,E,doi,10.1148/radiology.143.1.7063747,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1148/radiology.143.1.7063747
+79,varma2006cvbias,E,doi,10.1186/1471-2105-7-91,Crossref,302,yes,Open access (gold),https://bmcbioinformatics.biomedcentral.com/counter/pdf/10.1186/1471-2105-7-91,https://doi.org/10.1186/1471-2105-7-91
+80,cawley2010overfit,E,url,https://jmlr.org/papers/v11/cawley10a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://jmlr.org/papers/v11/cawley10a.html,https://jmlr.org/papers/v11/cawley10a.html
+81,ismael2018statistical,E,doi,10.1109/EIT.2018.8500308,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/EIT.2018.8500308
+82,gumaei2019hybrid,E,doi,10.1109/ACCESS.2019.2904145,Crossref,302,yes,Open access (gold),https://ieeexplore.ieee.org/ielx7/6287639/8600701/08664160.pdf,https://doi.org/10.1109/ACCESS.2019.2904145
+83,paul2017deep,E,doi,10.1117/12.2254195,Crossref,302,yes,Open access (green),https://pmc.ncbi.nlm.nih.gov/articles/PMC12965214/pdf/nihms-2062562.pdf,https://doi.org/10.1117/12.2254195
+84,afshar2019capsule,E,doi,10.1109/ICASSP.2019.8683759,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/ICASSP.2019.8683759
+85,swati2019transfer,E,doi,10.1016/j.compmedimag.2019.05.001,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/j.compmedimag.2019.05.001
+86,deepak2019transfer,E,doi,10.1016/j.compbiomed.2019.103345,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1016/j.compbiomed.2019.103345
+87,sultan2019multi,E,doi,10.1109/ACCESS.2019.2919122,Crossref,302,yes,Open access (gold),https://ieeexplore.ieee.org/ielx7/6287639/8600701/08723045.pdf,https://doi.org/10.1109/ACCESS.2019.2919122
+88,rehman2020framework,E,doi,10.1007/s00034-019-01246-3,Crossref,302,yes,Open access (green),https://figshare.com/articles/journal_contribution/A_deep_learning-based_framework_for_automatic_brain_tumors_classification_using_transfer_learning/20728501,https://doi.org/10.1007/s00034-019-01246-3
+89,badza2020cnn,E,doi,10.3390/app10061999,Crossref,302,yes,Open access (gold),https://www.mdpi.com/2076-3417/10/6/1999/pdf?version=1584256135,https://doi.org/10.3390/app10061999
+90,diazpernas2021multiscale,E,doi,10.3390/healthcare9020153,Crossref,302,yes,Open access (gold),https://www.mdpi.com/2227-9032/9/2/153/pdf?version=1613629848,https://doi.org/10.3390/healthcare9020153
+91,islam2022ensemble,E,doi,10.1007/s11063-022-11014-1,Crossref,302,yes,Open access (bronze),https://link.springer.com/content/pdf/10.1007/s11063-022-11014-1.pdf,https://doi.org/10.1007/s11063-022-11014-1
+92,albalawi2024fltl,E,doi,10.1186/s12880-024-01261-0,Crossref,302,yes,Open access (gold),https://doi.org/10.1186/s12880-024-01261-0,https://doi.org/10.1186/s12880-024-01261-0
+93,mcmahan2017fedavg,F,url,https://proceedings.mlr.press/v54/mcmahan17a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v54/mcmahan17a.html,https://proceedings.mlr.press/v54/mcmahan17a.html
+94,karimireddy2020scaffold,F,url,https://proceedings.mlr.press/v119/karimireddy20a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v119/karimireddy20a.html,https://proceedings.mlr.press/v119/karimireddy20a.html
+95,li2020fedprox,F,url,https://proceedings.mlsys.org/paper_files/paper/2020/hash/1f5fe83998a09396ebe6477d9475ba0c-Abstract.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlsys.org/paper_files/paper/2020/hash/1f5fe83998a09396ebe6477d9475ba0c-Abstract.html,https://proceedings.mlsys.org/paper_files/paper/2020/hash/1f5fe83998a09396ebe6477d9475ba0c-Abstract.html
+96,wang2020fednova,F,url,https://proceedings.neurips.cc/paper/2020/hash/564127c03caab942e503ee6f810f54fd-Abstract.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.neurips.cc/paper/2020/hash/564127c03caab942e503ee6f810f54fd-Abstract.html,https://proceedings.neurips.cc/paper/2020/hash/564127c03caab942e503ee6f810f54fd-Abstract.html
+97,acar2021feddyn,F,arxiv,2111.04263,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2111.04263,https://openreview.net/forum?id=B7v4QMR6Z9w
+98,li2021moon,F,doi,10.1109/CVPR46437.2021.01057,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/CVPR46437.2021.01057
+99,reddi2021adaptive,F,arxiv,2003.00295,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2003.00295,https://openreview.net/forum?id=rOWz4RF7nJq
+100,li2021fedrs,F,doi,10.1145/3447548.3467254,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1145/3447548.3467254
+101,zhang2022fedlc,F,url,https://proceedings.mlr.press/v162/zhang22p.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v162/zhang22p.html,https://proceedings.mlr.press/v162/zhang22p.html
+102,guo2025fedvls,F,doi,10.1609/aaai.v39i16.33864,Crossref,302,yes,Open access (diamond),https://ojs.aaai.org/index.php/AAAI/article/download/33864/36019,https://doi.org/10.1609/aaai.v39i16.33864
+103,lu2023labelmask,F,doi,10.1145/3581783.3611984,Crossref,302,yes,Open access (gold),https://dl.acm.org/doi/pdf/10.1145/3581783.3611984,https://doi.org/10.1145/3581783.3611984
+104,wang2024fednlr,F,doi,10.1145/3637528.3672042,Crossref,302,yes,Open access (gold),https://dl.acm.org/doi/pdf/10.1145/3637528.3672042,https://doi.org/10.1145/3637528.3672042
+105,luo2021ccvr,F,url,https://proceedings.neurips.cc/paper/2021/hash/2f2b265625d76a6704b08093c652fd79-Abstract.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.neurips.cc/paper/2021/hash/2f2b265625d76a6704b08093c652fd79-Abstract.html,https://proceedings.neurips.cc/paper/2021/hash/2f2b265625d76a6704b08093c652fd79-Abstract.html
+106,menon2021logit,F,arxiv,2007.07314,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2007.07314,https://openreview.net/forum?id=37nvvqkCo5
+107,ghosh2022ifca,F,doi,10.1109/TIT.2022.3192506,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/2006.04088,https://doi.org/10.1109/TIT.2022.3192506
+108,sattler2021cfl,F,doi,10.1109/TNNLS.2020.3015958,Crossref,302,yes,Open access (hybrid),https://ieeexplore.ieee.org/ielx7/5962385/9505270/09174890.pdf,https://doi.org/10.1109/TNNLS.2020.3015958
+109,li2021ditto,F,url,https://proceedings.mlr.press/v139/li21h.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v139/li21h.html,https://proceedings.mlr.press/v139/li21h.html
+110,collins2021fedrep,F,url,https://proceedings.mlr.press/v139/collins21a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v139/collins21a.html,https://proceedings.mlr.press/v139/collins21a.html
+111,wu2022motley,F,arxiv,2206.09262,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2206.09262,https://arxiv.org/abs/2206.09262
+112,chen2022pflbench,F,arxiv,2206.03655,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2206.03655,https://proceedings.neurips.cc/paper_files/paper/2022/hash/3cc03e19fed71a2b9347d83921ca2e7d-Abstract-Datasets_and_Benchmarks.html
+113,sheller2019brats,F,doi,10.1007/978-3-030-11723-8_9,Crossref,302,yes,Open access (green),https://www.ncbi.nlm.nih.gov/pmc/articles/6589345,https://doi.org/10.1007/978-3-030-11723-8_9
+114,dayan2021exam,F,doi,10.1038/s41591-021-01506-3,Crossref,302,yes,Open access (hybrid),https://www.nature.com/articles/s41591-021-01506-3.pdf,https://doi.org/10.1038/s41591-021-01506-3
+115,lyu2025imbalanced,F,arxiv,2502.11323,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2502.11323,https://arxiv.org/abs/2502.11323
+116,wu2018groupnorm,G,doi,10.1007/978-3-030-01261-8_1,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/1803.08494,https://doi.org/10.1007/978-3-030-01261-8_1
+117,ioffe2015bn,G,url,https://proceedings.mlr.press/v37/ioffe15.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v37/ioffe15.html,https://proceedings.mlr.press/v37/ioffe15.html
+118,hsieh2020quagmire,G,url,https://proceedings.mlr.press/v119/hsieh20a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v119/hsieh20a.html,https://proceedings.mlr.press/v119/hsieh20a.html
+119,li2021fedbn,G,arxiv,2102.07623,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2102.07623,https://openreview.net/forum?id=6YEQUn0QICG
+120,casella2024norm,G,doi,10.1109/ACCESS.2024.3383783,Crossref,302,yes,Open access (gold),https://ieeexplore.ieee.org/ielx7/6287639/6514899/10486903.pdf,https://doi.org/10.1109/ACCESS.2024.3383783
+121,pascanu2013clip,G,url,https://proceedings.mlr.press/v28/pascanu13.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v28/pascanu13.html,https://proceedings.mlr.press/v28/pascanu13.html
+122,loshchilov2017sgdr,G,arxiv,1608.03983,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1608.03983,https://openreview.net/forum?id=fdWX2wmN5D
+123,goyal2017warmup,G,arxiv,1706.02677,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1706.02677,https://arxiv.org/abs/1706.02677
+124,buda2018imbalance,G,doi,10.1016/j.neunet.2018.07.011,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/1710.05381,https://doi.org/10.1016/j.neunet.2018.07.011
+125,cui2019classbalanced,G,doi,10.1109/CVPR.2019.00949,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/CVPR.2019.00949
+126,he2016resnet,H,doi,10.1109/CVPR.2016.90,Crossref,302,yes,Open access (green),https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html,https://doi.org/10.1109/CVPR.2016.90
+127,deng2009imagenet,H,doi,10.1109/CVPR.2009.5206848,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/CVPR.2009.5206848
+128,yosinski2014transferable,H,arxiv,1411.1792,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1411.1792,https://proceedings.neurips.cc/paper_files/paper/2014/hash/532a2f85b6977104bc93f8580abbb330-Abstract.html
+129,kornblith2019transfer,H,doi,10.1109/CVPR.2019.00277,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1109/CVPR.2019.00277
+130,raghu2019transfusion,H,arxiv,1902.07208,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1902.07208,https://proceedings.neurips.cc/paper_files/paper/2019/hash/eb1e78328c46506b46a4ac4a1e378b91-Abstract.html
+131,kumar2022distort,H,arxiv,2202.10054,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2202.10054,https://openreview.net/forum?id=UYneFzXSJWh
+132,chen2020simclr,H,url,https://proceedings.mlr.press/v119/chen20j.html,direct URL,200,yes,Open access (official proceedings / journal site),https://proceedings.mlr.press/v119/chen20j.html,https://proceedings.mlr.press/v119/chen20j.html
+133,khosla2020supcon,H,arxiv,2004.11362,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2004.11362,https://proceedings.neurips.cc/paper_files/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html
+134,nguyen2023wheretobegin,H,arxiv,2206.15387,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2206.15387,https://openreview.net/forum?id=Mpa3tRJFBb
+135,chen2023pretrainfl,H,arxiv,2206.11488,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2206.11488,https://openreview.net/forum?id=5f04jup4aHa
+136,park2025ovalp,H,arxiv,2511.05028,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2511.05028,https://arxiv.org/abs/2511.05028
+137,haseeb2025mechanistic,H,arxiv,2512.23043,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2512.23043,https://arxiv.org/abs/2512.23043
+138,wilcoxon1945,I,doi,10.2307/3001968,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.2307/3001968
+139,holm1979,I,jstor,4615733,"OpenAlex (JSTOR-hosted, no DOI)",200,yes,JSTOR (institutional access or free JSTOR reading account),,https://www.jstor.org/stable/4615733
+140,efron1979bootstrap,I,doi,10.1214/aos/1176344552,Crossref,302,yes,Open access (bronze),https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.pdf,https://doi.org/10.1214/aos/1176344552
+141,efron1993intro,I,doi,10.1007/978-1-4899-4541-9,Crossref,302,yes,Book (library / publisher),,https://doi.org/10.1007/978-1-4899-4541-9
+142,cohen1988power,I,isbn,9780805802832,Open Library,200,yes,Book (library copy; no free full text),,https://openlibrary.org/isbn/9780805802832
+143,lakens2013effect,I,doi,10.3389/fpsyg.2013.00863,Crossref,302,yes,Open access (gold),https://www.frontiersin.org/articles/10.3389/fpsyg.2013.00863/pdf,https://doi.org/10.3389/fpsyg.2013.00863
+144,kruskal1952,I,doi,10.1080/01621459.1952.10483441,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1080/01621459.1952.10483441
+145,demsar2006,I,url,https://jmlr.org/papers/v7/demsar06a.html,direct URL,200,yes,Open access (official proceedings / journal site),https://jmlr.org/papers/v7/demsar06a.html,https://jmlr.org/papers/v7/demsar06a.html
+146,dietterich1998,I,doi,10.1162/089976698300017197,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1162/089976698300017197
+147,bouthillier2021variance,I,arxiv,2103.03098,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2103.03098,https://proceedings.mlsys.org/paper_files/paper/2021/hash/0184b0cd3cfb185989f858a1d9f5c1eb-Abstract.html
+148,colas2018seeds,I,arxiv,1806.08295,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1806.08295,https://arxiv.org/abs/1806.08295
+149,nosek2018prereg,I,doi,10.1073/pnas.1708274114,Crossref,302,yes,Open access (green),https://www.ncbi.nlm.nih.gov/pmc/articles/5856500,https://doi.org/10.1073/pnas.1708274114
+150,hubert1985ari,I,doi,10.1007/BF01908075,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1007/BF01908075
