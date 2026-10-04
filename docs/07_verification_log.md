@@ -7,7 +7,7 @@ is known rather than assumed.
 
 ---
 
-## 1. Numerical results — all recomputed from the per-seed data
+## 1. Numerical results: all recomputed from the per-seed data
 
 Every headline figure was recomputed from the stored per-seed values rather than
 taken from the printed logs. Means, standard deviations, effect directions,
@@ -51,7 +51,7 @@ authoritative CSVs should be downloaded from the Kaggle sessions and substituted
 
 ---
 
-## 2. Reference list — externally verified
+## 2. Reference list: externally verified
 
 Every reference was checked against publisher records. Six contained errors.
 
@@ -185,7 +185,7 @@ Tools and raw results: `tools/bibliography/`, `docs/references_verification.csv`
 
 ---
 
-## 7. SCAFFOLD naming vs implementation — resolved
+## 7. SCAFFOLD naming vs implementation: resolved
 
 A technical review found that the canonical ablation code, although the project
 is named CF-SCAFFOLD, aggregated by weighted FedAvg without control variates,
@@ -203,7 +203,40 @@ Both documents were corrected. Record: `08_later_experiments.md`, Stage 13.
 
 ---
 
-## 8. Open items — to be resolved before submission
+## 9. Feature-code audit, Part I figures, and novelty checks (October 2026)
+
+**Feature defects corrected.** Entropy computed from a density instead of
+probabilities; texture computed on the whole image with a zero background; box
+height s instead of s·G/M; Ft missing from the feature set; ties in the patient
+vote always resolved to class 0; lacunarity skipping the last row and column of
+boxes; the SCAFFOLD global control variate sample-weighted and scaled by 17/18
+instead of the plain mean of the paper. Each correction was checked on a test the
+old code fails. Federated rows 1 to 7 were verified bit-identical to the
+documented code.
+
+**Figures superseded.** Part I patient-level balanced accuracy 0.919 becomes
+0.897; the statement that Part I exceeds Cheng et al. (2015) is withdrawn. The
+0.2-point cost of automatic masks is restated with its interval, -0.6 points
+(95% CI -4.6 to +3.7). The share of clients missing a tumour type is reported as
+12.6 of 15.2 on average over 20 seeds, replacing values from single partitions.
+
+**Novelty checks.** The brain-geometry shortcut was first shown by Wallis and
+Buvat (2022) and is presented as a replication. A second search, including the
+papers citing Wallis and Buvat (mainly through Semantic Scholar; Google Scholar
+could not be queried), found no earlier publication of the stratified comparison
+of feature families (Stage 15), of the area analysis of the fractal descriptors
+(Stage 14B), or of the radiologist-free pipeline on this dataset (Stage 16). The
+feature-level pattern of Stage 16 is consistent with published work on radiomic
+stability and is cited as such. Run a manual Google Scholar check before
+submission.
+
+**References.** Sixteen references were added for these analyses and verified
+against the registries; the list now has 166 entries and compiles with zero
+BibTeX warnings.
+
+---
+
+## 10. Open items: to be resolved before submission
 
 1. **Precision substitution.** Replace the transcribed CSVs with the originals
    from Kaggle, then confirm the manuscript statistics against them. See

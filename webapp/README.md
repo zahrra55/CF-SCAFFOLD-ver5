@@ -1,4 +1,4 @@
-# CF-SCAFFOLD — interactive companion
+# CF-SCAFFOLD: interactive companion
 
 A small web application that presents the thesis results to a reader who does
 not program. It runs on a laptop during the viva and can also be published as a
@@ -69,7 +69,7 @@ the fractal descriptor on page 3, which takes a few seconds and needs no GPU.
 This is also better for a viva. The committee sees the results immediately
 instead of watching a progress bar.
 
-If asked *"is this showing real results or a simulation?"* — the numbers in
+If asked *"is this showing real results or a simulation?"*, the numbers in
 `data/` are the measured per-seed values from the Kaggle runs, the same values
 that produced every table in the manuscript. The partition simulator on page 1
 is a live illustration of the Dirichlet draw, and it is labelled as such.

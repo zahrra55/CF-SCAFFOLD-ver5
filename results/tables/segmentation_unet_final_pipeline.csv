@@ -1,0 +1,17 @@
+quantity,value
+dice_unet_mean,0.711
+dice_unet_median,0.82
+pct_dice_above_0.7_unet,68.1
+dice_unet_plus_contour_mean,0.663
+dice_unet_plus_contour_median,0.775
+pct_dice_above_0.7_contour,59.7
+contour_minus_unet_dice_mean,-0.047
+contour_wilcoxon_p,2.02e-121
+tumour_found_slices,2738/2740
+usable_auto_feature_slices,2637/2740
+patient_bacc_radiologist_masks,0.903
+patient_bacc_unet_masks,0.902
+patient_bacc_unet_contour_masks,0.901
+r_Ft_radiologist_vs_auto,0.75
+r_Fb_radiologist_vs_auto,0.997
+r_C_radiologist_vs_auto,0.801

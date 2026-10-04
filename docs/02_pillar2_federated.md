@@ -1,4 +1,4 @@
-# Part II — Federated learning under missing classes
+# Part II: Federated learning under missing classes
 
 This part asks what happens when the classification task of Part I is
 distributed across institutions that cannot share images, and why the obvious
@@ -25,12 +25,12 @@ stay together, so the patient-level protocol of Part I is preserved.
 
 Two symbols are used and must not be confused:
 
-- `α_dir` — the Dirichlet concentration controlling how skewed the partition is.
-- `α` — the scaling factor applied to absent-class logits in the local loss.
+- `α_dir`, the Dirichlet concentration controlling how skewed the partition is.
+- `α`, the scaling factor applied to absent-class logits in the local loss.
 
 ---
 
-## Stage 1 — Which intervention actually stabilises training
+## Stage 1: Which intervention actually stabilises training
 
 **Question.** The federated baseline is unstable. Standard remedies exist. Which
 of them work here?
@@ -67,7 +67,7 @@ for that reason.
 
 ---
 
-## Stage 2 — Why the loss term is the problem
+## Stage 2: Why the loss term is the problem
 
 **The argument.** For cross-entropy, the derivative of the loss with respect to
 the logit of class `c` is
@@ -102,7 +102,7 @@ Li and Zhan (2021).
 
 ---
 
-## Stage 3 — Comparison against FedRS
+## Stage 3: Comparison against FedRS
 
 **Question.** The masking objective is the `α → 0` limit of a published method.
 Is the limit actually better than the published setting?
@@ -126,7 +126,7 @@ standard deviation fell by roughly a factor of three.
 
 ---
 
-## Stage 4 — External validation on BRISC 2025
+## Stage 4: External validation on BRISC 2025
 
 **Question.** Is this specific to one dataset?
 
@@ -139,7 +139,7 @@ standard deviation fell by roughly a factor of three.
 | FedRS (α = 0.25) | 0.636 ± 0.061 |
 | Masking (α = 0) | **0.676 ± 0.046** |
 
-Masking exceeded FedRS by 5.2 points, Holm `p < 0.001`, `d = 0.82` — close to the
+Masking exceeded FedRS by 5.2 points, Holm `p < 0.001`, `d = 0.82`, close to the
 5.8 points measured on Figshare.
 
 **One observation worth noting.** BRISC is class-balanced and no method collapsed
@@ -154,7 +154,7 @@ is cited. See [`00_datasets.md`](00_datasets.md).
 
 ---
 
-## Stage 5 — Does the benefit follow local class absence?
+## Stage 5: Does the benefit follow local class absence?
 
 **Question.** If the mechanism in Stage 2 is right, the benefit should scale with
 how much of the label space is missing locally, and should vanish when nothing is
@@ -186,7 +186,7 @@ switches off exactly where the mechanism says there is nothing to correct.
 
 ---
 
-## Stage 6 — Logit calibration, centralised bound, larger backbone
+## Stage 6: Logit calibration, centralised bound, larger backbone
 
 **Question.** Three gaps remained that a reviewer would identify: a missing
 comparison against FedLC, no absolute reference point, and results from only one
@@ -270,8 +270,8 @@ Figshare, 18 clients, `α_dir = 0.3`, 20 seeds, patient-level:
 | FedAvg | 0.584 ± 0.074 | −0.065 | 0.002 |
 | FedRS (α = 0.5) | 0.592 ± 0.072 | −0.058 | 0.002 |
 | Logit calibration | 0.653 ± 0.026 | +0.004 | 0.123 |
-| Masking (α = 0) | 0.649 ± 0.028 | — | — |
-| *Centralised* | *0.705 ± 0.011* | — | — |
+| Masking (α = 0) | 0.649 ± 0.028 | n/a | n/a |
+| *Centralised* | *0.705 ± 0.011* | n/a | n/a |
 
 ---
 

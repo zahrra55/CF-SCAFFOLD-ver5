@@ -15,6 +15,7 @@ STAGES = [
  ("G","Normalisation, optimisation and class imbalance (Pillar II)","GroupNorm vs BatchNorm, and every optimisation intervention in the eight-row ablation."),
  ("H","Transfer learning and the frozen backbone (Pillar II, Stages 7, 9, 9B)","Pre-trained ResNet-18, linear probing, contrastive learning, and prior work that bounds the frozen-backbone claim."),
  ("I","Statistical methodology (both pillars)","Every test, interval, effect size and protocol decision used in the results chapters."),
+ ("J","Dataset shortcuts and robustness to segmentation (Pillar I, Stages 14-16)","The documented slice-selection shortcut in the Figshare data, the general shortcut-learning literature, and studies of how radiomic features change with the segmentation method."),
 ]
 OPEN_HOSTS=("proceedings.mlr.press","proceedings.neurips.cc","jmlr.org","openreview.net","proceedings.mlsys.org","arxiv.org")
 FREE_OVERRIDE = {  # OpenAlex pointed to unusable copies (an image file, a dead mirror, an anonymous short link); replaced with verified official copies
@@ -56,16 +57,16 @@ def verified_line(k):
 
 # ------------------ docs/06_references.md ------------------
 L=[]
-L.append("# CF-SCAFFOLD — Complete Reference List\n")
+L.append("# CF-SCAFFOLD: Complete Reference List\n")
 L.append("**Researcher:** Zahraa Ibrahim Khaleel  |  **Supervisor:** Prof. Dr. Mohammed Sahib Mehdi  |  Al-Nahrain University, College of Science, Department of Computer Science\n")
-L.append("This list replaces the earlier 32-item draft. It contains **150 references**, ordered by the stage of the pipeline where each one is used, with a direct link, the access route, the exact place and purpose of use, and how the record was verified.\n")
+L.append("This list replaces the earlier 32-item draft. It contains **166 references**, ordered by the stage of the pipeline where each one is used, with a direct link, the access route, the exact place and purpose of use, and how the record was verified.\n")
 L.append("## How every entry was verified (September 2026)\n")
-L.append("- **DOIs (108):** each DOI was looked up in Crossref (or DataCite for the two datasets); the registry title had to contain the expected title and the year had to match within one year (online-first vs issue year). The DOI was then resolved through `doi.org` to confirm it redirects to a live landing page. Open-access status and a free full-text link come from OpenAlex.")
-L.append("- **arXiv items (21):** checked through the arXiv API. Where a peer-reviewed version exists, the venue was confirmed on OpenReview (ICLR) or in the official NeurIPS/MLSys proceedings listing, and the citation points to that version. Eight items have no peer-reviewed version and are cited as preprints.")
+L.append("- **DOIs (122):** each DOI was looked up in Crossref (or DataCite for the two datasets); the registry title had to contain the expected title and the year had to match within one year (online-first vs issue year). The DOI was then resolved through `doi.org` to confirm it redirects to a live landing page. Open-access status and a free full-text link come from OpenAlex.")
+L.append("- **arXiv items (23):** checked through the arXiv API. Where a peer-reviewed version exists, the venue was confirmed on OpenReview (ICLR) or in the official NeurIPS/MLSys proceedings listing, and the citation points to that version. Eight items have no peer-reviewed version and are cited as preprints.")
 L.append("- **Proceedings/journal pages without DOI (16):** the official PMLR, NeurIPS, MLSys and JMLR pages were fetched; authors, volume and page range were read from the page's own citation meta-tags.")
 L.append("- **Books (4 ISBN + 2 DOI):** ISBN matched in Open Library; publisher and place taken from that record.")
 L.append("- **Holm (1979):** no DOI exists; confirmed through JSTOR stable id 4615733 and MR538597.\n")
-L.append("Result: **150 / 150 verified.** Corrections made during verification are listed at the end of this file and in `07_verification_log.md`.\n")
+L.append("Result: **166 / 166 verified.** (150 in September 2026; 16 added in October 2026 for the shortcut and segmentation-robustness analyses.) Corrections made during verification are listed at the end of this file and in `07_verification_log.md`.\n")
 L.append("> Links resolve today. `doi.org` links are permanent by design; for subscription items use your university library proxy. The machine-readable results of the check are in `references_verification.csv`.\n")
 L.append("## Contents\n")
 for sid,name,_ in STAGES: L.append(f"- [{sid}. {name}](#{re.sub(r'[^a-z0-9 -]','',(sid+'. '+name).lower()).replace(' ','-')})")
@@ -78,7 +79,7 @@ for sid,name,desc in STAGES:
         acc,freeurl=access(k)
         L.append(f"**[{n}]** {F[k]['ieee']}  ")
         L.append(f"- **Key:** `{k}`  ·  **Link:** {F[k]['link']}")
-        L.append(f"- **Access:** {acc}"+(f" — free copy: {freeurl}" if freeurl and freeurl!=F[k]['link'] else ""))
+        L.append(f"- **Access:** {acc}"+(f"; free copy: {freeurl}" if freeurl and freeurl!=F[k]['link'] else ""))
         L.append(f"- **Where and how it is used:** {e['used']}")
         L.append(f"- **Verified:** {verified_line(k)}\n")
 LR = {
@@ -90,7 +91,9 @@ LR = {
    ("Lacunarity and entropy","allain1991lacunarity plotnick1996lacunarity shannon1948"),
    ("Classification on the Figshare dataset","cheng2015enhanced ismael2018statistical gumaei2019hybrid paul2017deep afshar2019capsule swati2019transfer deepak2019transfer sultan2019multi rehman2020framework badza2020cnn diazpernas2021multiscale"),
    ("Evaluation rigour and leakage","yagis2021leakage kapoor2023leakage varoquaux2022failures roberts2021pitfalls varma2006cvbias cawley2010overfit"),
-   ("Segmentation and its limits","kass1988snakes chan2001acwe caselles1997gac marquezneila2014morph li2010drlse gordillo2013survey khotanlou2009symmetry liu2009symmetry ronneberger2015unet isensee2021nnunet")],
+   ("Segmentation and its limits","kass1988snakes chan2001acwe caselles1997gac marquezneila2014morph li2010drlse gordillo2013survey khotanlou2009symmetry liu2009symmetry ronneberger2015unet isensee2021nnunet"),
+   ("Shortcuts in the Figshare data and in medical imaging","wallis2022clever vangala2026scores geirhos2020shortcut lapuschkin2019cleverhans degrave2021covid zech2018pneumonia badgeley2019hip oakden2020hidden gichoya2022race tinauer2025skull vasquez2024cleverhans"),
+   ("Feature stability under automatic segmentation","tixier2019reliability haarburger2020reproducibility poirot2022robustness suter2020glioblastoma nadeem2024robust")],
  "Pillar II — federated learning under class skew":[
    ("Federated learning foundations","mcmahan2017fedavg kairouz2021 li2020challenges"),
    ("Non-IID data and client drift","zhao2018noniid hsu2019dirichlet zhu2021noniid li2022silos ye2023hfl karimireddy2020scaffold li2020fedprox wang2020fednova acar2021feddyn reddi2021adaptive li2021moon"),

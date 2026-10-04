@@ -1,11 +1,11 @@
 """
-CF-SCAFFOLD — interactive companion to the thesis.
+CF-SCAFFOLD, interactive companion to the thesis.
 
 A three-page application:
 
-    1. The problem   — why federated training fails when clients lack classes
-    2. The results   — what each correction achieves, with the measured data
-    3. The descriptor — compute C = Ft/Fb on a slice and inspect every step
+    1. The problem  , why federated training fails when clients lack classes
+    2. The results  , what each correction achieves, with the measured data
+    3. The descriptor, compute C = Ft/Fb on a slice and inspect every step
 
 Design rule followed throughout: the application displays measurements that
 were produced on Kaggle and stored as CSV files. It does not train anything.
@@ -86,7 +86,7 @@ st.sidebar.info(
 
 
 # ===========================================================================
-# PAGE 1 — the problem
+# PAGE 1: the problem
 # ===========================================================================
 if page == "The problem":
     st.title("Why federated training fails here")
@@ -184,7 +184,7 @@ between runs shown on the next page.
 
 
 # ===========================================================================
-# PAGE 2 — the results
+# PAGE 2: the results
 # ===========================================================================
 elif page == "The results":
     st.title("What each correction achieves")
@@ -380,7 +380,7 @@ reported rather than omitted.
 
 
 # ===========================================================================
-# PAGE 3 — the descriptor
+# PAGE 3: the descriptor
 # ===========================================================================
 elif page == "The descriptor":
     st.title("The tumor-to-brain fractal ratio")
@@ -453,7 +453,7 @@ step of the computation is shown.
             st.warning(result["message"])
         else:
             st.markdown("---")
-            st.subheader("Step 1 — separate the regions")
+            st.subheader("Step 1, separate the regions")
             fig, axes = plt.subplots(1, 3, figsize=(10, 3))
             for ax, (data, title) in zip(axes, [
                 (gray, "Slice"),
@@ -473,7 +473,7 @@ step of the computation is shown.
                 "otherwise bias the count."
             )
 
-            st.subheader("Step 2 — measure each region")
+            st.subheader("Step 2, measure each region")
             fig, ax = plt.subplots(figsize=(5.5, 3))
             for key, colour, label in [("tumor", GOLD, "Tumor"),
                                        ("brain", STEEL, "Brain")]:
@@ -492,7 +492,7 @@ step of the computation is shown.
                 "what structural irregularity looks like when measured."
             )
 
-            st.subheader("Step 3 — the ratio")
+            st.subheader("Step 3, the ratio")
             m1, m2, m3 = st.columns(3)
             m1.metric("Ft (tumor)", f"{result['Ft']:.4f}")
             m2.metric("Fb (brain)", f"{result['Fb']:.4f}")
@@ -539,6 +539,6 @@ own separates the three types very unevenly:
                 "better than chance. Meningiomas vary widely among themselves, "
                 "some smooth and well circumscribed, others lobulated, so a "
                 "single measure of irregularity cannot separate them. In the "
-                "thesis C is one of sixteen features for exactly this reason, "
+                "thesis C is one of seventeen features for exactly this reason, "
                 "and it is not used alone."
             )

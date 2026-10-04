@@ -1,4 +1,4 @@
-# Part I — Interpretable classification from tumor morphology
+# Part I: Interpretable classification from tumor morphology
 
 This part follows the direction proposed by the supervisor: separate the tumor
 from the surrounding brain, describe it with quantities that carry physical
@@ -11,7 +11,7 @@ before it.
 
 ---
 
-## Stage 1 — Region separation
+## Stage 1: Region separation
 
 **Question.** A fractal dimension is a property of a region. To compare tumor
 tissue against healthy tissue, the two regions must first be separated
@@ -47,7 +47,7 @@ do not need descriptors use all 3064.
 
 ---
 
-## Stage 2 — The fractal descriptor C = Ft / Fb
+## Stage 2: The fractal descriptor C = Ft / Fb
 
 **Question.** Tumor tissue is structurally more irregular than healthy tissue,
 and the degree of irregularity differs between tumor types. Can that be reduced
@@ -93,7 +93,7 @@ establish absence.
 
 ---
 
-## Stage 3 — Does C carry signal, and is it size in disguise?
+## Stage 3: Does C carry signal, and is it size in disguise?
 
 **Question.** A descriptor can appear discriminative because it correlates with
 something trivial. Tumor types differ in typical size, and fractal estimates are
@@ -125,7 +125,7 @@ size?" would be unknown. With it, the answer is "partly, and here is how much."
 
 ---
 
-## Stage 4 — The feature set
+## Stage 4: The feature set
 
 **Question.** `C` alone is insufficient, particularly for meningioma. What should
 accompany it, and how is redundancy avoided?
@@ -162,7 +162,7 @@ same data.
 
 ---
 
-## Stage 5 — Classification and evaluation
+## Stage 5: Classification and evaluation
 
 **Question.** How well does the feature set classify tumor type, measured in a
 way that does not fool itself?
@@ -191,15 +191,20 @@ accuracy. Since Part II studies a failure mode that is exactly collapse onto one
 class, plain accuracy would hide the phenomenon under study, and the same metric
 is used in both parts for consistency.
 
-**Result.** Approximately 0.92 patient-level balanced accuracy, against the
-Cheng et al. (2015) reference of 0.913 on the same dataset.
+**Result.** With the corrected feature code of the final pipeline, 0.897
+patient-level balanced accuracy and 0.827 slice-level balanced accuracy. An
+earlier run reported about 0.92 and was presented as exceeding Cheng et al.
+(2015, 0.913); that figure was produced by features with four defects that were
+later corrected, and the comparison has been withdrawn. The two numbers are not
+directly comparable in any case, since Cheng et al. report plain accuracy and
+use the radiologist's tumour region at test time.
 
 **Honest positioning against the literature.** Two later published results on
 this dataset are higher: Gumaei et al. (2019) report 94.23% with hybrid features
 and a regularised extreme learning machine, and Deepak and Ameer (2019) report
 98% with GoogLeNet features under patient-level five-fold cross-validation. The
 result here is therefore competitive with the original benchmark but not the
-highest reported. What it offers instead is sixteen named, measurable features
+highest reported. What it offers instead is seventeen named, measurable features
 in place of a learned representation. That trade-off is the argument, and
 overstating the accuracy would invite a reviewer to make the comparison for us.
 
@@ -207,7 +212,7 @@ overstating the accuracy would invite a reviewer to make the comparison for us.
 
 ---
 
-## Stages 10–12 — later tests that narrowed the claims
+## Stages 10–12: later tests that narrowed the claims
 
 Three later experiments changed what Part I can claim. Over ten repeated
 patient-grouped splits, the ratio C adds nothing on top of Ft and Fb
@@ -228,16 +233,19 @@ measured at +3.38 points on this feature set. Details and tables in
 |---|---|
 | Usable slices | 2740 of 3064 (descriptors require a valid mask) |
 | Patients | 218 of 233 |
-| Features | 16 |
+| Features | 17 (Ft added in the final pipeline) |
 | Classifier | random forest, 300 trees |
 | Evaluation | patient-grouped 5-fold, majority vote to patient level |
 | Metric | balanced accuracy |
-| Result | ~0.92 |
-| Reference | Cheng et al. 2015, 0.913 |
+| Result | 0.897 patient level, 0.827 slice level |
+| Without a radiologist (U-Net localiser) | 0.892 |
+| Reference | Cheng et al. 2015, 0.913 plain accuracy (not directly comparable) |
 
 **Known limitations, all stated in the thesis.**
 
-1. Requires an expert tumor mask at inference time.
+1. Classification without a radiologist is possible (Stage 16), but the
+   tumour-region features lose about 3.8 points with automatic masks, mainly
+   through the shape features.
 2. `C` alone discriminates meningioma weakly (AUC 0.613).
 3. `C` is partly confounded with tumor size (45% of separation survives removal).
 4. Single modality, single dataset, single institution of origin.

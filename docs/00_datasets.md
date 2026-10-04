@@ -20,7 +20,7 @@ experiments in both parts of the thesis.
 | Format | MATLAB v7.3 (HDF5) `.mat`, one file per slice |
 | Licence | CC BY 4.0 |
 
-**Source:** https://doi.org/10.6084/m9.figshare.1512427 — **version 5**, posted
+**Source:** https://doi.org/10.6084/m9.figshare.1512427, **version 5**, posted
 2 April 2017, is the release used here and the one cited throughout the
 literature. Later versions (6 to 8) were posted on 21 December 2024.
 

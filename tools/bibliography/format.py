@@ -118,7 +118,7 @@ MAN = {
  "nguyen2023wheretobegin":("in Proc. Int. Conf. Learn. Represent. (ICLR)","International Conference on Learning Representations (ICLR)","inproceedings",None,None,2023),
  "chen2023pretrainfl":("in Proc. Int. Conf. Learn. Represent. (ICLR)","International Conference on Learning Representations (ICLR)","inproceedings",None,None,2023),
 }
-PREPRINT = {"hsu2019dirichlet","zhao2018noniid","wu2022motley","goyal2017warmup","colas2018seeds","park2025ovalp","haseeb2025mechanistic","lyu2025imbalanced"}
+PREPRINT = {"vangala2026scores","nadeem2024robust","hsu2019dirichlet","zhao2018noniid","wu2022motley","goyal2017warmup","colas2018seeds","park2025ovalp","haseeb2025mechanistic","lyu2025imbalanced"}
 BOOKS = {
  "serra1982":("London, U.K.","Academic Press",1982,None,"0-12-637240-3"),
  "gonzalez2018dip":("New York, NY, USA","Pearson",2018,"4th ed.","978-0-13-335672-4"),

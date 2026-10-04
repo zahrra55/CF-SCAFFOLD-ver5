@@ -29,7 +29,7 @@ The thesis contains two methodologically separate investigations. They share a
 dataset and a preprocessing pipeline but answer different questions, and neither
 depends on the other.
 
-### Part I — Interpretable classification from tumor morphology
+### Part I: Interpretable classification from tumor morphology
 
 The starting point proposed by the supervisor: segment the tumor region, extract
 descriptors that a radiologist could interpret, and classify tumor type from
@@ -43,7 +43,7 @@ under patient-grouped cross-validation.
 
 Documented in [`docs/01_pillar1_classification.md`](docs/01_pillar1_classification.md).
 
-### Part II — Federated learning under missing classes
+### Part II: Federated learning under missing classes
 
 When the same task is distributed across simulated hospitals, most sites hold
 fewer than all three tumor types. Training then collapses. This part traces the
@@ -94,8 +94,18 @@ Part I, Figshare dataset, patient-grouped five-fold cross-validation:
 
 | Model | Balanced accuracy (patient level) |
 |---|---|
-| 16 interpretable features + random forest | ~0.92 |
-| Reference: Cheng et al. 2015 | 0.913 |
+| 17 interpretable features + random forest, radiologist masks | 0.897 |
+| Same model, tumour located by a small U-Net (no radiologist at test time) | 0.892 |
+| 13 tumour-region features only (least dependent on the dataset shortcut) | 0.813 |
+
+An earlier version of this table reported about 0.92 and placed the model above
+Cheng et al. (2015, 0.913). That figure came from feature code with four defects
+(entropy, texture, box height, a missing Ft) that were corrected in the final
+pipeline; the corrected model is below that benchmark, and the claim has been
+withdrawn. The contribution of Part I is not raw accuracy but an interpretable
+classifier that can run without a radiologist and whose behaviour on a dataset
+with a documented shortcut (Wallis and Buvat, 2022) has been measured
+([`docs/08`](docs/08_later_experiments.md), Stages 14 to 16).
 
 Over ten repeated splits the fractal family adds +1.69 points (p = 0.002); the
 ratio C adds nothing on top of Ft and Fb, so it is presented as an interpretable
