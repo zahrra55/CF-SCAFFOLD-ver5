@@ -108,7 +108,7 @@ Ready to paste into the **References** section. Entries follow the order of the 
 
 [50] J. Sánchez and M. Martín-Landrove, "Morphological and Fractal Properties of Brain Tumors," Frontiers in Physiology, vol. 13, art. no. 878391, 2022, doi: 10.3389/fphys.2022.878391.
 
-[51] T. G. Smith, G. D. Lange, and W. B. Marks, "Fractal methods and results in cellular morphology — dimensions, lacunarity and multifractals," Journal of Neuroscience Methods, vol. 69, no. 2, pp. 123–136, 1996, doi: 10.1016/S0165-0270(96)00080-5.
+[51] T. G. Smith, G. D. Lange, and W. B. Marks, "Fractal methods and results in cellular morphology: dimensions, lacunarity and multifractals," Journal of Neuroscience Methods, vol. 69, no. 2, pp. 123–136, 1996, doi: 10.1016/S0165-0270(96)00080-5.
 
 [52] G. Gonzato, F. Mulargia, and W. Marzocchi, "Practical application of fractal analysis: problems and solutions," Geophysical Journal International, vol. 132, no. 2, pp. 275–282, 1998, doi: 10.1046/j.1365-246x.1998.00461.x.
 
@@ -307,3 +307,35 @@ Ready to paste into the **References** section. Entries follow the order of the 
 [149] B. A. Nosek, C. R. Ebersole, A. C. DeHaven, and D. T. Mellor, "The preregistration revolution," Proceedings of the National Academy of Sciences, vol. 115, no. 11, pp. 2600–2606, 2018, doi: 10.1073/pnas.1708274114.
 
 [150] L. Hubert and P. Arabie, "Comparing partitions," Journal of Classification, vol. 2, no. 1, pp. 193–218, 1985, doi: 10.1007/BF01908075.
+
+[151] D. Wallis and I. Buvat, "Clever Hans effect found in a widely used brain tumour MRI dataset," Medical Image Analysis, vol. 77, art. no. 102368, 2022, doi: 10.1016/j.media.2022.102368.
+
+[152] B. P. Vangala, S. Guda, L. Peddi, and N. Vangala, "Scores That Hold, Benchmarks That Leak: Measuring Dataset Contamination in Public Brain-Tumor MRI Classification," arXiv preprint arXiv:2610.00421, 2026.
+
+[153] R. Geirhos et al., "Shortcut learning in deep neural networks," Nature Machine Intelligence, vol. 2, no. 11, pp. 665–673, 2020, doi: 10.1038/s42256-020-00257-z.
+
+[154] A. J. DeGrave, J. D. Janizek, and S.-I. Lee, "AI for radiographic COVID-19 detection selects shortcuts over signal," Nature Machine Intelligence, vol. 3, no. 7, pp. 610–619, 2021, doi: 10.1038/s42256-021-00338-7.
+
+[155] J. R. Zech, M. A. Badgeley, M. Liu, A. B. Costa, J. J. Titano, and E. K. Oermann, "Variable generalization performance of a deep learning model to detect pneumonia in chest radiographs: A cross-sectional study," PLOS Medicine, vol. 15, no. 11, p. e1002683, 2018, doi: 10.1371/journal.pmed.1002683.
+
+[156] S. Lapuschkin, S. Wäldchen, A. Binder, G. Montavon, W. Samek, and K.-R. Müller, "Unmasking Clever Hans predictors and assessing what machines really learn," Nature Communications, vol. 10, art. no. 1096, 2019, doi: 10.1038/s41467-019-08987-4.
+
+[157] L. Oakden-Rayner, J. Dunnmon, G. Carneiro, and C. Re, "Hidden stratification causes clinically meaningful failures in machine learning for medical imaging," Proceedings of the ACM Conference on Health, Inference, and Learning, pp. 151–159, 2020, doi: 10.1145/3368555.3384468.
+
+[158] M. A. Badgeley et al., "Deep learning predicts hip fracture using confounding patient and healthcare variables," npj Digital Medicine, vol. 2, art. no. 31, 2019, doi: 10.1038/s41746-019-0105-1.
+
+[159] J. W. Gichoya et al., "AI recognition of patient race in medical imaging: a modelling study," The Lancet Digital Health, vol. 4, no. 6, pp. e406–e414, 2022, doi: 10.1016/S2589-7500(22)00063-2.
+
+[160] C. Tinauer, M. Sackl, R. Stollberger, R. Schmidt, S. Ropele, and C. Langkammer, "Skull-stripping induces shortcut learning in MRI-based Alzheimer’s disease classification," Insights into Imaging, vol. 16, art. no. 283, 2025, doi: 10.1186/s13244-025-02158-4.
+
+[161] C. Vásquez-Venegas et al., "Detecting and Mitigating the Clever Hans Effect in Medical Imaging: A Scoping Review," Journal of Imaging Informatics in Medicine, vol. 38, no. 4, pp. 2563–2579, 2024, doi: 10.1007/s10278-024-01335-z.
+
+[162] F. Tixier, H. Um, R. J. Young, and H. Veeraraghavan, "Reliability of tumor segmentation in glioblastoma: Impact on the robustness of MRI‐radiomic features," Medical Physics, vol. 46, no. 8, pp. 3582–3591, 2019, doi: 10.1002/mp.13624.
+
+[163] C. Haarburger, G. Müller-Franzes, L. Weninger, C. Kuhl, D. Truhn, and D. Merhof, "Radiomics feature reproducibility under inter-rater variability in segmentations of CT images," Scientific Reports, vol. 10, art. no. 12688, 2020, doi: 10.1038/s41598-020-69534-6.
+
+[164] M. G. Poirot et al., "Robustness of radiomics to variations in segmentation methods in multimodal brain MRI," Scientific Reports, vol. 12, art. no. 16712, 2022, doi: 10.1038/s41598-022-20703-9.
+
+[165] Y. Suter et al., "Radiomics for glioblastoma survival analysis in pre-operative MRI: exploring feature robustness, class boundaries, and machine learning techniques," Cancer Imaging, vol. 20, art. no. 55, 2020, doi: 10.1186/s40644-020-00329-8.
+
+[166] M. Nadeem, A. Shaheen, M. F. A. Chaudhary, and H. Mohy-ud-Din, "Towards robust radiomics and radiogenomics predictive models for brain tumor characterization," arXiv preprint arXiv:2406.03583, 2024.

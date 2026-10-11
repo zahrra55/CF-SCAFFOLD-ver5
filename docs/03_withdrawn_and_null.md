@@ -10,7 +10,7 @@ it.
 
 ---
 
-## 1. Clustered federated learning — withdrawn
+## 1. Clustered federated learning: withdrawn
 
 **The claim.** Clients grouped by the distribution of the `C` descriptor, with a
 separate model per cluster, beat a single global model by 12.5 points.
@@ -44,7 +44,7 @@ prompted the re-test and is worth recording as a diagnostic practice.
 
 ---
 
-## 2. Per-patient personalisation — invalid by construction
+## 2. Per-patient personalisation: invalid by construction
 
 **The claim.** Adapting the global model to each held-out patient, using the
 Motley support/query protocol, improved balanced accuracy by 32 points with
@@ -67,15 +67,15 @@ the task as posed.
 **Action.** The result was discarded, not reported. The leakage test was kept as
 a permanent check in the pipeline, and the episode is described in the manuscript
 as evidence that the pathology lies in the output layer rather than in
-representation. The broader point — that a standard personalisation protocol
-becomes a leakage channel when each client holds a single label — is a
+representation. The broader point, that a standard personalisation protocol
+becomes a leakage channel when each client holds a single label, is a
 methodological observation worth stating.
 
 **Code.** The check is `code/shared/leakage_guard.py`.
 
 ---
 
-## 3. Bio-anchored contrastive learning — null
+## 3. Bio-anchored contrastive learning: null
 
 **The idea.** Add an auxiliary contrastive term to the local objective whose
 targets come from the continuous descriptors of Part I (`C`, lacunarity, border
@@ -122,7 +122,7 @@ the manuscript's limitations section as supporting evidence for the diagnosis.
 
 ---
 
-## 4. Aggregation weighting by C — null
+## 4. Aggregation weighting by C: null
 
 **The claim tested.** Weighting client contributions during aggregation by the
 divergence of their `C` distribution from the global pool would counteract drift.
@@ -143,6 +143,16 @@ ratio C adds nothing over Ft and Fb (Stage 10B); automatic active-contour
 segmentation fails (Stage 11); real SCAFFOLD control variates change nothing
 measurable (Stage 13). A proposed random-mask control was rejected before
 running because, with three classes, it cannot avoid masking present labels.
+In the final pipeline, active-contour refinement of the U-Net tumour region
+lowered Dice on real images (-0.047, p = 2 × 10⁻¹²¹) and was dropped, although it
+had helped on synthetic data. The claim that Part I exceeds Cheng et al. (2015)
+was withdrawn after the feature corrections (0.897 against 0.913).
+
+---
+
+## Results of the fractal-chaos stages that did not support a claim
+
+A first matched-damage test (Stage 17B) did not meet its rule and is kept in the record next to the corrected Stage 18 test. The class-presence correction lowered the accuracy of federated learning on descriptors (Stage 17). The fractal-chaos family is not the most robust descriptor group (Stage 18B). The tumour-boundary fractal dimension, the roughness exponent and the Higuchi dimension of the boundary signature were rejected (Stage 19). On BraTS, the fractal measures of the enhancing region and of necrosis added nothing beyond the presence of these regions (Stage 19), and the preregistered grading threshold for the fractal-chaos family was not met (Stage 17).
 
 ---
 

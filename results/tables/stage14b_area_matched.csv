@@ -1,0 +1,11 @@
+class,descriptor,raw_auc,within_10_bins,ci_low,ci_high,within_20_bins
+pituitary,Fb,0.933,0.833,0.791,0.874,0.824
+pituitary,Ft,0.853,0.871,0.823,0.914,0.876
+pituitary,C,0.902,0.882,0.835,0.925,0.886
+pituitary,brain_area_control,0.879,0.608,0.566,0.647,0.518
+glioma,Fb,0.778,0.701,0.65,0.755,0.7
+glioma,Ft,0.692,0.644,0.574,0.708,0.637
+glioma,C,0.729,0.657,0.587,0.722,0.651
+meningioma,Fb,0.582,0.512,0.443,0.574,0.523
+meningioma,Ft,0.614,0.593,0.528,0.656,0.591
+meningioma,C,0.617,0.584,0.514,0.648,0.581

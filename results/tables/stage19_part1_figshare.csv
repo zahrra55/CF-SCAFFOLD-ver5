@@ -1,0 +1,8 @@
+configuration,patient_bal_acc,std,n_descriptors
+19 (Stage 17 set),0.923,0.006,19
+19 + Block A boundary FD,0.92,0.006,20
+19 + Block B grayscale lacunarity,0.946,0.01,21
+19 with FuzEn2D instead of SampEn2D,0.925,0.005,19
+FINAL set,0.948,0.009,21
+fractal-chaos family of final set,0.851,0.008,9
+tumour-only,0.877,0.008,16

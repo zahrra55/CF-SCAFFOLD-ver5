@@ -149,3 +149,19 @@ number,key,stage,identifier_type,identifier,registry,resolver_http,verified,open
 148,colas2018seeds,I,arxiv,1806.08295,arXiv,200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/1806.08295,https://arxiv.org/abs/1806.08295
 149,nosek2018prereg,I,doi,10.1073/pnas.1708274114,Crossref,302,yes,Open access (green),https://www.ncbi.nlm.nih.gov/pmc/articles/5856500,https://doi.org/10.1073/pnas.1708274114
 150,hubert1985ari,I,doi,10.1007/BF01908075,Crossref,302,yes,Subscription (institutional access),,https://doi.org/10.1007/BF01908075
+151,wallis2022clever,J,doi,10.1016/j.media.2022.102368,Crossref,302,yes,Open access (hybrid),https://www.sciencedirect.com/science/article/pii/S1361841522000214/pdf,https://doi.org/10.1016/j.media.2022.102368
+152,vangala2026scores,J,arxiv,2610.00421,arXiv (abs page meta tags; API rate-limited),200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2610.00421,https://arxiv.org/abs/2610.00421
+153,geirhos2020shortcut,J,doi,10.1038/s42256-020-00257-z,Crossref,302,yes,Open access (green),https://arxiv.org/pdf/2004.07780,https://doi.org/10.1038/s42256-020-00257-z
+154,degrave2021covid,J,doi,10.1038/s42256-021-00338-7,Crossref,302,yes,Open access (hybrid),https://www.nature.com/articles/s42256-021-00338-7.pdf,https://doi.org/10.1038/s42256-021-00338-7
+155,zech2018pneumonia,J,doi,10.1371/journal.pmed.1002683,Crossref,302,yes,Open access (gold),https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1002683&type=printable,https://doi.org/10.1371/journal.pmed.1002683
+156,lapuschkin2019cleverhans,J,doi,10.1038/s41467-019-08987-4,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41467-019-08987-4.pdf,https://doi.org/10.1038/s41467-019-08987-4
+157,oakden2020hidden,J,doi,10.1145/3368555.3384468,Crossref,302,yes,Open access (gold),https://doi.org/10.1145/3368555.3384468,https://doi.org/10.1145/3368555.3384468
+158,badgeley2019hip,J,doi,10.1038/s41746-019-0105-1,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41746-019-0105-1.pdf,https://doi.org/10.1038/s41746-019-0105-1
+159,gichoya2022race,J,doi,10.1016/S2589-7500(22)00063-2,Crossref,302,yes,Open access (gold),http://www.thelancet.com/article/S2589750022000632/pdf,https://doi.org/10.1016/S2589-7500(22)00063-2
+160,tinauer2025skull,J,doi,10.1186/s13244-025-02158-4,Crossref,302,yes,Open access (gold),https://link.springer.com/content/pdf/10.1186/s13244-025-02158-4.pdf,https://doi.org/10.1186/s13244-025-02158-4
+161,vasquez2024cleverhans,J,doi,10.1007/s10278-024-01335-z,Crossref,302,yes,Open access (green),https://pmc.ncbi.nlm.nih.gov/articles/PMC12344020/pdf/10278_2024_Article_1335.pdf,https://doi.org/10.1007/s10278-024-01335-z
+162,tixier2019reliability,J,doi,10.1002/mp.13624,Crossref,302,yes,Open access (green),https://www.ncbi.nlm.nih.gov/pmc/articles/6692188,https://doi.org/10.1002/mp.13624
+163,haarburger2020reproducibility,J,doi,10.1038/s41598-020-69534-6,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41598-020-69534-6.pdf,https://doi.org/10.1038/s41598-020-69534-6
+164,poirot2022robustness,J,doi,10.1038/s41598-022-20703-9,Crossref,302,yes,Open access (gold),https://www.nature.com/articles/s41598-022-20703-9.pdf,https://doi.org/10.1038/s41598-022-20703-9
+165,suter2020glioblastoma,J,doi,10.1186/s40644-020-00329-8,Crossref,302,yes,Open access (gold),https://cancerimagingjournal.biomedcentral.com/track/pdf/10.1186/s40644-020-00329-8,https://doi.org/10.1186/s40644-020-00329-8
+166,nadeem2024robust,J,arxiv,2406.03583,arXiv (abs page meta tags; API rate-limited),200,yes,Open access (arXiv / proceedings),https://arxiv.org/abs/2406.03583,https://arxiv.org/abs/2406.03583

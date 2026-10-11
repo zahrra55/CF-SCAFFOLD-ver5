@@ -1,0 +1,5 @@
+feature_set,patient_bal_acc,std
+all 19 (17 + SampEn2D tumour/brain),0.928,0.007
+fractal-chaos family (7),0.758,0.011
+17 without SampEn2D,0.918,0.007
+12 without the fractal-chaos family,0.785,0.015

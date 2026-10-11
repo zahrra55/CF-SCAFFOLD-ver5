@@ -1,7 +1,11 @@
 # CF-SCAFFOLD
 
-Experimental record for a Master's thesis on interpretable brain tumor MRI
-classification and federated learning under label skew.
+Experimental record for the Master's thesis
+**Fractal-Chaos Guided Federated Learning for Brain Tumor MRI Classification**.
+
+**For the examining committee:** [`COMMITTEE_GUIDE.md`](COMMITTEE_GUIDE.md) lists
+which script reproduces each result of the thesis, in which order to run them,
+the hardware and time each needs, and the limits that apply to each claim.
 
 **Researcher:** Zahraa Ibrahim Khaleel
 **Supervisor:** Prof. Dr. Mohammed Sahib Mehdi
@@ -29,7 +33,7 @@ The thesis contains two methodologically separate investigations. They share a
 dataset and a preprocessing pipeline but answer different questions, and neither
 depends on the other.
 
-### Part I — Interpretable classification from tumor morphology
+### Part I: Interpretable classification from tumor morphology
 
 The starting point proposed by the supervisor: segment the tumor region, extract
 descriptors that a radiologist could interpret, and classify tumor type from
@@ -43,7 +47,7 @@ under patient-grouped cross-validation.
 
 Documented in [`docs/01_pillar1_classification.md`](docs/01_pillar1_classification.md).
 
-### Part II — Federated learning under missing classes
+### Part II: Federated learning under missing classes
 
 When the same task is distributed across simulated hospitals, most sites hold
 fewer than all three tumor types. Training then collapses. This part traces the
@@ -59,6 +63,7 @@ Documented in [`docs/02_pillar2_federated.md`](docs/02_pillar2_federated.md).
 ```
 docs/       stage-by-stage record, one document per part plus supporting material
 code/       the scripts that produced every reported number
+            (code/fractal_chaos_guided_fl/ holds the final stages 17 to 19)
 tools/      scripts that built and verified the reference list
 results/    tables of the actual measured values, and the figures built from them
 paper/      the manuscripts prepared from these results
@@ -81,28 +86,48 @@ deploy it.
 | [`docs/03_withdrawn_and_null.md`](docs/03_withdrawn_and_null.md) | Results retracted or reported as null, with reasons |
 | [`docs/04_decision_log.md`](docs/04_decision_log.md) | Why each method, metric, dataset and value was chosen |
 | [`docs/05_reproducibility.md`](docs/05_reproducibility.md) | Environment, seeds, how to re-run each experiment |
-| [`docs/06_references.md`](docs/06_references.md) | 150 references by pipeline stage: link, access route, where and how each is used, how it was verified |
+| [`docs/06_references.md`](docs/06_references.md) | 166 references by pipeline stage: link, access route, where and how each is used, how it was verified |
 | [`docs/thesis_reference_list.md`](docs/thesis_reference_list.md) | IEEE reference list ready for the thesis end-matter (BibTeX: [`paper/references.bib`](paper/references.bib)) |
 | [`docs/07_verification_log.md`](docs/07_verification_log.md) | Audit of every result and reference: what was checked, what was corrected, what is open |
-| [`docs/08_later_experiments.md`](docs/08_later_experiments.md) | Stages 9–13: frozen backbone, descriptor ablation, leakage measurement, active contour, SCAFFOLD |
+| [`docs/08_later_experiments.md`](docs/08_later_experiments.md) | Stages 9 to 19: frozen backbone, descriptor ablation, leakage, active contour, SCAFFOLD, shortcut analyses, radiologist-free classification, fractal-chaos descriptors, matched heterogeneity damage, final extension |
 
 ---
 
 ## Headline results
 
-Part I, Figshare dataset, patient-grouped five-fold cross-validation:
+Final descriptor model (Stage 19), Figshare, 218 patients, ten repeated
+patient-grouped splits, patient-level balanced accuracy:
 
-| Model | Balanced accuracy (patient level) |
+| Configuration | Balanced accuracy |
 |---|---|
-| 16 interpretable features + random forest | ~0.92 |
-| Reference: Cheng et al. 2015 | 0.913 |
+| Final set: 21 descriptors (fractal-chaos and others) | 0.948 ± 0.009 |
+| Tumour-only descriptors (robust to the dataset shortcut) | 0.877 ± 0.008 |
+| Fractal-chaos family alone (fractal dimensions, lacunarities, fuzzy entropy) | 0.851 ± 0.008 |
 
-Over ten repeated splits the fractal family adds +1.69 points (p = 0.002); the
-ratio C adds nothing on top of Ft and Fb, so it is presented as an interpretable
-member of that family rather than a stronger descriptor
-([`docs/08`](docs/08_later_experiments.md)).
+The final set was selected on the same data by a preregistered rule, so 0.948 is
+slightly optimistic; the tumour-only figure is the estimate robust to the
+slice-selection shortcut documented by Wallis and Buvat (2022). An earlier figure of
+about 0.92 and the comparison with Cheng et al. (2015) were withdrawn after a
+feature-code audit (see [`docs/07`](docs/07_verification_log.md)).
 
-Part II, Figshare dataset, 18 simulated clients, Dirichlet(0.3), 20 seeds:
+Glioma versus non-glioma, a proxy for malignant versus predominantly benign
+tumours: 0.989 with radiologist masks and about 0.96 after automatic segmentation
+by a U-Net (0.966 and 0.962 in two runs), against 0.778 for brain geometry alone.
+
+Fractal-chaos guided federated learning, 18 simulated hospitals, Dirichlet(0.3),
+20 seeds, identical hospitals and test patients (Stages 18 and 19):
+
+| Model | Centralised | Federated | Damage from heterogeneity |
+|---|---|---|---|
+| CNN on images | 0.736 | 0.584 | 15.2 points |
+| MLP on the final descriptor set | 0.917 | 0.900 (patient level 0.953) | 1.7 points |
+
+The damage gap grows with heterogeneity (20.6 points at alpha 0.1, 5.6 at alpha 1.0).
+The fractal-chaos family alone also resists heterogeneity, but the non-fractal
+descriptors resist it at least as well, so robustness is a property of fixed
+descriptors in general.
+
+Federated learning on images, local objectives compared over 20 seeds:
 
 | Local objective | Balanced accuracy |
 |---|---|
@@ -112,12 +137,8 @@ Part II, Figshare dataset, 18 simulated clients, Dirichlet(0.3), 20 seeds:
 | Absent-class masking | 0.649 ± 0.028 |
 | Centralised on pooled data | 0.705 ± 0.011 |
 
-These numbers use weighted FedAvg aggregation. Real SCAFFOLD control variates,
-added later with the same local objective, are statistically indistinguishable
-(+0.25 pp, p = 0.546, 20 seeds).
-
-Full tables, including the external-validation dataset, the partition-severity
-sweep, the backbone comparison and the SCAFFOLD check, are in
+Real SCAFFOLD control variates are statistically indistinguishable from FedAvg
+aggregation with the same objective (+0.25 pp, p = 0.546). All tables are in
 [`results/tables/`](results/tables/).
 
 ---
@@ -133,7 +154,8 @@ regime in which the limiting case is the appropriate choice.
 
 ## Data availability
 
-Neither dataset is redistributed here. Both are publicly available under their
+No dataset is redistributed here (Figshare brain tumour dataset, BRISC, and the
+BraTS 2020 training set used for grading). Both are publicly available under their
 own licences; see [`docs/00_datasets.md`](docs/00_datasets.md) for sources and
 access instructions.
 

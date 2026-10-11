@@ -1,0 +1,7 @@
+configuration,bal_acc_infold_threshold,std
+19 (Stage 17 set),0.859,0.008
+19 + sub-region block,0.866,0.016
+19 + presence flags only,0.889,0.011
+final set + sub-region block,0.858,0.012
+presence flags alone,0.817,0.007
+geometry control,0.457,0.021

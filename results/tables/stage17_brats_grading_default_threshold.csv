@@ -1,0 +1,5 @@
+feature_set,patient_bal_acc,patient_auc
+fractal-chaos family (7),0.646,0.785
+all 19,0.67,0.92
+non-fractal (12),0.653,0.889
+brain geometry control,0.485,0.444

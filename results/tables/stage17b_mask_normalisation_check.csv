@@ -1,0 +1,5 @@
+normalisation,variables,patient_bal_acc
+pipeline (slice min-max),11,0.75
+pipeline (slice min-max),10,0.746
+tumour-independent,11,0.745
+tumour-independent,10,0.731

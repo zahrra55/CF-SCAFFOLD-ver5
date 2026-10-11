@@ -1,0 +1,5 @@
+feature_set,bal_acc,sensitivity_hgg,specificity_lgg
+fractal-chaos family (7),0.702,0.752,0.653
+all 19,0.86,0.823,0.897
+non-fractal (12),0.805,0.736,0.874
+geometry control,0.446,0.572,0.321

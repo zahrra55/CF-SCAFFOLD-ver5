@@ -1,9 +1,9 @@
 config,mean,std,collapses_of_20,aggregation
-baseline (unstable),0.554,0.063,1,FedAvg
-+grad_clip,0.485,0.083,4,FedAvg
+baseline,0.554,0.063,1,FedAvg
++grad_clip,0.486,0.083,4,FedAvg
 +warmup_cosine,0.37,0.064,16,FedAvg
 +more_rounds,0.382,0.075,14,FedAvg
 +balanced_sampling,0.517,0.1,4,FedAvg
-+restricted_softmax,0.657,0.047,0,FedAvg
-FULL +fedprox,0.66,0.045,0,FedAvg
-+restricted_softmax+SCAFFOLD,0.661,0.051,0,SCAFFOLD (Option II)
++restricted_softmax,0.659,0.046,0,FedAvg
++restricted_softmax+FedProx,0.659,0.045,0,FedAvg
++restricted_softmax+SCAFFOLD,0.662,0.044,0,"SCAFFOLD (Option II, plain-mean global variate)"

@@ -1,0 +1,8 @@
+configuration,patient_bal_acc,patient_auc
+"all final descriptors, radiologist masks",0.989,0.994
+fractal-chaos family,0.882,0.953
+tumour-only,0.983,0.994
+C alone,0.681,0.704
+brain geometry control,0.778,0.867
+"after U-Net segmentation, run 1 (single split)",0.966,
+"after U-Net segmentation, run 2 (single split)",0.962,

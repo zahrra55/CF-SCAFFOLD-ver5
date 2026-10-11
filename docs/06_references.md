@@ -1,18 +1,18 @@
-# CF-SCAFFOLD — Complete Reference List
+# CF-SCAFFOLD: Complete Reference List
 
 **Researcher:** Zahraa Ibrahim Khaleel  |  **Supervisor:** Prof. Dr. Mohammed Sahib Mehdi  |  Al-Nahrain University, College of Science, Department of Computer Science
 
-This list replaces the earlier 32-item draft. It contains **150 references**, ordered by the stage of the pipeline where each one is used, with a direct link, the access route, the exact place and purpose of use, and how the record was verified.
+This list replaces the earlier 32-item draft. It contains **166 references**, ordered by the stage of the pipeline where each one is used, with a direct link, the access route, the exact place and purpose of use, and how the record was verified.
 
 ## How every entry was verified (September 2026)
 
-- **DOIs (108):** each DOI was looked up in Crossref (or DataCite for the two datasets); the registry title had to contain the expected title and the year had to match within one year (online-first vs issue year). The DOI was then resolved through `doi.org` to confirm it redirects to a live landing page. Open-access status and a free full-text link come from OpenAlex.
-- **arXiv items (21):** checked through the arXiv API. Where a peer-reviewed version exists, the venue was confirmed on OpenReview (ICLR) or in the official NeurIPS/MLSys proceedings listing, and the citation points to that version. Eight items have no peer-reviewed version and are cited as preprints.
+- **DOIs (122):** each DOI was looked up in Crossref (or DataCite for the two datasets); the registry title had to contain the expected title and the year had to match within one year (online-first vs issue year). The DOI was then resolved through `doi.org` to confirm it redirects to a live landing page. Open-access status and a free full-text link come from OpenAlex.
+- **arXiv items (23):** checked through the arXiv API. Where a peer-reviewed version exists, the venue was confirmed on OpenReview (ICLR) or in the official NeurIPS/MLSys proceedings listing, and the citation points to that version. Eight items have no peer-reviewed version and are cited as preprints.
 - **Proceedings/journal pages without DOI (16):** the official PMLR, NeurIPS, MLSys and JMLR pages were fetched; authors, volume and page range were read from the page's own citation meta-tags.
 - **Books (4 ISBN + 2 DOI):** ISBN matched in Open Library; publisher and place taken from that record.
 - **Holm (1979):** no DOI exists; confirmed through JSTOR stable id 4615733 and MR538597.
 
-Result: **150 / 150 verified.** Corrections made during verification are listed at the end of this file and in `07_verification_log.md`.
+Result: **166 / 166 verified.** (150 in September 2026; 16 added in October 2026 for the shortcut and segmentation-robustness analyses.) Corrections made during verification are listed at the end of this file and in `07_verification_log.md`.
 
 > Links resolve today. `doi.org` links are permanent by design; for subscription items use your university library proxy. The machine-readable results of the check are in `references_verification.csv`.
 
@@ -28,6 +28,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 - [G. Normalisation, optimisation and class imbalance (Pillar II)](#g-normalisation-optimisation-and-class-imbalance-pillar-ii)
 - [H. Transfer learning and the frozen backbone (Pillar II, Stages 7, 9, 9B)](#h-transfer-learning-and-the-frozen-backbone-pillar-ii-stages-7-9-9b)
 - [I. Statistical methodology (both pillars)](#i-statistical-methodology-both-pillars)
+- [J. Dataset shortcuts and robustness to segmentation (Pillar I, Stages 14-16)](#j-dataset-shortcuts-and-robustness-to-segmentation-pillar-i-stages-14-16)
 - [Using this list for the literature review](#using-this-list-for-the-literature-review)
 - [Corrections found during verification](#corrections-found-during-verification)
 
@@ -38,13 +39,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[1]** P. Kairouz et al., "Advances and Open Problems in Federated Learning," *Foundations and Trends in Machine Learning*, vol. 14, no. 1–2, pp. 1–210, 2021, doi: 10.1561/2200000083.  
 - **Key:** `kairouz2021`  ·  **Link:** https://doi.org/10.1561/2200000083
-- **Access:** Open access (green) — free copy: https://arxiv.org/pdf/1912.04977
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/1912.04977
 - **Where and how it is used:** Ch.2 FL background; defines statistical heterogeneity (non-IID) as an open problem that motivates Pillar II.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[2]** T. Li, A. K. Sahu, A. Talwalkar, and V. Smith, "Federated Learning: Challenges, Methods, and Future Directions," *IEEE Signal Processing Magazine*, vol. 37, no. 3, pp. 50–60, 2020, doi: 10.1109/MSP.2020.2975749.  
 - **Key:** `li2020challenges`  ·  **Link:** https://doi.org/10.1109/MSP.2020.2975749
-- **Access:** Open access (green) — free copy: https://arxiv.org/pdf/1908.07873
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/1908.07873
 - **Where and how it is used:** Ch.2 FL overview; taxonomy of systems vs statistical heterogeneity.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -56,43 +57,43 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[4]** M. Ye, X. Fang, B. Du, P. C. Yuen, and D. Tao, "Heterogeneous Federated Learning: State-of-the-art and Research Challenges," *ACM Computing Surveys*, vol. 56, no. 3, pp. 1–44, 2024, doi: 10.1145/3625558.  
 - **Key:** `ye2023hfl`  ·  **Link:** https://doi.org/10.1145/3625558
-- **Access:** Open access (bronze) — free copy: https://dl.acm.org/doi/pdf/10.1145/3625558
+- **Access:** Open access (bronze); free copy: https://dl.acm.org/doi/pdf/10.1145/3625558
 - **Where and how it is used:** Ch.2 survey of data/model/server-level heterogeneity corrections; places restricted-softmax among client-side output-layer fixes.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[5]** H. Guan, P.-T. Yap, A. Bozoki, and M. Liu, "Federated learning for medical image analysis: A survey," *Pattern Recognition*, vol. 151, art. no. 110424, 2024, doi: 10.1016/j.patcog.2024.110424.  
 - **Key:** `guan2024fedmed`  ·  **Link:** https://doi.org/10.1016/j.patcog.2024.110424
-- **Access:** Open access (green) — free copy: https://pmc.ncbi.nlm.nih.gov/articles/PMC10976951/pdf/nihms-1977935.pdf
+- **Access:** Open access (green); free copy: https://pmc.ncbi.nlm.nih.gov/articles/PMC10976951/pdf/nihms-1977935.pdf
 - **Where and how it is used:** Ch.2 medical-imaging FL survey; supports the claim that most imaging FL work uses generic aggregation.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[6]** N. Rieke et al., "The future of digital health with federated learning," *npj Digital Medicine*, vol. 3, art. no. 119, 2020, doi: 10.1038/s41746-020-00323-1.  
 - **Key:** `rieke2020future`  ·  **Link:** https://doi.org/10.1038/s41746-020-00323-1
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/s41746-020-00323-1.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41746-020-00323-1.pdf
 - **Where and how it is used:** Ch.1 motivation: privacy constraints on multi-hospital MRI data.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[7]** G. A. Kaissis, M. R. Makowski, D. Rückert, and R. F. Braren, "Secure, privacy-preserving and federated machine learning in medical imaging," *Nature Machine Intelligence*, vol. 2, no. 6, pp. 305–311, 2020, doi: 10.1038/s42256-020-0186-1.  
 - **Key:** `kaissis2020secure`  ·  **Link:** https://doi.org/10.1038/s42256-020-0186-1
-- **Access:** Open access (hybrid) — free copy: https://www.nature.com/articles/s42256-020-0186-1.pdf
+- **Access:** Open access (hybrid); free copy: https://www.nature.com/articles/s42256-020-0186-1.pdf
 - **Where and how it is used:** Ch.1 motivation: regulatory/privacy case for FL in imaging.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[8]** M. J. Sheller et al., "Federated learning in medicine: facilitating multi-institutional collaborations without sharing patient data," *Scientific Reports*, vol. 10, art. no. 12598, 2020, doi: 10.1038/s41598-020-69250-1.  
 - **Key:** `sheller2020fl`  ·  **Link:** https://doi.org/10.1038/s41598-020-69250-1
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/s41598-020-69250-1.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41598-020-69250-1.pdf
 - **Where and how it is used:** Ch.1/2 evidence that FL approaches centralized accuracy on brain-tumor data across institutions.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[9]** S. Pati et al., "Federated learning enables big data for rare cancer boundary detection," *Nature Communications*, vol. 13, art. no. 7346, 2022, doi: 10.1038/s41467-022-33407-5.  
 - **Key:** `pati2022rare`  ·  **Link:** https://doi.org/10.1038/s41467-022-33407-5
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/s41467-022-33407-5.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41467-022-33407-5.pdf
 - **Where and how it is used:** Ch.2 largest real-world FL study on glioblastoma MRI (71 sites); domain anchor for Pillar II.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[10]** G. Litjens et al., "A survey on deep learning in medical image analysis," *Medical Image Analysis*, vol. 42, pp. 60–88, 2017, doi: 10.1016/j.media.2017.07.005.  
 - **Key:** `litjens2017survey`  ·  **Link:** https://doi.org/10.1016/j.media.2017.07.005
-- **Access:** Open access (bronze) — free copy: https://arxiv.org/abs/1702.05747
+- **Access:** Open access (bronze); free copy: https://arxiv.org/abs/1702.05747
 - **Where and how it is used:** Ch.2 deep-learning-in-imaging background for the CNN baselines.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -116,25 +117,25 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[14]** D. N. Louis et al., "The 2021 WHO Classification of Tumors of the Central Nervous System: a summary," *Neuro-Oncology*, vol. 23, no. 8, pp. 1231–1251, 2021, doi: 10.1093/neuonc/noab106.  
 - **Key:** `louis2021who`  ·  **Link:** https://doi.org/10.1093/neuonc/noab106
-- **Access:** Open access (bronze) — free copy: https://academic.oup.com/neuro-oncology/article-pdf/23/8/1231/39535372/noab106.pdf
+- **Access:** Open access (bronze); free copy: https://academic.oup.com/neuro-oncology/article-pdf/23/8/1231/39535372/noab106.pdf
 - **Where and how it is used:** Ch.1 clinical definitions of glioma, meningioma and pituitary tumour classes.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[15]** J. E. Villanueva-Meyer, M. C. Mabray, and S. Cha, "Current Clinical Brain Tumor Imaging," *Neurosurgery*, vol. 81, no. 3, pp. 397–415, 2017, doi: 10.1093/neuros/nyx103.  
 - **Key:** `villanueva2017imaging`  ·  **Link:** https://doi.org/10.1093/neuros/nyx103
-- **Access:** Open access (green) — free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/5581219
+- **Access:** Open access (green); free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/5581219
 - **Where and how it is used:** Ch.1 why contrast-enhanced T1 MRI is the standard modality for these tumours.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[16]** R. J. Gillies, P. E. Kinahan, and H. Hricak, "Radiomics: Images Are More than Pictures, They Are Data," *Radiology*, vol. 278, no. 2, pp. 563–577, 2016, doi: 10.1148/radiol.2015151169.  
 - **Key:** `gillies2016radiomics`  ·  **Link:** https://doi.org/10.1148/radiol.2015151169
-- **Access:** Open access (green) — free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/4734157
+- **Access:** Open access (green); free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/4734157
 - **Where and how it is used:** Ch.2 positions the hand-crafted 16-feature model within radiomics.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[17]** P. Lambin et al., "Radiomics: Extracting more information from medical images using advanced feature analysis," *European Journal of Cancer*, vol. 48, no. 4, pp. 441–446, 2012, doi: 10.1016/j.ejca.2011.11.036.  
 - **Key:** `lambin2012radiomics`  ·  **Link:** https://doi.org/10.1016/j.ejca.2011.11.036
-- **Access:** Open access (bronze) — free copy: http://www.ejcancer.com/article/S0959804911009993/pdf
+- **Access:** Open access (bronze); free copy: http://www.ejcancer.com/article/S0959804911009993/pdf
 - **Where and how it is used:** Ch.2 origin of the radiomics feature-extraction paradigm.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -145,7 +146,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[18]** J. Cheng et al., "Enhanced Performance of Brain Tumor Classification via Tumor Region Augmentation and Partition," *PLOS ONE*, vol. 10, no. 10, art. no. e0140381, 2015, doi: 10.1371/journal.pone.0140381.  
 - **Key:** `cheng2015enhanced`  ·  **Link:** https://doi.org/10.1371/journal.pone.0140381
-- **Access:** Open access (gold) — free copy: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0140381&type=printable
+- **Access:** Open access (gold); free copy: https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0140381&type=printable
 - **Where and how it is used:** Ch.3 source paper of the Figshare dataset (3064 slices, 233 patients); also the 0.913 benchmark Pillar I is compared against.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -163,7 +164,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[21]** A. Fateh et al., "BRISC: Annotated Dataset for Brain Tumor Segmentation and Classification," *Scientific Data*, vol. 13, art. no. 361, 2026, doi: 10.1038/s41597-026-06753-y.  
 - **Key:** `fateh2026brisc`  ·  **Link:** https://doi.org/10.1038/s41597-026-06753-y
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/s41597-026-06753-y_reference.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41597-026-06753-y_reference.pdf
 - **Where and how it is used:** Ch.5 external validation set for Pillar II (Stage 5 / 9B); independence caveat stated because it shares SARTAJ/Br35H lineage.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -175,37 +176,37 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[23]** B. H. Menze et al., "The Multimodal Brain Tumor Image Segmentation Benchmark (BRATS)," *IEEE Transactions on Medical Imaging*, vol. 34, no. 10, pp. 1993–2024, 2015, doi: 10.1109/TMI.2014.2377694.  
 - **Key:** `menze2015brats`  ·  **Link:** https://doi.org/10.1109/TMI.2014.2377694
-- **Access:** Open access (hybrid) — free copy: https://ieeexplore.ieee.org/ielx7/42/7283692/06975210.pdf
+- **Access:** Open access (hybrid); free copy: https://ieeexplore.ieee.org/ielx7/42/7283692/06975210.pdf
 - **Where and how it is used:** Ch.2 BraTS benchmark; context for segmentation and the proposal's original dataset choice.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[24]** S. Bakas et al., "Advancing The Cancer Genome Atlas glioma MRI collections with expert segmentation labels and radiomic features," *Scientific Data*, vol. 4, art. no. 170117, 2017, doi: 10.1038/sdata.2017.117.  
 - **Key:** `bakas2017tcga`  ·  **Link:** https://doi.org/10.1038/sdata.2017.117
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/sdata2017117.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/sdata2017117.pdf
 - **Where and how it is used:** Ch.2 expert-labelled glioma MRI collections underlying BraTS.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[25]** E. Yagis et al., "Effect of data leakage in brain MRI classification using 2D convolutional neural networks," *Scientific Reports*, vol. 11, art. no. 22544, 2021, doi: 10.1038/s41598-021-01681-w.  
 - **Key:** `yagis2021leakage`  ·  **Link:** https://doi.org/10.1038/s41598-021-01681-w
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/s41598-021-01681-w.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41598-021-01681-w.pdf
 - **Where and how it is used:** Ch.3/4 central rigor citation: slice-level splits inflate accuracy 29-55 pp; our measured inflation (+3.4 pp) is compared against it.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[26]** S. Kapoor and A. Narayanan, "Leakage and the reproducibility crisis in machine-learning-based science," *Patterns*, vol. 4, no. 9, art. no. 100804, 2023, doi: 10.1016/j.patter.2023.100804.  
 - **Key:** `kapoor2023leakage`  ·  **Link:** https://doi.org/10.1016/j.patter.2023.100804
-- **Access:** Open access (gold) — free copy: http://www.cell.com/article/S2666389923001599/pdf
+- **Access:** Open access (gold); free copy: http://www.cell.com/article/S2666389923001599/pdf
 - **Where and how it is used:** Ch.3 general taxonomy of data leakage in ML-based science; companion to Yagis.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[27]** G. Varoquaux and V. Cheplygina, "Machine learning for medical imaging: methodological failures and recommendations for the future," *npj Digital Medicine*, vol. 5, art. no. 48, 2022, doi: 10.1038/s41746-022-00592-y.  
 - **Key:** `varoquaux2022failures`  ·  **Link:** https://doi.org/10.1038/s41746-022-00592-y
-- **Access:** Open access (gold) — free copy: https://www.nature.com/articles/s41746-022-00592-y.pdf
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41746-022-00592-y.pdf
 - **Where and how it is used:** Ch.3 methodological pitfalls (small test sets, leakage) motivating 20-seed patient-grouped protocol.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[28]** M. Roberts et al., "Common pitfalls and recommendations for using machine learning to detect and prognosticate for COVID-19 using chest radiographs and CT scans," *Nature Machine Intelligence*, vol. 3, no. 3, pp. 199–217, 2021, doi: 10.1038/s42256-021-00307-0.  
 - **Key:** `roberts2021pitfalls`  ·  **Link:** https://doi.org/10.1038/s42256-021-00307-0
-- **Access:** Open access (hybrid) — free copy: https://www.nature.com/articles/s42256-021-00307-0.pdf
+- **Access:** Open access (hybrid); free copy: https://www.nature.com/articles/s42256-021-00307-0.pdf
 - **Where and how it is used:** Ch.3 evidence that flawed evaluation invalidates published imaging models; motivates the leakage guard.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -258,7 +259,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[36]** C. R. Harris et al., "Array programming with NumPy," *Nature*, vol. 585, no. 7825, pp. 357–362, 2020, doi: 10.1038/s41586-020-2649-2.  
 - **Key:** `harris2020numpy`  ·  **Link:** https://doi.org/10.1038/s41586-020-2649-2
-- **Access:** Open access (hybrid) — free copy: https://www.nature.com/articles/s41586-020-2649-2.pdf
+- **Access:** Open access (hybrid); free copy: https://www.nature.com/articles/s41586-020-2649-2.pdf
 - **Where and how it is used:** Ch.3 numerical backbone of all feature extraction code.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -341,17 +342,17 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[49]** D. Battalapalli, S. Vidyadharan, B. V. V. S. N. Prabhakar Rao, P. Yogeeswari, C. Kesavadas, and V. Rajagopalan, "Fractal dimension: analyzing its potential as a neuroimaging biomarker for brain tumor diagnosis using machine learning," *Frontiers in Physiology*, vol. 14, art. no. 1201617, 2023, doi: 10.3389/fphys.2023.1201617.  
 - **Key:** `battalapalli2023fd`  ·  **Link:** https://doi.org/10.3389/fphys.2023.1201617
-- **Access:** Open access (gold) — free copy: https://www.frontiersin.org/articles/10.3389/fphys.2023.1201617/pdf
+- **Access:** Open access (gold); free copy: https://www.frontiersin.org/articles/10.3389/fphys.2023.1201617/pdf
 - **Where and how it is used:** Ch.2/4 closest precedent: uses tumour AND non-tumour FD as separate features; our Stage 10B shows the separate pair (Ft,Fb) indeed beats the ratio C.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[50]** J. Sánchez and M. Martín-Landrove, "Morphological and Fractal Properties of Brain Tumors," *Frontiers in Physiology*, vol. 13, art. no. 878391, 2022, doi: 10.3389/fphys.2022.878391.  
 - **Key:** `sanchez2022fractal`  ·  **Link:** https://doi.org/10.3389/fphys.2022.878391
-- **Access:** Open access (gold) — free copy: https://www.frontiersin.org/articles/10.3389/fphys.2022.878391/pdf
+- **Access:** Open access (gold); free copy: https://www.frontiersin.org/articles/10.3389/fphys.2022.878391/pdf
 - **Where and how it is used:** Ch.2 fractal/morphological characterisation of brain tumour interfaces; prior art for relative (ratio-type) fractal quantities.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
-**[51]** T. G. Smith, G. D. Lange, and W. B. Marks, "Fractal methods and results in cellular morphology — dimensions, lacunarity and multifractals," *Journal of Neuroscience Methods*, vol. 69, no. 2, pp. 123–136, 1996, doi: 10.1016/S0165-0270(96)00080-5.  
+**[51]** T. G. Smith, G. D. Lange, and W. B. Marks, "Fractal methods and results in cellular morphology: dimensions, lacunarity and multifractals," *Journal of Neuroscience Methods*, vol. 69, no. 2, pp. 123–136, 1996, doi: 10.1016/S0165-0270(96)00080-5.  
 - **Key:** `smith1996fractal`  ·  **Link:** https://doi.org/10.1016/S0165-0270(96)00080-5
 - **Access:** Subscription (institutional access)
 - **Where and how it is used:** Ch.3 practical box-counting guidance and known estimator biases.
@@ -359,13 +360,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[52]** G. Gonzato, F. Mulargia, and W. Marzocchi, "Practical application of fractal analysis: problems and solutions," *Geophysical Journal International*, vol. 132, no. 2, pp. 275–282, 1998, doi: 10.1046/j.1365-246x.1998.00461.x.  
 - **Key:** `gonzato1998bias`  ·  **Link:** https://doi.org/10.1046/j.1365-246x.1998.00461.x
-- **Access:** Open access (bronze) — free copy: https://academic.oup.com/gji/article-pdf/132/2/275/1954393/132-2-275.pdf
+- **Access:** Open access (bronze); free copy: https://academic.oup.com/gji/article-pdf/132/2/275/1954393/132-2-275.pdf
 - **Where and how it is used:** Ch.4 finite-size/sampling bias of box counting on small regions; explains the size confound (45% of C survives size removal).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[53]** G. Gonzato, F. Mulargia, and M. Ciccotti, "Measuring the fractal dimensions of ideal and actual objects: implications for application in geology and geophysics," *Geophysical Journal International*, vol. 142, no. 1, pp. 108–116, 2000, doi: 10.1046/j.1365-246x.2000.00133.x.  
 - **Key:** `gonzato2000ideal`  ·  **Link:** https://doi.org/10.1046/j.1365-246x.2000.00133.x
-- **Access:** Open access (bronze) — free copy: https://academic.oup.com/gji/article-pdf/142/1/108/1602887/142-1-108.pdf
+- **Access:** Open access (bronze); free copy: https://academic.oup.com/gji/article-pdf/142/1/108/1602887/142-1-108.pdf
 - **Where and how it is used:** Ch.4 placement/orientation bias of box counting; supports the box-size robustness test (corr 0.963-0.993).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -395,13 +396,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[58]** A. Zwanenburg et al., "The Image Biomarker Standardization Initiative: Standardized Quantitative Radiomics for High-Throughput Image-based Phenotyping," *Radiology*, vol. 295, no. 2, pp. 328–338, 2020, doi: 10.1148/radiol.2020191145.  
 - **Key:** `zwanenburg2020ibsi`  ·  **Link:** https://doi.org/10.1148/radiol.2020191145
-- **Access:** Open access (green) — free copy: https://cris.maastrichtuniversity.nl/en/publications/a842e562-d051-4db2-9b40-ef1d54c71af4
+- **Access:** Open access (green); free copy: https://cris.maastrichtuniversity.nl/en/publications/a842e562-d051-4db2-9b40-ef1d54c71af4
 - **Where and how it is used:** Ch.3 standard definitions of texture/shape features; used to align feature naming and discretisation.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[59]** J. J. M. van Griethuysen et al., "Computational Radiomics System to Decode the Radiographic Phenotype," *Cancer Research*, vol. 77, no. 21, pp. e104–e107, 2017, doi: 10.1158/0008-5472.CAN-17-0339.  
 - **Key:** `vangriethuysen2017pyradiomics`  ·  **Link:** https://doi.org/10.1158/0008-5472.CAN-17-0339
-- **Access:** Open access (bronze) — free copy: https://cancerres.aacrjournals.org/content/canres/77/21/e104.full.pdf
+- **Access:** Open access (bronze); free copy: https://cancerres.aacrjournals.org/content/canres/77/21/e104.full.pdf
 - **Where and how it is used:** Ch.3 reference implementation of radiomic features; comparison point for our feature code.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -418,13 +419,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[61]** S. Osher and J. A. Sethian, "Fronts propagating with curvature-dependent speed: Algorithms based on Hamilton-Jacobi formulations," *Journal of Computational Physics*, vol. 79, no. 1, pp. 12–49, 1988, doi: 10.1016/0021-9991(88)90002-2.  
 - **Key:** `osher1988levelset`  ·  **Link:** https://doi.org/10.1016/0021-9991(88)90002-2
-- **Access:** Open access (green) — free copy: https://ntrs.nasa.gov/api/citations/19880001113/downloads/19880001113.pdf
+- **Access:** Open access (green); free copy: https://ntrs.nasa.gov/api/citations/19880001113/downloads/19880001113.pdf
 - **Where and how it is used:** Ch.4 level-set formulation underlying region-based contours.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[62]** D. Mumford and J. Shah, "Optimal approximations by piecewise smooth functions and associated variational problems," *Communications on Pure and Applied Mathematics*, vol. 42, no. 5, pp. 577–685, 1989, doi: 10.1002/cpa.3160420503.  
 - **Key:** `mumford1989`  ·  **Link:** https://doi.org/10.1002/cpa.3160420503
-- **Access:** Open access (green) — free copy: http://nrs.harvard.edu/urn-3:HUL.InstRepos:3637121
+- **Access:** Open access (green); free copy: http://nrs.harvard.edu/urn-3:HUL.InstRepos:3637121
 - **Where and how it is used:** Ch.4 Mumford-Shah functional, the energy Chan-Vese simplifies.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -460,31 +461,31 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[68]** S. X. Liu, "Symmetry and asymmetry analysis and its implications to computer-aided diagnosis: A review of the literature," *Journal of Biomedical Informatics*, vol. 42, no. 6, pp. 1056–1064, 2009, doi: 10.1016/j.jbi.2009.07.003.  
 - **Key:** `liu2009symmetry`  ·  **Link:** https://doi.org/10.1016/j.jbi.2009.07.003
-- **Access:** Open access (bronze) — free copy: https://www.sciencedirect.com/science/article/pii/S1532046409000975/pdf
+- **Access:** Open access (bronze); free copy: https://www.sciencedirect.com/science/article/pii/S1532046409000975/pdf
 - **Where and how it is used:** Ch.4 review of asymmetry-based computer-aided diagnosis; supports symmetry seeding.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[69]** H. Khotanlou, O. Colliot, J. Atif, and I. Bloch, "3D brain tumor segmentation in MRI using fuzzy classification, symmetry analysis and spatially constrained deformable models," *Fuzzy Sets and Systems*, vol. 160, no. 10, pp. 1457–1473, 2009, doi: 10.1016/j.fss.2008.11.016.  
 - **Key:** `khotanlou2009symmetry`  ·  **Link:** https://doi.org/10.1016/j.fss.2008.11.016
-- **Access:** Open access (green) — free copy: https://inria.hal.science/hal-01251278
+- **Access:** Open access (green); free copy: https://inria.hal.science/hal-01251278
 - **Where and how it is used:** Ch.4 prior use of hemispheric symmetry to localise brain tumours before deformable-model refinement.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[70]** N. Gordillo, E. Montseny, and P. Sobrevilla, "State of the art survey on MRI brain tumor segmentation," *Magnetic Resonance Imaging*, vol. 31, no. 8, pp. 1426–1438, 2013, doi: 10.1016/j.mri.2013.05.002.  
 - **Key:** `gordillo2013survey`  ·  **Link:** https://doi.org/10.1016/j.mri.2013.05.002
-- **Access:** Open access (green) — free copy: http://hdl.handle.net/2117/19748
+- **Access:** Open access (green); free copy: http://hdl.handle.net/2117/19748
 - **Where and how it is used:** Ch.2 survey of classical tumour segmentation incl. deformable models.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[71]** O. Ronneberger, P. Fischer, and T. Brox, "U-Net: Convolutional Networks for Biomedical Image Segmentation," in Medical Image Computing and Computer-Assisted Intervention – MICCAI 2015 (Lecture Notes in Computer Science, vol. 9351), 2015, pp. 234–241, doi: 10.1007/978-3-319-24574-4_28.  
 - **Key:** `ronneberger2015unet`  ·  **Link:** https://doi.org/10.1007/978-3-319-24574-4_28
-- **Access:** Open access (bronze) — free copy: https://link.springer.com/content/pdf/10.1007/978-3-319-24574-4_28.pdf
+- **Access:** Open access (bronze); free copy: https://link.springer.com/content/pdf/10.1007/978-3-319-24574-4_28.pdf
 - **Where and how it is used:** Ch.6 future work: learned localiser as replacement for heuristic seeding.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[72]** F. Isensee, P. F. Jaeger, S. A. A. Kohl, J. Petersen, and K. H. Maier-Hein, "nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation," *Nature Methods*, vol. 18, no. 2, pp. 203–211, 2021, doi: 10.1038/s41592-020-01008-z.  
 - **Key:** `isensee2021nnunet`  ·  **Link:** https://doi.org/10.1038/s41592-020-01008-z
-- **Access:** Open access (green) — free copy: https://arxiv.org/pdf/1904.08128
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/1904.08128
 - **Where and how it is used:** Ch.6 future work: state-of-the-art self-configuring segmentation baseline.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -496,7 +497,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[74]** P. Jaccard, "The distribution of the flora in the alpine zone," *New Phytologist*, vol. 11, no. 2, pp. 37–50, 1912, doi: 10.1111/j.1469-8137.1912.tb05611.x.  
 - **Key:** `jaccard1912`  ·  **Link:** https://doi.org/10.1111/j.1469-8137.1912.tb05611.x
-- **Access:** Open access (bronze) — free copy: https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1469-8137.1912.tb05611.x
+- **Access:** Open access (bronze); free copy: https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1469-8137.1912.tb05611.x
 - **Where and how it is used:** Ch.4 Jaccard index (IoU) reported alongside Dice.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -507,7 +508,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[75]** L. Breiman, "Random Forests," *Machine Learning*, vol. 45, no. 1, pp. 5–32, 2001, doi: 10.1023/A:1010933404324.  
 - **Key:** `breiman2001rf`  ·  **Link:** https://doi.org/10.1023/A:1010933404324
-- **Access:** Open access (green) — free copy: https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
+- **Access:** Open access (green); free copy: https://www.stat.berkeley.edu/~breiman/randomforest2001.pdf
 - **Where and how it is used:** Ch.3/4 Random Forest (300 trees) classifier of the 16-feature model.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -531,7 +532,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[79]** S. Varma and R. Simon, "Bias in error estimation when using cross-validation for model selection," *BMC Bioinformatics*, vol. 7, art. no. 91, 2006, doi: 10.1186/1471-2105-7-91.  
 - **Key:** `varma2006cvbias`  ·  **Link:** https://doi.org/10.1186/1471-2105-7-91
-- **Access:** Open access (gold) — free copy: https://bmcbioinformatics.biomedcentral.com/counter/pdf/10.1186/1471-2105-7-91
+- **Access:** Open access (gold); free copy: https://bmcbioinformatics.biomedcentral.com/counter/pdf/10.1186/1471-2105-7-91
 - **Where and how it is used:** Ch.3 why hyper-parameters are tuned by an inner GroupKFold (nested CV).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -549,13 +550,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[82]** A. Gumaei, M. M. Hassan, M. R. Hassan, A. Alelaiwi, and G. Fortino, "A Hybrid Feature Extraction Method With Regularized Extreme Learning Machine for Brain Tumor Classification," *IEEE Access*, vol. 7, pp. 36266–36273, 2019, doi: 10.1109/ACCESS.2019.2904145.  
 - **Key:** `gumaei2019hybrid`  ·  **Link:** https://doi.org/10.1109/ACCESS.2019.2904145
-- **Access:** Open access (gold) — free copy: https://ieeexplore.ieee.org/ielx7/6287639/8600701/08664160.pdf
+- **Access:** Open access (gold); free copy: https://ieeexplore.ieee.org/ielx7/6287639/8600701/08664160.pdf
 - **Where and how it is used:** Ch.4 strongest classical comparator (94.23%).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[83]** J. S. Paul, A. J. Plassard, B. A. Landman, and D. Fabbri, "Deep learning for brain tumor classification," in Proc. SPIE Medical Imaging 2017: Biomedical Applications in Molecular, Structural, and Functional Imaging, vol. 10137, 2017, art. no. 1013710, doi: 10.1117/12.2254195.  
 - **Key:** `paul2017deep`  ·  **Link:** https://doi.org/10.1117/12.2254195
-- **Access:** Open access (green) — free copy: https://pmc.ncbi.nlm.nih.gov/articles/PMC12965214/pdf/nihms-2062562.pdf
+- **Access:** Open access (green); free copy: https://pmc.ncbi.nlm.nih.gov/articles/PMC12965214/pdf/nihms-2062562.pdf
 - **Where and how it is used:** Ch.4 early CNN comparator on the Figshare data.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -579,31 +580,31 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[87]** H. H. Sultan, N. M. Salem, and W. Al-Atabany, "Multi-Classification of Brain Tumor Images Using Deep Neural Network," *IEEE Access*, vol. 7, pp. 69215–69225, 2019, doi: 10.1109/ACCESS.2019.2919122.  
 - **Key:** `sultan2019multi`  ·  **Link:** https://doi.org/10.1109/ACCESS.2019.2919122
-- **Access:** Open access (gold) — free copy: https://ieeexplore.ieee.org/ielx7/6287639/8600701/08723045.pdf
+- **Access:** Open access (gold); free copy: https://ieeexplore.ieee.org/ielx7/6287639/8600701/08723045.pdf
 - **Where and how it is used:** Ch.4 centralized CNN comparator; accuracy ceiling without FL constraints.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[88]** A. Rehman, S. Naz, M. I. Razzak, F. Akram, and M. Imran, "A Deep Learning-Based Framework for Automatic Brain Tumors Classification Using Transfer Learning," *Circuits, Systems, and Signal Processing*, vol. 39, no. 2, pp. 757–775, 2020, doi: 10.1007/s00034-019-01246-3.  
 - **Key:** `rehman2020framework`  ·  **Link:** https://doi.org/10.1007/s00034-019-01246-3
-- **Access:** Open access (green) — free copy: https://figshare.com/articles/journal_contribution/A_deep_learning-based_framework_for_automatic_brain_tumors_classification_using_transfer_learning/20728501
+- **Access:** Open access (green); free copy: https://figshare.com/articles/journal_contribution/A_deep_learning-based_framework_for_automatic_brain_tumors_classification_using_transfer_learning/20728501
 - **Where and how it is used:** Ch.4 transfer-learning comparator (AlexNet/GoogLeNet/VGG).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[89]** M. M. Badža and M. Č. Barjaktarović, "Classification of Brain Tumors from MRI Images Using a Convolutional Neural Network," *Applied Sciences*, vol. 10, no. 6, art. no. 1999, 2020, doi: 10.3390/app10061999.  
 - **Key:** `badza2020cnn`  ·  **Link:** https://doi.org/10.3390/app10061999
-- **Access:** Open access (gold) — free copy: https://www.mdpi.com/2076-3417/10/6/1999/pdf?version=1584256135
+- **Access:** Open access (gold); free copy: https://www.mdpi.com/2076-3417/10/6/1999/pdf?version=1584256135
 - **Where and how it is used:** Ch.4 CNN comparator reporting both record-wise and subject-wise splits (evidence for protocol sensitivity).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[90]** F. J. Díaz-Pernas, M. Martínez-Zarzuela, M. Antón-Rodríguez, and D. González-Ortega, "A Deep Learning Approach for Brain Tumor Classification and Segmentation Using a Multiscale Convolutional Neural Network," *Healthcare*, vol. 9, no. 2, art. no. 153, 2021, doi: 10.3390/healthcare9020153.  
 - **Key:** `diazpernas2021multiscale`  ·  **Link:** https://doi.org/10.3390/healthcare9020153
-- **Access:** Open access (gold) — free copy: https://www.mdpi.com/2227-9032/9/2/153/pdf?version=1613629848
+- **Access:** Open access (gold); free copy: https://www.mdpi.com/2227-9032/9/2/153/pdf?version=1613629848
 - **Where and how it is used:** Ch.4 multiscale CNN comparator (centralized ceiling).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[91]** M. Islam, M. T. Reza, M. Kaosar, and M. Z. Parvez, "Effectiveness of Federated Learning and CNN Ensemble Architectures for Identifying Brain Tumors Using MRI Images," *Neural Processing Letters*, vol. 55, no. 4, pp. 3779–3809, 2023, doi: 10.1007/s11063-022-11014-1.  
 - **Key:** `islam2022ensemble`  ·  **Link:** https://doi.org/10.1007/s11063-022-11014-1
-- **Access:** Open access (bronze) — free copy: https://link.springer.com/content/pdf/10.1007/s11063-022-11014-1.pdf
+- **Access:** Open access (bronze); free copy: https://link.springer.com/content/pdf/10.1007/s11063-022-11014-1.pdf
 - **Where and how it is used:** Ch.2 prior FL brain-tumour classification assuming balanced clients.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -644,7 +645,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[97]** D. A. E. Acar, Y. Zhao, R. M. Navarro, M. Mattina, P. N. Whatmough, and V. Saligrama, "Federated Learning Based on Dynamic Regularization," in Proc. Int. Conf. Learn. Represent. (ICLR), 2021. [Online]. Available: https://openreview.net/forum?id=B7v4QMR6Z9w  
 - **Key:** `acar2021feddyn`  ·  **Link:** https://openreview.net/forum?id=B7v4QMR6Z9w
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2111.04263
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2111.04263
 - **Where and how it is used:** Ch.2 FedDyn; related client-drift correction.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2021 Oral)
 
@@ -656,7 +657,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[99]** S. Reddi et al., "Adaptive Federated Optimization," in Proc. Int. Conf. Learn. Represent. (ICLR), 2021. [Online]. Available: https://openreview.net/forum?id=rOWz4RF7nJq  
 - **Key:** `reddi2021adaptive`  ·  **Link:** https://openreview.net/forum?id=rOWz4RF7nJq
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2003.00295
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2003.00295
 - **Where and how it is used:** Ch.2 server-side adaptive optimisers (FedAdam/FedYogi); related work.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2021)
 
@@ -674,19 +675,19 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[102]** K. Guo, Y. Ding, J. Liang, Z. Wang, R. He, and T. Tan, "Exploring Vacant Classes in Label-Skewed Federated Learning," in Proc. AAAI Conf. Artif. Intell., vol. 39, no. 16, 2025, pp. 16960–16968, doi: 10.1609/aaai.v39i16.33864.  
 - **Key:** `guo2025fedvls`  ·  **Link:** https://doi.org/10.1609/aaai.v39i16.33864
-- **Access:** Open access (diamond) — free copy: https://ojs.aaai.org/index.php/AAAI/article/download/33864/36019
+- **Access:** Open access (diamond); free copy: https://ojs.aaai.org/index.php/AAAI/article/download/33864/36019
 - **Where and how it is used:** Ch.2/5 vacant-class distillation + logit suppression; closest recent competitor.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[103]** J. Lu, S. Li, K. Bao, P. Wang, Z. Qian, and S. Ge, "Federated Learning with Label-Masking Distillation," in Proc. 31st ACM Int. Conf. Multimedia (MM), 2023, pp. 222–232, doi: 10.1145/3581783.3611984.  
 - **Key:** `lu2023labelmask`  ·  **Link:** https://doi.org/10.1145/3581783.3611984
-- **Access:** Open access (gold) — free copy: https://dl.acm.org/doi/pdf/10.1145/3581783.3611984
+- **Access:** Open access (gold); free copy: https://dl.acm.org/doi/pdf/10.1145/3581783.3611984
 - **Where and how it is used:** Ch.2 label-masking distillation; related missing-class correction.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[104]** H. Wang, P. Zheng, X. Han, W. Xu, R. Li, and T. Zhang, "FedNLR: Federated Learning with Neuron-wise Learning Rates," in Proc. 30th ACM SIGKDD Conf. Knowl. Discovery Data Mining (KDD), 2024, pp. 3069–3080, doi: 10.1145/3637528.3672042.  
 - **Key:** `wang2024fednlr`  ·  **Link:** https://doi.org/10.1145/3637528.3672042
-- **Access:** Open access (gold) — free copy: https://dl.acm.org/doi/pdf/10.1145/3637528.3672042
+- **Access:** Open access (gold); free copy: https://dl.acm.org/doi/pdf/10.1145/3637528.3672042
 - **Where and how it is used:** Ch.2 neuron-wise learning rates motivated by neuron drift of absent classes.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -698,19 +699,19 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[106]** A. K. Menon, S. Jayasumana, A. S. Rawat, H. Jain, A. Veit, and S. Kumar, "Long-tail learning via logit adjustment," in Proc. Int. Conf. Learn. Represent. (ICLR), 2021. [Online]. Available: https://openreview.net/forum?id=37nvvqkCo5  
 - **Key:** `menon2021logit`  ·  **Link:** https://openreview.net/forum?id=37nvvqkCo5
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2007.07314
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2007.07314
 - **Where and how it is used:** Ch.5 logit adjustment theory underlying FedLC's calibration term.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2021 Spotlight)
 
 **[107]** A. Ghosh, J. Chung, D. Yin, and K. Ramchandran, "An Efficient Framework for Clustered Federated Learning," *IEEE Transactions on Information Theory*, vol. 68, no. 12, pp. 8076–8091, 2022, doi: 10.1109/TIT.2022.3192506.  
 - **Key:** `ghosh2022ifca`  ·  **Link:** https://doi.org/10.1109/TIT.2022.3192506
-- **Access:** Open access (green) — free copy: https://arxiv.org/pdf/2006.04088
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/2006.04088
 - **Where and how it is used:** Ch.5 IFCA clustered FL tested and withdrawn (+12.5 pp collapsed to +1.2 pp, p=0.88 over 20 seeds).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[108]** F. Sattler, K.-R. Müller, and W. Samek, "Clustered Federated Learning: Model-Agnostic Distributed Multitask Optimization Under Privacy Constraints," *IEEE Transactions on Neural Networks and Learning Systems*, vol. 32, no. 8, pp. 3710–3722, 2021, doi: 10.1109/TNNLS.2020.3015958.  
 - **Key:** `sattler2021cfl`  ·  **Link:** https://doi.org/10.1109/TNNLS.2020.3015958
-- **Access:** Open access (hybrid) — free copy: https://ieeexplore.ieee.org/ielx7/5962385/9505270/09174890.pdf
+- **Access:** Open access (hybrid); free copy: https://ieeexplore.ieee.org/ielx7/5962385/9505270/09174890.pdf
 - **Where and how it is used:** Ch.5 alternative clustered-FL formulation; context for the withdrawn clustering result.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -734,19 +735,19 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[112]** D. Chen, D. Gao, W. Kuang, Y. Li, and B. Ding, "pFL-Bench: A Comprehensive Benchmark for Personalized Federated Learning," in Adv. Neural Inf. Process. Syst. (NeurIPS), Datasets and Benchmarks Track, vol. 35, 2022, pp. 9344–9360. [Online]. Available: https://proceedings.neurips.cc/paper_files/paper/2022/hash/3cc03e19fed71a2b9347d83921ca2e7d-Abstract-Datasets_and_Benchmarks.html  
 - **Key:** `chen2022pflbench`  ·  **Link:** https://proceedings.neurips.cc/paper_files/paper/2022/hash/3cc03e19fed71a2b9347d83921ca2e7d-Abstract-Datasets_and_Benchmarks.html
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2206.03655
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2206.03655
 - **Where and how it is used:** Ch.5 personalized-FL benchmark; context for rejecting per-patient personalization.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; venue confirmed in the official proceedings listing
 
 **[113]** M. J. Sheller, G. A. Reina, B. Edwards, J. Martin, and S. Bakas, "Multi-institutional Deep Learning Modeling Without Sharing Patient Data: A Feasibility Study on Brain Tumor Segmentation," in Brainlesion: Glioma, Multiple Sclerosis, Stroke and Traumatic Brain Injuries (BrainLes 2018) (Lecture Notes in Computer Science, vol. 11383), 2019, pp. 92–104, doi: 10.1007/978-3-030-11723-8_9.  
 - **Key:** `sheller2019brats`  ·  **Link:** https://doi.org/10.1007/978-3-030-11723-8_9
-- **Access:** Open access (green) — free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/6589345
+- **Access:** Open access (green); free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/6589345
 - **Where and how it is used:** Ch.2 first FL brain-tumour segmentation feasibility study.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 **[114]** I. Dayan et al., "Federated learning for predicting clinical outcomes in patients with COVID-19," *Nature Medicine*, vol. 27, no. 10, pp. 1735–1743, 2021, doi: 10.1038/s41591-021-01506-3.  
 - **Key:** `dayan2021exam`  ·  **Link:** https://doi.org/10.1038/s41591-021-01506-3
-- **Access:** Open access (hybrid) — free copy: https://www.nature.com/articles/s41591-021-01506-3.pdf
+- **Access:** Open access (hybrid); free copy: https://www.nature.com/articles/s41591-021-01506-3.pdf
 - **Where and how it is used:** Ch.1 large clinical FL deployment; evidence FL is practical across hospitals.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -763,7 +764,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[116]** Y. Wu and K. He, "Group Normalization," in Computer Vision – ECCV 2018 (Lecture Notes in Computer Science, vol. 11217), 2018, pp. 3–19, doi: 10.1007/978-3-030-01261-8_1.  
 - **Key:** `wu2018groupnorm`  ·  **Link:** https://doi.org/10.1007/978-3-030-01261-8_1
-- **Access:** Open access (green) — free copy: https://arxiv.org/pdf/1803.08494
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/1803.08494
 - **Where and how it is used:** Ch.5 GroupNorm used in SmallNet in place of BatchNorm.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -781,13 +782,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[119]** X. Li, M. Jiang, X. Zhang, M. Kamp, and Q. Dou, "FedBN: Federated Learning on Non-IID Features via Local Batch Normalization," in Proc. Int. Conf. Learn. Represent. (ICLR), 2021. [Online]. Available: https://openreview.net/forum?id=6YEQUn0QICG  
 - **Key:** `li2021fedbn`  ·  **Link:** https://openreview.net/forum?id=6YEQUn0QICG
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2102.07623
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2102.07623
 - **Where and how it is used:** Ch.5 local BatchNorm for feature skew; contrasted with our label-skew setting.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2021 Poster)
 
 **[120]** B. Casella, R. Esposito, A. Sciarappa, C. Cavazzoni, and M. Aldinucci, "Experimenting With Normalization Layers in Federated Learning on Non-IID Scenarios," *IEEE Access*, vol. 12, pp. 47961–47971, 2024, doi: 10.1109/ACCESS.2024.3383783.  
 - **Key:** `casella2024norm`  ·  **Link:** https://doi.org/10.1109/ACCESS.2024.3383783
-- **Access:** Open access (gold) — free copy: https://ieeexplore.ieee.org/ielx7/6287639/6514899/10486903.pdf
+- **Access:** Open access (gold); free copy: https://ieeexplore.ieee.org/ielx7/6287639/6514899/10486903.pdf
 - **Where and how it is used:** Ch.5 recent empirical comparison of normalisation layers in non-IID FL.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -799,7 +800,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[122]** I. Loshchilov and F. Hutter, "SGDR: Stochastic Gradient Descent with Warm Restarts," in Proc. Int. Conf. Learn. Represent. (ICLR), 2017. [Online]. Available: https://openreview.net/forum?id=fdWX2wmN5D  
 - **Key:** `loshchilov2017sgdr`  ·  **Link:** https://openreview.net/forum?id=fdWX2wmN5D
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/1608.03983
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/1608.03983
 - **Where and how it is used:** Ch.5 cosine learning-rate schedule tested (+warmup_cosine row, 16/20 collapses).
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR (Poster) 2017)
 
@@ -811,7 +812,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[124]** M. Buda, A. Maki, and M. A. Mazurowski, "A systematic study of the class imbalance problem in convolutional neural networks," *Neural Networks*, vol. 106, pp. 249–259, 2018, doi: 10.1016/j.neunet.2018.07.011.  
 - **Key:** `buda2018imbalance`  ·  **Link:** https://doi.org/10.1016/j.neunet.2018.07.011
-- **Access:** Open access (green) — free copy: https://arxiv.org/pdf/1710.05381
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/1710.05381
 - **Where and how it is used:** Ch.5 oversampling as imbalance remedy; basis of the balanced-sampling row (0.517, does not fix collapse).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -828,7 +829,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[126]** K. He, X. Zhang, S. Ren, and J. Sun, "Deep Residual Learning for Image Recognition," in Proc. IEEE Conf. Comput. Vis. Pattern Recognit. (CVPR), 2016, pp. 770–778, doi: 10.1109/CVPR.2016.90.  
 - **Key:** `he2016resnet`  ·  **Link:** https://doi.org/10.1109/CVPR.2016.90
-- **Access:** Open access (green) — free copy: https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html
+- **Access:** Open access (green); free copy: https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html
 - **Where and how it is used:** Ch.5 ResNet-18 backbone of the frozen-feature experiment.
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -840,7 +841,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[128]** J. Yosinski, J. Clune, Y. Bengio, and H. Lipson, "How transferable are features in deep neural networks?," in Adv. Neural Inf. Process. Syst. (NeurIPS), vol. 27, 2014. [Online]. Available: https://proceedings.neurips.cc/paper_files/paper/2014/hash/532a2f85b6977104bc93f8580abbb330-Abstract.html  
 - **Key:** `yosinski2014transferable`  ·  **Link:** https://proceedings.neurips.cc/paper_files/paper/2014/hash/532a2f85b6977104bc93f8580abbb330-Abstract.html
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/1411.1792
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/1411.1792
 - **Where and how it is used:** Ch.5 why early ImageNet features transfer to MRI.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; venue confirmed in the official proceedings listing
 
@@ -852,13 +853,13 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[130]** M. Raghu, C. Zhang, J. Kleinberg, and S. Bengio, "Transfusion: Understanding Transfer Learning for Medical Imaging," in Adv. Neural Inf. Process. Syst. (NeurIPS), vol. 32, 2019. [Online]. Available: https://proceedings.neurips.cc/paper_files/paper/2019/hash/eb1e78328c46506b46a4ac4a1e378b91-Abstract.html  
 - **Key:** `raghu2019transfusion`  ·  **Link:** https://proceedings.neurips.cc/paper_files/paper/2019/hash/eb1e78328c46506b46a4ac4a1e378b91-Abstract.html
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/1902.07208
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/1902.07208
 - **Where and how it is used:** Ch.5 limits of ImageNet transfer in medical imaging; explains modest frozen-backbone gains.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; venue confirmed in the official proceedings listing
 
 **[131]** A. Kumar, A. Raghunathan, R. Jones, T. Ma, and P. Liang, "Fine-Tuning can Distort Pretrained Features and Underperform Out-of-Distribution," in Proc. Int. Conf. Learn. Represent. (ICLR), 2022. [Online]. Available: https://openreview.net/forum?id=UYneFzXSJWh  
 - **Key:** `kumar2022distort`  ·  **Link:** https://openreview.net/forum?id=UYneFzXSJWh
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2202.10054
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2202.10054
 - **Where and how it is used:** Ch.5 linear probing vs fine-tuning trade-off; justifies freezing the backbone.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2022 Oral)
 
@@ -870,19 +871,19 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[133]** P. Khosla et al., "Supervised Contrastive Learning," in Adv. Neural Inf. Process. Syst. (NeurIPS), vol. 33, 2020, pp. 18661–18673. [Online]. Available: https://proceedings.neurips.cc/paper_files/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html  
 - **Key:** `khosla2020supcon`  ·  **Link:** https://proceedings.neurips.cc/paper_files/paper/2020/hash/d89a66c7c80a29b1bdbab0f2a1a94af8-Abstract.html
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2004.11362
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2004.11362
 - **Where and how it is used:** Ch.5 supervised contrastive loss adapted in Stage 7 (preregistered criteria not met).
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; venue confirmed in the official proceedings listing
 
 **[134]** J. Nguyen, J. Wang, K. Malik, M. Sanjabi, and M. Rabbat, "Where to Begin? On the Impact of Pre-Training and Initialization in Federated Learning," in Proc. Int. Conf. Learn. Represent. (ICLR), 2023. [Online]. Available: https://openreview.net/forum?id=Mpa3tRJFBb  
 - **Key:** `nguyen2023wheretobegin`  ·  **Link:** https://openreview.net/forum?id=Mpa3tRJFBb
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2206.15387
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2206.15387
 - **Where and how it is used:** Ch.5 pre-trained initialisation reduces the damage of heterogeneity in FL; explains the shrinking gain (+2.2 pp) under a frozen backbone.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2023 notable top 25%)
 
 **[135]** H.-Y. Chen, C.-H. Tu, Z. Li, H.-W. Shen, and W.-L. Chao, "On the Importance and Applicability of Pre-Training for Federated Learning," in Proc. Int. Conf. Learn. Represent. (ICLR), 2023. [Online]. Available: https://openreview.net/forum?id=5f04jup4aHa  
 - **Key:** `chen2023pretrainfl`  ·  **Link:** https://openreview.net/forum?id=5f04jup4aHa
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2206.11488
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2206.11488
 - **Where and how it is used:** Ch.5 same finding from a second group; supports the frozen-backbone interpretation.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; peer-reviewed venue confirmed on OpenReview (ICLR 2023)
 
@@ -917,7 +918,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[140]** B. Efron, "Bootstrap Methods: Another Look at the Jackknife," *The Annals of Statistics*, vol. 7, no. 1, pp. 1–26, 1979, doi: 10.1214/aos/1176344552.  
 - **Key:** `efron1979bootstrap`  ·  **Link:** https://doi.org/10.1214/aos/1176344552
-- **Access:** Open access (bronze) — free copy: https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.pdf
+- **Access:** Open access (bronze); free copy: https://projecteuclid.org/journals/annals-of-statistics/volume-7/issue-1/Bootstrap-Methods-Another-Look-at-the-Jackknife/10.1214/aos/1176344552.pdf
 - **Where and how it is used:** Ch.5 bootstrap 95% CI of mean paired differences (10,000 resamples).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -935,7 +936,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[143]** D. Lakens, "Calculating and reporting effect sizes to facilitate cumulative science: a practical primer for t-tests and ANOVAs," *Frontiers in Psychology*, vol. 4, art. no. 863, 2013, doi: 10.3389/fpsyg.2013.00863.  
 - **Key:** `lakens2013effect`  ·  **Link:** https://doi.org/10.3389/fpsyg.2013.00863
-- **Access:** Open access (gold) — free copy: https://www.frontiersin.org/articles/10.3389/fpsyg.2013.00863/pdf
+- **Access:** Open access (gold); free copy: https://www.frontiersin.org/articles/10.3389/fpsyg.2013.00863/pdf
 - **Where and how it is used:** Ch.5 paired-design effect size (d_z) exactly as computed by _cohend().
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -959,7 +960,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[147]** X. Bouthillier et al., "Accounting for Variance in Machine Learning Benchmarks," in Proc. Mach. Learn. Syst. (MLSys), vol. 3, 2021, pp. 747–769. [Online]. Available: https://proceedings.mlsys.org/paper_files/paper/2021/hash/0184b0cd3cfb185989f858a1d9f5c1eb-Abstract.html  
 - **Key:** `bouthillier2021variance`  ·  **Link:** https://proceedings.mlsys.org/paper_files/paper/2021/hash/0184b0cd3cfb185989f858a1d9f5c1eb-Abstract.html
-- **Access:** Open access (arXiv / proceedings) — free copy: https://arxiv.org/abs/2103.03098
+- **Access:** Open access (arXiv / proceedings); free copy: https://arxiv.org/abs/2103.03098
 - **Where and how it is used:** Ch.3 seed variance as a major source of benchmark error; supports the 20-seed protocol.
 - **Verified:** arXiv API record matched (title); abs page HTTP 200; venue confirmed in the official proceedings listing
 
@@ -971,7 +972,7 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 
 **[149]** B. A. Nosek, C. R. Ebersole, A. C. DeHaven, and D. T. Mellor, "The preregistration revolution," *Proceedings of the National Academy of Sciences*, vol. 115, no. 11, pp. 2600–2606, 2018, doi: 10.1073/pnas.1708274114.  
 - **Key:** `nosek2018prereg`  ·  **Link:** https://doi.org/10.1073/pnas.1708274114
-- **Access:** Open access (green) — free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/5856500
+- **Access:** Open access (green); free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/5856500
 - **Where and how it is used:** Ch.3 rationale for fixing success criteria before running (Stage 7 and Stage 13 preregistered thresholds).
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
@@ -982,11 +983,112 @@ Result: **150 / 150 verified.** Corrections made during verification are listed 
 - **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
 
 
+## J. Dataset shortcuts and robustness to segmentation (Pillar I, Stages 14-16)
+
+*The documented slice-selection shortcut in the Figshare data, the general shortcut-learning literature, and studies of how radiomic features change with the segmentation method.*
+
+**[151]** D. Wallis and I. Buvat, "Clever Hans effect found in a widely used brain tumour MRI dataset," *Medical Image Analysis*, vol. 77, art. no. 102368, 2022, doi: 10.1016/j.media.2022.102368.  
+- **Key:** `wallis2022clever`  ·  **Link:** https://doi.org/10.1016/j.media.2022.102368
+- **Access:** Open access (hybrid); free copy: https://www.sciencedirect.com/science/article/pii/S1361841522000214/pdf
+- **Where and how it is used:** Ch.4 primary prior work: showed tumour type in the Figshare dataset is predictable without the tumour (skull outline 0.74, three non-tissue features 0.77). Stage 14 replicates it (0.750 from brain-mask geometry); Stage 15 reproduces two of their three features (0.742) and tests whether tumour-region features rely on the shortcut.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[152]** B. P. Vangala, S. Guda, L. Peddi, and N. Vangala, "Scores That Hold, Benchmarks That Leak: Measuring Dataset Contamination in Public Brain-Tumor MRI Classification," arXiv preprint arXiv:2610.00421, 2026.  
+- **Key:** `vangala2026scores`  ·  **Link:** https://arxiv.org/abs/2610.00421
+- **Access:** Open access (arXiv / proceedings)
+- **Where and how it is used:** Ch.4 preprint: on the merged Kaggle corpus, file-header features alone separate tumour from no tumour at 0.959 balanced accuracy and most traceable test images share a patient with training; companion evidence of non-anatomical shortcuts in public brain-tumour benchmarks.
+- **Verified:** arXiv API record matched (title); abs page HTTP 200
+
+**[153]** R. Geirhos et al., "Shortcut learning in deep neural networks," *Nature Machine Intelligence*, vol. 2, no. 11, pp. 665–673, 2020, doi: 10.1038/s42256-020-00257-z.  
+- **Key:** `geirhos2020shortcut`  ·  **Link:** https://doi.org/10.1038/s42256-020-00257-z
+- **Access:** Open access (green); free copy: https://arxiv.org/pdf/2004.07780
+- **Where and how it is used:** Ch.2/4 general definition of shortcut learning used to frame Stages 14-15.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[154]** A. J. DeGrave, J. D. Janizek, and S.-I. Lee, "AI for radiographic COVID-19 detection selects shortcuts over signal," *Nature Machine Intelligence*, vol. 3, no. 7, pp. 610–619, 2021, doi: 10.1038/s42256-021-00338-7.  
+- **Key:** `degrave2021covid`  ·  **Link:** https://doi.org/10.1038/s42256-021-00338-7
+- **Access:** Open access (hybrid); free copy: https://www.nature.com/articles/s42256-021-00338-7.pdf
+- **Where and how it is used:** Ch.2/4 canonical medical-imaging example of models exploiting non-pathological image cues.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[155]** J. R. Zech, M. A. Badgeley, M. Liu, A. B. Costa, J. J. Titano, and E. K. Oermann, "Variable generalization performance of a deep learning model to detect pneumonia in chest radiographs: A cross-sectional study," *PLOS Medicine*, vol. 15, no. 11, p. e1002683, 2018, doi: 10.1371/journal.pmed.1002683.  
+- **Key:** `zech2018pneumonia`  ·  **Link:** https://doi.org/10.1371/journal.pmed.1002683
+- **Access:** Open access (gold); free copy: https://journals.plos.org/plosmedicine/article/file?id=10.1371/journal.pmed.1002683&type=printable
+- **Where and how it is used:** Ch.2/4 hospital-level confounding in chest radiographs; context for possible site effects in Figshare.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[156]** S. Lapuschkin, S. Wäldchen, A. Binder, G. Montavon, W. Samek, and K.-R. Müller, "Unmasking Clever Hans predictors and assessing what machines really learn," *Nature Communications*, vol. 10, art. no. 1096, 2019, doi: 10.1038/s41467-019-08987-4.  
+- **Key:** `lapuschkin2019cleverhans`  ·  **Link:** https://doi.org/10.1038/s41467-019-08987-4
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41467-019-08987-4.pdf
+- **Where and how it is used:** Ch.2 origin of the Clever Hans framing for machine-learning predictors.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[157]** L. Oakden-Rayner, J. Dunnmon, G. Carneiro, and C. Re, "Hidden stratification causes clinically meaningful failures in machine learning for medical imaging," *Proceedings of the ACM Conference on Health, Inference, and Learning*, pp. 151–159, 2020, doi: 10.1145/3368555.3384468.  
+- **Key:** `oakden2020hidden`  ·  **Link:** https://doi.org/10.1145/3368555.3384468
+- **Access:** Open access (gold)
+- **Where and how it is used:** Ch.4 hidden stratification; motivates evaluating inside strata (Stages 14B and 15).
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[158]** M. A. Badgeley et al., "Deep learning predicts hip fracture using confounding patient and healthcare variables," *npj Digital Medicine*, vol. 2, art. no. 31, 2019, doi: 10.1038/s41746-019-0105-1.  
+- **Key:** `badgeley2019hip`  ·  **Link:** https://doi.org/10.1038/s41746-019-0105-1
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41746-019-0105-1.pdf
+- **Where and how it is used:** Ch.4 confounding by acquisition and patient variables in medical imaging models.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[159]** J. W. Gichoya et al., "AI recognition of patient race in medical imaging: a modelling study," *The Lancet Digital Health*, vol. 4, no. 6, pp. e406–e414, 2022, doi: 10.1016/S2589-7500(22)00063-2.  
+- **Key:** `gichoya2022race`  ·  **Link:** https://doi.org/10.1016/S2589-7500(22)00063-2
+- **Access:** Open access (gold); free copy: http://www.thelancet.com/article/S2589750022000632/pdf
+- **Where and how it is used:** Ch.4 evidence that imaging models extract information not visible to readers; context for shortcut analysis.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[160]** C. Tinauer, M. Sackl, R. Stollberger, R. Schmidt, S. Ropele, and C. Langkammer, "Skull-stripping induces shortcut learning in MRI-based Alzheimer’s disease classification," *Insights into Imaging*, vol. 16, art. no. 283, 2025, doi: 10.1186/s13244-025-02158-4.  
+- **Key:** `tinauer2025skull`  ·  **Link:** https://doi.org/10.1186/s13244-025-02158-4
+- **Access:** Open access (gold); free copy: https://link.springer.com/content/pdf/10.1186/s13244-025-02158-4.pdf
+- **Where and how it is used:** Ch.4 brain-outline geometry as a shortcut in MRI classification (Alzheimer's disease); closest analogue to the brain-mask geometry shortcut measured in Stage 14.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[161]** C. Vásquez-Venegas et al., "Detecting and Mitigating the Clever Hans Effect in Medical Imaging: A Scoping Review," *Journal of Imaging Informatics in Medicine*, vol. 38, no. 4, pp. 2563–2579, 2024, doi: 10.1007/s10278-024-01335-z.  
+- **Key:** `vasquez2024cleverhans`  ·  **Link:** https://doi.org/10.1007/s10278-024-01335-z
+- **Access:** Open access (green); free copy: https://pmc.ncbi.nlm.nih.gov/articles/PMC12344020/pdf/10278_2024_Article_1335.pdf
+- **Where and how it is used:** Ch.2/4 scoping review: most imaging studies do not test for shortcuts; supports the motivation for Stages 14-15.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[162]** F. Tixier, H. Um, R. J. Young, and H. Veeraraghavan, "Reliability of tumor segmentation in glioblastoma: Impact on the robustness of MRI‐radiomic features," *Medical Physics*, vol. 46, no. 8, pp. 3582–3591, 2019, doi: 10.1002/mp.13624.  
+- **Key:** `tixier2019reliability`  ·  **Link:** https://doi.org/10.1002/mp.13624
+- **Access:** Open access (green); free copy: https://www.ncbi.nlm.nih.gov/pmc/articles/6692188
+- **Where and how it is used:** Ch.4 edge, shape and size-zone features are the most affected by the segmentation method; context for Stage 16 where shape features degraded under U-Net masks.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[163]** C. Haarburger, G. Müller-Franzes, L. Weninger, C. Kuhl, D. Truhn, and D. Merhof, "Radiomics feature reproducibility under inter-rater variability in segmentations of CT images," *Scientific Reports*, vol. 10, art. no. 12688, 2020, doi: 10.1038/s41598-020-69534-6.  
+- **Key:** `haarburger2020reproducibility`  ·  **Link:** https://doi.org/10.1038/s41598-020-69534-6
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41598-020-69534-6.pdf
+- **Where and how it is used:** Ch.4 reproducibility of radiomic features under manual and probabilistic automatic segmentations; context for Stage 16.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[164]** M. G. Poirot et al., "Robustness of radiomics to variations in segmentation methods in multimodal brain MRI," *Scientific Reports*, vol. 12, art. no. 16712, 2022, doi: 10.1038/s41598-022-20703-9.  
+- **Key:** `poirot2022robustness`  ·  **Link:** https://doi.org/10.1038/s41598-022-20703-9
+- **Access:** Open access (gold); free copy: https://www.nature.com/articles/s41598-022-20703-9.pdf
+- **Where and how it is used:** Ch.4 small differences between segmentation methods change radiomic features and their predictive value in brain MRI; context for Stage 16.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[165]** Y. Suter et al., "Radiomics for glioblastoma survival analysis in pre-operative MRI: exploring feature robustness, class boundaries, and machine learning techniques," *Cancer Imaging*, vol. 20, art. no. 55, 2020, doi: 10.1186/s40644-020-00329-8.  
+- **Key:** `suter2020glioblastoma`  ·  **Link:** https://doi.org/10.1186/s40644-020-00329-8
+- **Access:** Open access (gold); free copy: https://cancerimagingjournal.biomedcentral.com/track/pdf/10.1186/s40644-020-00329-8
+- **Where and how it is used:** Ch.4 shape features robust under simulated perturbations, in contrast with automatic-mask studies; cited to show the finding depends on the setting.
+- **Verified:** Crossref record matched (title, year); doi.org resolver HTTP 302
+
+**[166]** M. Nadeem, A. Shaheen, M. F. A. Chaudhary, and H. Mohy-ud-Din, "Towards robust radiomics and radiogenomics predictive models for brain tumor characterization," arXiv preprint arXiv:2406.03583, 2024.  
+- **Key:** `nadeem2024robust`  ·  **Link:** https://arxiv.org/abs/2406.03583
+- **Access:** Open access (arXiv / proceedings)
+- **Where and how it is used:** Ch.4 across seven CNN segmenters on BraTS, shape features were least stable and most stable features were texture features; closest precedent for the Stage 16 feature-level pattern.
+- **Verified:** arXiv API record matched (title); abs page HTTP 200
+
+
 ## Using this list for the literature review
 
 Numbers refer to the list above. Each group is a paragraph-sized theme; together they cover a review of either pillar alone or of the whole thesis.
 
-### Pillar I — fractal descriptor and classification
+### Pillar I: fractal descriptor and classification
 
 - **Brain-tumour types and MRI context:** [14], [15]
 - **Radiomics and hand-crafted features:** [17], [16], [58], [59], [56]
@@ -996,8 +1098,10 @@ Numbers refer to the list above. Each group is a paragraph-sized theme; together
 - **Classification on the Figshare dataset:** [18], [81], [82], [83], [84], [85], [86], [87], [88], [89], [90]
 - **Evaluation rigour and leakage:** [25], [26], [27], [28], [79], [80]
 - **Segmentation and its limits:** [60], [63], [64], [65], [66], [70], [69], [68], [71], [72]
+- **Shortcuts in the Figshare data and in medical imaging:** [151], [152], [153], [156], [154], [155], [158], [157], [159], [160], [161]
+- **Feature stability under automatic segmentation:** [162], [163], [164], [165], [166]
 
-### Pillar II — federated learning under class skew
+### Pillar II: federated learning under class skew
 
 - **Federated learning foundations:** [93], [1], [2]
 - **Non-IID data and client drift:** [30], [29], [3], [31], [4], [94], [95], [96], [97], [99], [98]

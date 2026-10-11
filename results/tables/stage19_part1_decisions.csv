@@ -1,0 +1,4 @@
+decision,effect,statistic,wins,outcome
+Block A boundary FD,-0.34 pp,Holm p 0.0469 (wrong direction),2/10,not accepted
+Block B grayscale lacunarity,+2.34 pp,Holm p 0.0039,10/10,accepted
+FuzEn2D vs SampEn2D,+0.24 pp (p 0.328),undefined 0 vs 31; noise test-retest 0.978 vs 0.933; seed test-retest 1.000 vs 1.000 (uninformative),,adopted

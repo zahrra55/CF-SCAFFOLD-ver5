@@ -58,8 +58,9 @@ place near-duplicates on both sides of the split. `GroupKFold` with the patient
 identifier as the group prevents this.
 
 **Why majority vote to patient level?**
-The clinical unit of decision is the patient, not the slice. A patient-level
-figure is also the only one comparable to Cheng et al. (2015).
+The clinical unit of decision is the patient, not the slice. Slice-level and
+patient-level figures are never compared with each other, because voting alone
+adds several points (Stage 10B).
 
 ---
 
@@ -116,8 +117,8 @@ distributions those estimates diverge and averaging is unreliable. Hsieh et al.
 normalisation benchmarks reproduced it.
 
 **Why Dirichlet(0.3) as the main setting?**
-It produces the condition under study — 13 of 17 clients missing at least one
-class — while leaving every client enough samples to train on. The sweep in
+It produces the condition under study, 13 of 17 clients missing at least one
+class, while leaving every client enough samples to train on. The sweep in
 Stage 5 covers 0.1 and 3.0 as well, so the choice is a reported point on a
 studied range rather than a single tuned value.
 

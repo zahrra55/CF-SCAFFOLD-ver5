@@ -1,0 +1,4 @@
+alpha,cnn_central,cnn_federated,cnn_damage_pp,desc_central,desc_federated,desc_damage_pp,difference_pp,wilcoxon_p,desc_less_damaged_seeds
+0.1,0.736,0.495,24.1,0.876,0.841,3.5,20.6,<0.0001,20/20
+0.3,0.736,0.584,15.2,0.876,0.857,1.9,13.4,<0.0001,18/20
+1.0,0.736,0.656,8.0,0.876,0.852,2.4,5.6,0.0009,17/20

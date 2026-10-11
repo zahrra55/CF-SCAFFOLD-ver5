@@ -100,8 +100,8 @@ same script on the same seeds. Sources:
   sequence, a change in worker behaviour can alter it.
 
 This is why the paper reports means over 20 seeds with dispersion, and why the
-one borderline result in the project — logit calibration ahead by 0.76 points at
-`p = 0.008` — was not treated as established when a repeat run returned 0.4
+one borderline result in the project, logit calibration ahead by 0.76 points at
+`p = 0.008`, was not treated as established when a repeat run returned 0.4
 points at `p = 0.12`.
 
 ---
