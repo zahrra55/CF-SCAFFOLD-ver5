@@ -100,9 +100,24 @@ patient-grouped splits, patient-level balanced accuracy:
 
 | Configuration | Balanced accuracy |
 |---|---|
+<<<<<<< HEAD
 | Final set: 21 descriptors (fractal-chaos and others) | 0.948 ± 0.009 |
 | Tumour-only descriptors (robust to the dataset shortcut) | 0.877 ± 0.008 |
 | Fractal-chaos family alone (fractal dimensions, lacunarities, fuzzy entropy) | 0.851 ± 0.008 |
+=======
+| 17 interpretable features + random forest, radiologist masks | 0.897 |
+| Same model, tumour located by a small U-Net (no radiologist at test time) | 0.892 |
+| 13 tumour-region features only (least dependent on the dataset shortcut) | 0.813 |
+
+An earlier version of this table reported about 0.92 and placed the model above
+Cheng et al. (2015, 0.913). That figure came from feature code with four defects
+(entropy, texture, box height, a missing Ft) that were corrected in the final
+pipeline; the corrected model is below that benchmark, and the claim has been
+withdrawn. The contribution of Part I is not raw accuracy but an interpretable
+classifier that can run without a radiologist and whose behaviour on a dataset
+with a documented shortcut (Wallis and Buvat, 2022) has been measured
+([`docs/08`](docs/08_later_experiments.md), Stages 14 to 16).
+>>>>>>> 16b98a9120b23114c48156d2f63e733673cf6f5c
 
 The final set was selected on the same data by a preregistered rule, so 0.948 is
 slightly optimistic; the tumour-only figure is the estimate robust to the

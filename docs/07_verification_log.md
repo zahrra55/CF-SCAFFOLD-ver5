@@ -236,6 +236,7 @@ BibTeX warnings.
 
 ---
 
+<<<<<<< HEAD
 ## 11. Code audit before submission (October 2026)
 
 All ten scripts that produced final results passed static analysis with no undefined names or conflicting definitions, and all ran on the real data. A logic review found two minor errors, both in the federated arm, and both were corrected in Stage 19 version 1.1. Patient-level votes broke ties towards the lowest class index because the vote received one-hot predictions instead of model probabilities, which is the same defect as F5; the corrected patient-level figure is 0.953 (0.951 before). Missing values were imputed with a median of pooled training data, which a federation cannot compute; they are now imputed with the mean of observed values, which hospitals can obtain from aggregated sums and counts. The Stage 17 patient-level federated figure is superseded by Stage 19.
@@ -245,6 +246,9 @@ Three methodological points are documented rather than corrected: the FuzEn2D se
 ---
 
 ## 12. Open items: to be resolved before submission
+=======
+## 10. Open items: to be resolved before submission
+>>>>>>> 16b98a9120b23114c48156d2f63e733673cf6f5c
 
 1. **Precision substitution.** Replace the transcribed CSVs with the originals
    from Kaggle, then confirm the manuscript statistics against them. See

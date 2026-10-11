@@ -393,6 +393,7 @@ on the same data would not be a valid test, so it is left as a hypothesis for
 future work.
 
 Data: `results/tables/stage16_radiologist_free.csv`
+<<<<<<< HEAD
 
 ---
 
@@ -431,3 +432,5 @@ The final set of 21 descriptors reached 0.948, the fractal-chaos family 0.851 an
 Glioma versus non-glioma, a proxy for malignant versus predominantly benign tumours, reached 0.989 with radiologist masks and about 0.96 after automatic segmentation by the U-Net (0.966 and 0.962 in two independent runs on one split), against 0.778 for the geometry control. On BraTS, the fractal sub-region measures did not add to the 19 descriptors (p = 0.28), and presence flags for enhancement and necrosis added more than the fractal measures (p = 0.002): the sub-region grade signal comes from whether these regions are present, not from their fractal structure. In the federated arm, the final set reached 0.900 at slice level and 0.953 at patient level, with a damage of 1.7 points.
 
 Data: `results/tables/stage19_part1_figshare.csv`, `stage19_part1_decisions.csv`, `stage19_part2_glioma_vs_nonglioma.csv`, `stage19_part3_brats.csv`, `stage19_part4_federated_v1_1.csv`
+=======
+>>>>>>> 16b98a9120b23114c48156d2f63e733673cf6f5c
