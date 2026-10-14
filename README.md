@@ -63,7 +63,7 @@ Documented in [`docs/02_pillar2_federated.md`](docs/02_pillar2_federated.md).
 ```
 docs/       stage-by-stage record, one document per part plus supporting material
 code/       the scripts that produced every reported number
-            (code/fractal_chaos_guided_fl/ holds the final stages 17 to 19)
+            (code/fractal_chaos_guided_fl/ holds the final stages 17 to 20)
 tools/      scripts that built and verified the reference list
 results/    tables of the actual measured values, and the figures built from them
 paper/      the manuscripts prepared from these results
@@ -89,60 +89,56 @@ deploy it.
 | [`docs/06_references.md`](docs/06_references.md) | 166 references by pipeline stage: link, access route, where and how each is used, how it was verified |
 | [`docs/thesis_reference_list.md`](docs/thesis_reference_list.md) | IEEE reference list ready for the thesis end-matter (BibTeX: [`paper/references.bib`](paper/references.bib)) |
 | [`docs/07_verification_log.md`](docs/07_verification_log.md) | Audit of every result and reference: what was checked, what was corrected, what is open |
-| [`docs/08_later_experiments.md`](docs/08_later_experiments.md) | Stages 9 to 19: frozen backbone, descriptor ablation, leakage, active contour, SCAFFOLD, shortcut analyses, radiologist-free classification, fractal-chaos descriptors, matched heterogeneity damage, final extension |
+| [`docs/08_later_experiments.md`](docs/08_later_experiments.md) | Stages 9 to 20: frozen backbone, descriptor ablation, leakage, active contour, SCAFFOLD, shortcut analyses, radiologist-free classification, fractal-chaos descriptors, matched heterogeneity damage, final extension, statistical correction |
+| [`docs/09_positive_results.md`](docs/09_positive_results.md) | Every positive result with its evidence label, statistic and source |
+| [`docs/10_negative_results.md`](docs/10_negative_results.md) | Results not confirmed, withdrawn claims, nulls, rejected methods, audit corrections and the limits of each claim |
 
 ---
 
 ## Headline results
 
-Final descriptor model (Stage 19), Figshare, 218 patients, ten repeated
-patient-grouped splits, patient-level balanced accuracy:
+All figures come from the final statistical correction (Stage 20), which re-tested
+every descriptor comparison with the corrected repeated cross-validation t-test
+(Nadeau and Bengio, 2003) and every federated comparison with a bootstrap over test
+patients. Full lists: [`docs/09_positive_results.md`](docs/09_positive_results.md)
+and [`docs/10_negative_results.md`](docs/10_negative_results.md).
+
+Descriptor model, Figshare, 218 patients, ten repeats of five patient-grouped folds,
+patient-level balanced accuracy:
 
 | Configuration | Balanced accuracy |
 |---|---|
-<<<<<<< HEAD
-| Final set: 21 descriptors (fractal-chaos and others) | 0.948 ± 0.009 |
-| Tumour-only descriptors (robust to the dataset shortcut) | 0.877 ± 0.008 |
-| Fractal-chaos family alone (fractal dimensions, lacunarities, fuzzy entropy) | 0.851 ± 0.008 |
-=======
-| 17 interpretable features + random forest, radiologist masks | 0.897 |
-| Same model, tumour located by a small U-Net (no radiologist at test time) | 0.892 |
-| 13 tumour-region features only (least dependent on the dataset shortcut) | 0.813 |
+| 19 descriptors (set chosen by the decision rule) | 0.923 ± 0.006 |
+| Nested selection among eight candidate sets (no selection optimism) | 0.939 ± 0.038 per outer fold |
+| Strictly tumour-only descriptors (robust to the dataset shortcut) | 0.736 ± 0.013 |
+| Fractal-chaos family alone | 0.756 ± 0.014 |
 
-An earlier version of this table reported about 0.92 and placed the model above
-Cheng et al. (2015, 0.913). That figure came from feature code with four defects
-(entropy, texture, box height, a missing Ft) that were corrected in the final
-pipeline; the corrected model is below that benchmark, and the claim has been
-withdrawn. The contribution of Part I is not raw accuracy but an interpretable
-classifier that can run without a radiologist and whose behaviour on a dataset
-with a documented shortcut (Wallis and Buvat, 2022) has been measured
-([`docs/08`](docs/08_later_experiments.md), Stages 14 to 16).
->>>>>>> 16b98a9120b23114c48156d2f63e733673cf6f5c
-
-The final set was selected on the same data by a preregistered rule, so 0.948 is
-slightly optimistic; the tumour-only figure is the estimate robust to the
-slice-selection shortcut documented by Wallis and Buvat (2022). An earlier figure of
-about 0.92 and the comparison with Cheng et al. (2015) were withdrawn after a
-feature-code audit (see [`docs/07`](docs/07_verification_log.md)).
+Removing the fractal-chaos family from the 19 descriptors costs 13.2 points
+(95% CI 7.2 to 19.1, corrected p < 0.0001). The shortcut documented by Wallis and
+Buvat (2022) is why the strictly tumour-only figure is reported next to 0.923. An
+earlier figure of about 0.92 and the comparison with Cheng et al. (2015) were
+withdrawn after a feature-code audit (see [`docs/07`](docs/07_verification_log.md)).
 
 Glioma versus non-glioma, a proxy for malignant versus predominantly benign
-tumours: 0.989 with radiologist masks and about 0.96 after automatic segmentation
-by a U-Net (0.966 and 0.962 in two runs), against 0.778 for brain geometry alone.
+tumours: 0.979 with radiologist masks and 0.946 (95% CI 0.915 to 0.973) after
+automatic segmentation by a U-Net under intention-to-treat, against 0.797 for head
+geometry alone on the same split.
 
 Fractal-chaos guided federated learning, 18 simulated hospitals, Dirichlet(0.3),
-20 seeds, identical hospitals and test patients (Stages 18 and 19):
+20 seeds, identical hospitals and test patients (Stage 20):
 
 | Model | Centralised | Federated | Damage from heterogeneity |
 |---|---|---|---|
 | CNN on images | 0.736 | 0.584 | 15.2 points |
-| MLP on the final descriptor set | 0.917 | 0.900 (patient level 0.953) | 1.7 points |
+| MLP on the 19 descriptors | 0.869 | 0.856 (patient level 0.923) | 1.3 points |
 
-The damage gap grows with heterogeneity (20.6 points at alpha 0.1, 5.6 at alpha 1.0).
-The fractal-chaos family alone also resists heterogeneity, but the non-fractal
-descriptors resist it at least as well, so robustness is a property of fixed
-descriptors in general.
+The damage gap of 13.9 points has a 95% CI of 10.8 to 17.1 over test patients and
+grows with heterogeneity (21.2 points at alpha 0.1, 6.2 at alpha 1.0). Non-fractal
+descriptors resist heterogeneity at least as well as the fractal-chaos family, so
+robustness is a property of fixed descriptors used as inputs.
 
-Federated learning on images, local objectives compared over 20 seeds:
+Federated learning on images, local objectives compared over 20 seeds on the same
+test patients:
 
 | Local objective | Balanced accuracy |
 |---|---|

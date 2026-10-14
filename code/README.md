@@ -13,7 +13,7 @@ already recorded there, so an interrupted session can be resumed.
 | `pillar1_classification/full_pipeline.py` | Final canonical pipeline: corrected features (17), patient-grouped classification, radiologist-free delineation by a U-Net localiser, the eight-row federated ablation (the eighth row is real SCAFFOLD), and the leakage check |
 | `legacy/full_pipeline_v1_uncorrected_features.py` | Earlier pipeline (16 features, four feature defects). Kept only so that the superseded 0.919 figure can be traced |
 | `pillar1_classification/stage14_fb_geometry_confound.py` | Does Fb measure the tumour type or the slice geometry? |
-| `pillar1_classification/stage14b_area_matched.py` | Fractal descriptors compared inside bins of brain-section area |
+| `pillar1_classification/stage14b_area_matched.py` | Fractal descriptors compared inside bins of head-section area |
 | `pillar1_classification/stage15_wallis_buvat_shortcut_reliance.py` | Head-to-head with Wallis and Buvat (2022); shortcut reliance of each feature family |
 | `pillar1_classification/stage16_radiologist_free_tumour_features.py` | Radiologist-free classification with the tumour-region features only | [`docs/01`](../docs/01_pillar1_classification.md), [`docs/08`](../docs/08_later_experiments.md) |
 | `pillar1_classification/stage10_descriptor_tests.py` | Single-split descriptor tests (superseded by 10B, kept for the record) | [`docs/08`, Stage 10](../docs/08_later_experiments.md) |
@@ -44,7 +44,7 @@ Numbered in the order the experiments were run.
 | `stage7_bio_contrastive.py` | Contrastive term anchored on fractal descriptors (null) | `results/tables/bio_contrastive_null.csv` | [`docs/03`, §3](../docs/03_withdrawn_and_null.md) |
 | `stage9_frozen_backbone.py` | Frozen ImageNet ResNet-18, Figshare | n/a | [`docs/08`, Stage 9](../docs/08_later_experiments.md) |
 | `stage9b_frozen_backbone_brisc.py` | Frozen ResNet-18, BRISC | n/a | [`docs/08`, Stage 9B](../docs/08_later_experiments.md) |
-| `stage13_real_scaffold.py` | Real SCAFFOLD control variates vs FedAvg, preregistered criterion | `results/tables/real_scaffold_stage13.csv` | [`docs/08`, Stage 13](../docs/08_later_experiments.md) |
+| `stage13_real_scaffold.py` | Real SCAFFOLD control variates vs FedAvg, criterion fixed before the run | `results/tables/real_scaffold_stage13.csv` | [`docs/08`, Stage 13](../docs/08_later_experiments.md) |
 
 Stages 1–7 were numbered when this repository was first assembled; Stages 9–13
 keep the numbers used in the session record so that scripts, logs and
@@ -100,4 +100,5 @@ each comparison family.
 | `fractal_chaos_guided_fl/stage17b_same_split_threshold_mask_checks.py` | Same-split damage test (failed rule), in-fold threshold (exploratory), mask normalisation check | `stage17b_*.csv` | [`docs/08`, Stage 17B](../docs/08_later_experiments.md) |
 | `fractal_chaos_guided_fl/stage18_matched_heterogeneity_damage.py` | Matched design: heterogeneity damage, CNN vs descriptors, three alpha levels | `stage18_matched_damage.csv` | [`docs/08`, Stage 18](../docs/08_later_experiments.md) |
 | `fractal_chaos_guided_fl/stage18b_fractal_attribution.py` | Is the robustness due to the fractal-chaos family? | `stage18b_fractal_attribution.csv` | [`docs/08`, Stage 18B](../docs/08_later_experiments.md) |
-| `fractal_chaos_guided_fl/stage19_final_extension.py` | Final preregistered extension (v1.1): grayscale lacunarity, FuzEn2D, boundary FD, glioma vs non-glioma after segmentation, BraTS sub-regions, federated arm | `stage19_*.csv` | [`docs/08`, Stage 19](../docs/08_later_experiments.md) |
+| `fractal_chaos_guided_fl/stage19_final_extension.py` | Final extension (v1.1; statistics superseded by Stage 20): grayscale lacunarity, FuzEn2D, boundary FD, glioma vs non-glioma after segmentation, BraTS sub-regions, federated arm | `stage19_*.csv` | [`docs/08`, Stage 19](../docs/08_later_experiments.md) |
+| `fractal_chaos_guided_fl/stage20_statistical_corrections.py` | **Final figures.** Corrected repeated-CV t-test, nested selection, strict tumour-only set, glioma vs non-glioma under intention-to-treat, BraTS with all 369 cases, Stage 18 rerun with a bootstrap over test patients | `stage20_*.csv` | [`docs/08`, Stage 20](../docs/08_later_experiments.md) |

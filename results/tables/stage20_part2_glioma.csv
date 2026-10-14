@@ -1,0 +1,7 @@
+"arm (same GroupKFold split, 218 patients)",patient_bal_acc,ci_low,ci_high
+"radiologist masks, final set",0.979,0.958,0.996
+"U-Net masks, intention-to-treat",0.946,0.915,0.973
+geometry control,0.797,0.746,0.847
+fractal-chaos family,0.802,0.75,0.852
+strict tumour-only,0.871,0.823,0.913
+U-Net minus geometry control,0.149,0.091,0.209

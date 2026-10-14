@@ -393,7 +393,6 @@ on the same data would not be a valid test, so it is left as a hypothesis for
 future work.
 
 Data: `results/tables/stage16_radiologist_free.csv`
-<<<<<<< HEAD
 
 ---
 
@@ -423,7 +422,7 @@ At nearly the same centralised accuracy as the CNN (0.725 against 0.736), the fr
 
 Data: `results/tables/stage18b_fractal_attribution.csv`
 
-## Stage 19: final preregistered extension
+## Stage 19: final extension (statistics superseded by Stage 20)
 
 Grayscale lacunarity computed on the intensities inside the tumour raised three-class patient-level balanced accuracy by 2.34 points (Holm p = 0.004, 10 of 10 splits) and was accepted; the fractal dimension of the tumour boundary lowered it slightly and was rejected. Two boundary-signature measures had already been rejected during validation because pixel quantisation dominated them. Two-dimensional fuzzy entropy (Hilal et al., 2020) replaced SampEn2D because it was defined on every slice (against 31 undefined values) and was more stable under added noise (0.978 against 0.933), with no loss of accuracy; the seed-stability criterion was uninformative because both measures reached 1.000.
 
@@ -432,5 +431,16 @@ The final set of 21 descriptors reached 0.948, the fractal-chaos family 0.851 an
 Glioma versus non-glioma, a proxy for malignant versus predominantly benign tumours, reached 0.989 with radiologist masks and about 0.96 after automatic segmentation by the U-Net (0.966 and 0.962 in two independent runs on one split), against 0.778 for the geometry control. On BraTS, the fractal sub-region measures did not add to the 19 descriptors (p = 0.28), and presence flags for enhancement and necrosis added more than the fractal measures (p = 0.002): the sub-region grade signal comes from whether these regions are present, not from their fractal structure. In the federated arm, the final set reached 0.900 at slice level and 0.953 at patient level, with a damage of 1.7 points.
 
 Data: `results/tables/stage19_part1_figshare.csv`, `stage19_part1_decisions.csv`, `stage19_part2_glioma_vs_nonglioma.csv`, `stage19_part3_brats.csv`, `stage19_part4_federated_v1_1.csv`
-=======
->>>>>>> 16b98a9120b23114c48156d2f63e733673cf6f5c
+
+
+## Stage 20: statistical correction and rectification
+
+An external code review of Stage 19 found that the Wilcoxon tests over repeated cross-validation splits, used from Stage 10B onwards, overstate significance because the splits share the same patients, and that the final descriptor set had been selected and evaluated on the same folds. Stage 20 re-tested every descriptor comparison with the corrected repeated cross-validation t-test (Nadeau and Bengio, 2003; Bouckaert and Frank, 2004), re-estimated the final set by nested selection, and reran Stage 18 with the test predictions saved, so that the heterogeneity damage gap could be given a confidence interval over test patients rather than over training seeds only. Its decision rules were written into the script before the run; like those of Stages 13 to 19, they were not registered externally.
+
+Under the corrected test, grayscale lacunarity (+2.38 points, 95% CI -0.45 to +5.20, p = 0.098) was not accepted, and FuzEn2D did not establish non-inferiority to SampEn2D (CI lower bound -1.90 against a required -0.50, a margin this design could not reach). The final set is therefore the 19 descriptors of Stage 17, at 0.923. Nested selection, which chooses among the eight candidate sets inside each outer training fold, gave 0.939 per outer fold and chose a set containing grayscale lacunarity in all 15 outer folds. The contribution of the fractal-chaos family survived the correction (+13.2 points, 95% CI 7.2 to 19.1, p < 0.0001). A strictly tumour-only set, without descriptors that use pixels outside the tumour or mostly encode its size, reached 0.736, 9.1 points below the earlier tumour-only set (p = 0.001).
+
+Glioma versus non-glioma reached 0.946 (95% CI 0.915 to 0.973) after automatic segmentation under intention-to-treat, against 0.797 for head geometry on the same split; the margin's lower bound (0.091) missed the 0.10 required. Recovering a BraTS case whose segmentation file has a non-standard name brought the grading set to all 369 cases; the sub-region block still added nothing (p = 0.879), and the earlier conclusion that presence flags carry more than the fractal measures did not survive (p = 0.212). The rerun of Stage 18 reproduced the CNN exactly, and the damage gap at alpha 0.3 was 13.9 points with a 95% CI of 10.8 to 17.1 over test patients.
+
+**Terminology fixed in this stage.** On Figshare, which is not skull-stripped, the mask called the brain mask in Stages 9 to 19 covers the head, so Fb is the fractal dimension of the head region excluding the tumour and "brain-section area" in Stage 14B is head-section area; on BraTS, which is skull-stripped, it is the brain. BraTS label 1 is the necrotic and non-enhancing tumour core (NCR/NET), not necrosis alone. Where Stages 13 to 19 say "preregistered", the rules were fixed before each run but not registered externally.
+
+Data: `results/tables/stage20_part1_figshare.csv`, `stage20_part1_tests.csv`, `stage20_part1_nested.csv`, `stage20_part2_glioma.csv`, `stage20_part2_dice.csv`, `stage20_part3_brats.csv`, `stage20_part3_tests.csv`, `stage20_part4_damage.csv`, `stage20_part4_gap_bootstrap.csv`

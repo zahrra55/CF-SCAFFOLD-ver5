@@ -1,0 +1,6 @@
+quantity,value
+Dice mean over all 2740 slices (failures = 0),0.71
+Dice median,0.821
+share of slices with Dice > 0.7,67.5%
+slices with usable automatic features,2708
+patients with no usable slice,0

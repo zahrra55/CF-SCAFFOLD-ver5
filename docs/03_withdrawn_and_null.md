@@ -147,15 +147,18 @@ In the final pipeline, active-contour refinement of the U-Net tumour region
 lowered Dice on real images (-0.047, p = 2 × 10⁻¹²¹) and was dropped, although it
 had helped on synthetic data. The claim that Part I exceeds Cheng et al. (2015)
 was withdrawn after the feature corrections (0.897 against 0.913).
-<<<<<<< HEAD
 
 ---
 
 ## Results of the fractal-chaos stages that did not support a claim
 
 A first matched-damage test (Stage 17B) did not meet its rule and is kept in the record next to the corrected Stage 18 test. The class-presence correction lowered the accuracy of federated learning on descriptors (Stage 17). The fractal-chaos family is not the most robust descriptor group (Stage 18B). The tumour-boundary fractal dimension, the roughness exponent and the Higuchi dimension of the boundary signature were rejected (Stage 19). On BraTS, the fractal measures of the enhancing region and of necrosis added nothing beyond the presence of these regions (Stage 19), and the preregistered grading threshold for the fractal-chaos family was not met (Stage 17).
-=======
->>>>>>> 16b98a9120b23114c48156d2f63e733673cf6f5c
+
+---
+
+## Results not confirmed by the corrected statistics (Stage 20)
+
+Under the corrected repeated cross-validation t-test, grayscale lacunarity (+2.38 points, p = 0.098) and FuzEn2D (non-inferiority not established) were not accepted, reversing two decisions of Stage 19. The margin of glioma-versus-non-glioma classification over the shortcut control (lower bound 0.091) missed the required 0.10, and the Stage 19 conclusion that BraTS presence flags carry more than the sub-region fractal measures was withdrawn (corrected p = 0.212). All are listed with their statistics in [`10_negative_results.md`](10_negative_results.md).
 
 ---
 

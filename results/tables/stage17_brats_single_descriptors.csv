@@ -1,0 +1,8 @@
+descriptor,patient_auc_direction_free,ci_low,ci_high
+Ft,0.678,0.614,0.74
+Fb,0.591,0.515,0.668
+C,0.691,0.629,0.751
+lacun_t,0.524,0.501,0.605
+lacun_b,0.637,0.557,0.71
+SampEn_t,0.687,0.625,0.75
+SampEn_b,0.603,0.528,0.674

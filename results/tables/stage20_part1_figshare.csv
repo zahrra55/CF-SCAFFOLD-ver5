@@ -1,0 +1,14 @@
+set,pooled_patient_bal_acc,sd_over_repeats
+BASE19,0.923,0.006
+BASE19+A,0.92,0.006
+BASE19+B,0.946,0.01
+BASE19+A+B,0.943,0.007
+FUZ19,0.925,0.005
+FUZ19+A,0.917,0.009
+FUZ19+B,0.948,0.009
+FUZ19+A+B,0.946,0.006
+final set (rule-chosen = BASE19),0.923,0.006
+fractal-chaos family,0.756,0.014
+tumour-only,0.829,0.011
+strict tumour-only,0.736,0.013
+final minus family,0.786,0.013

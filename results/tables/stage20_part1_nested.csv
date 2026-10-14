@@ -1,0 +1,4 @@
+quantity,value
+nested per-fold patient bal acc (3 x 5 outer folds),0.939 +/- 0.038
+rule-chosen set on the same outer folds,0.918
+sets chosen,"BASE19+B 8, BASE19+A+B 4, FUZ19+B 1, FUZ19+A+B 2 (grayscale lacunarity in 15/15)"

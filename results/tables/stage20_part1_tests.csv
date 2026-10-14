@@ -1,0 +1,6 @@
+comparison,mean_diff_pp,ci_low_pp,ci_high_pp,corrected_p,holm_p,decision
+FuzEn2D instead of SampEn2D,0.3,-1.9,2.5,0.7847,,not adopted (non-inferiority bound -0.50 not met)
+Block A boundary FD on BASE19,-0.35,-2.13,1.43,0.6949,0.6949,not accepted
+Block B grayscale lacunarity on BASE19,2.38,-0.45,5.2,0.0978,0.1955,not accepted
+contribution of the fractal-chaos family,13.15,7.21,19.08,<0.0001,,
+strict tumour-only vs tumour-only,-9.14,-14.38,-3.9,0.001,,

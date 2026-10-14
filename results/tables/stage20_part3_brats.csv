@@ -1,0 +1,6 @@
+set,per_fold_bal_acc,sd
+BASE19,0.86,0.043
+BASE19+SUB,0.865,0.05
+BASE19+FLAGS,0.889,0.039
+FLAGS,0.814,0.05
+geometry,0.464,0.044
