@@ -3,6 +3,9 @@
 Experimental record for the Master's thesis
 **Fractal-Chaos Guided Federated Learning for Brain Tumor MRI Classification**.
 
+**Final code:** [`FractalChaos-FL-BrainTumor-Lab/`](FractalChaos-FL-BrainTumor-Lab/) is a self-contained folder that reproduces the final results of the thesis in six experiments.
+**References:** [`references/`](references/) lists all 189 references with links, purpose, where each is used and a reading level.
+
 **For the examining committee:** [`COMMITTEE_GUIDE.md`](COMMITTEE_GUIDE.md) lists
 which script reproduces each result of the thesis, in which order to run them,
 the hardware and time each needs, and the limits that apply to each claim.
@@ -62,6 +65,8 @@ Documented in [`docs/02_pillar2_federated.md`](docs/02_pillar2_federated.md).
 
 ```
 docs/       stage-by-stage record, one document per part plus supporting material
+FractalChaos-FL-BrainTumor-Lab/   self-contained final code: library and six experiments
+references/ the 189 references: catalogue, CSV table and BibTeX
 code/       the scripts that produced every reported number
             (code/fractal_chaos_guided_fl/ holds the final stages 17 to 20)
 tools/      scripts that built and verified the reference list
@@ -86,7 +91,8 @@ deploy it.
 | [`docs/03_withdrawn_and_null.md`](docs/03_withdrawn_and_null.md) | Results retracted or reported as null, with reasons |
 | [`docs/04_decision_log.md`](docs/04_decision_log.md) | Why each method, metric, dataset and value was chosen |
 | [`docs/05_reproducibility.md`](docs/05_reproducibility.md) | Environment, seeds, how to re-run each experiment |
-| [`docs/06_references.md`](docs/06_references.md) | 166 references by pipeline stage: link, access route, where and how each is used, how it was verified |
+| [`references/README.md`](references/README.md) | All 189 references: link, purpose, where cited in Chapter 2, where used in the experiments, reading level |
+| [`docs/06_references.md`](docs/06_references.md) | Verification record of the first 166 references |
 | [`docs/thesis_reference_list.md`](docs/thesis_reference_list.md) | IEEE reference list ready for the thesis end-matter (BibTeX: [`paper/references.bib`](paper/references.bib)) |
 | [`docs/07_verification_log.md`](docs/07_verification_log.md) | Audit of every result and reference: what was checked, what was corrected, what is open |
 | [`docs/08_later_experiments.md`](docs/08_later_experiments.md) | Stages 9 to 20: frozen backbone, descriptor ablation, leakage, active contour, SCAFFOLD, shortcut analyses, radiologist-free classification, fractal-chaos descriptors, matched heterogeneity damage, final extension, statistical correction |

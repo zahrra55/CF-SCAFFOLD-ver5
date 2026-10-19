@@ -46,6 +46,8 @@ an interrupted session (Stage 20 rejects a cache built by different code).
 
 ## 4. Order of execution, hardware and time
 
+**Shortest route to the final results:** the self-contained folder [`FractalChaos-FL-BrainTumor-Lab/`](FractalChaos-FL-BrainTumor-Lab/) reproduces every result in Section 1 with six experiments, run in order (instructions and expected values in its README). The stage scripts below are the full experimental record from which that folder was assembled.
+
 Stage 20 alone reproduces the first four claims of Section 1. The other three (the class-presence
 correction on images, classification without a radiologist, and the shortcut measurements) come from the
 earlier stages, which also document how the method was reached.

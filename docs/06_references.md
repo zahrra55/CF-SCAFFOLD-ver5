@@ -1,5 +1,7 @@
 # CF-SCAFFOLD: Complete Reference List
 
+> **The organised reference catalogue is now [`references/README.md`](../references/README.md)**: all 189 references with links, purpose, where each is cited in Chapter 2, where it is used in the experiments, and a reading level. This file is kept as the verification record of the first 166 references (September and October 2026).
+
 **Researcher:** Zahraa Ibrahim Khaleel  |  **Supervisor:** Prof. Dr. Mohammed Sahib Mehdi  |  Al-Nahrain University, College of Science, Department of Computer Science
 
 This list replaces the earlier 32-item draft. It contains **166 references**, ordered by the stage of the pipeline where each one is used, with a direct link, the access route, the exact place and purpose of use, and how the record was verified.
